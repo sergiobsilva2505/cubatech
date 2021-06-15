@@ -14,7 +14,7 @@ public class Lesson {
 
     private Course course;
 
-    public Lesson(Long id, String name, String urlCode, Course course) {
+    public Lesson(Long id, String name, String urlCode, Course course) { // todo somente obrigatorios
         notEmptyOrNull(name, "Lesson: Name can't be null or empty!");
         notEmptyOrNull(urlCode, "Lesson: UrlCode can't be null or empty!");
         urlCodeValidation(urlCode, "Lesson: Only lowercase letters, no spaces and bar as separator");

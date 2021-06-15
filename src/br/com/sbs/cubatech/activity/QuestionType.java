@@ -1,4 +1,4 @@
-package br.com.sbs.cubatech.enums;
+package br.com.sbs.cubatech.activity;
 
 public enum QuestionType {
 
