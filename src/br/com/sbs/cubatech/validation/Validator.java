@@ -14,7 +14,7 @@ public class Validator {
     }
 
     public static void urlCodeValidation(String text, String error){
-        if(!text.matches("[/a-z]+")){ // questionar urlCode categoria
+        if(!text.matches("[-a-z]+")){ // questionar urlCode categoria
             throw new IllegalArgumentException(error);
         }
     }

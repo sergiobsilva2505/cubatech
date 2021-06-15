@@ -1,4 +1,4 @@
-package br.com.sbs.cubatech.model;
+package br.com.sbs.cubatech.category;
 
 import static br.com.sbs.cubatech.validation.Validator.*;
 
@@ -21,9 +21,9 @@ public class Category {
 
     public Category(Long id, String name, String urlCode, String description, String studyGuide,
                     Byte index, String iconPath, String colorCode) {
-        notEmptyOrNull(name, "Name can't be null or empty!");
-        notEmptyOrNull(urlCode, "UrlCode can't be null or empty!" );
-        urlCodeValidation(urlCode, "Only lowercase letters, no spaces and bar as separator");
+        notEmptyOrNull(name, "Category: Name can't be null or empty!");
+        notEmptyOrNull(urlCode, "Category: UrlCode can't be null or empty!" );
+        urlCodeValidation(urlCode, "Category: Only lowercase letters, no spaces and bar as separator");
 
         this.id = id;
         this.name = name;
@@ -36,4 +36,7 @@ public class Category {
     }
 
 
+    public String getName() {
+        return name;
+    }
 }
