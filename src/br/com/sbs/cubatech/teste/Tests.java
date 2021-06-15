@@ -2,6 +2,7 @@ package br.com.sbs.cubatech.teste;
 
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.course.Course;
+import br.com.sbs.cubatech.lesson.Lesson;
 
 import java.time.LocalTime;
 
@@ -34,8 +35,21 @@ public class Tests {
 //        Course curso8 = new Course(3L, "Lógica de programação I: Os primeiros programas com Javascript e HTML", null, LocalTime.of(10, 00, 00), "Flavio Henrique de Souza Almeida", programacao);
 
         // validando nome do instrutor
-//        Course curso9 = new Course(1L, "Lógica de programação I: Os primeiros programas com Javascript e HTML", "logica-programacao-javascript-html", LocalTime.of(12, 00, 00), "", programacao);
-        Course curso9 = new Course(1L, "Lógica de programação I: Os primeiros programas com Javascript e HTML", "logica-programacao-javascript-html", LocalTime.of(12, 00, 00), null, programacao);
+        Course curso9 = new Course(1L, "Lógica de programação I: Os primeiros programas com Javascript e HTML", "logica-programacao-javascript-html", LocalTime.of(12, 00, 00), "Flavio Henrique de Souza Almeida", programacao);
+//        Course curso9 = new Course(1L, "Lógica de programação I: Os primeiros programas com Javascript e HTML", "logica-programacao-javascript-html", LocalTime.of(12, 00, 00), null, programacao);
+//        Course curso10 = new Course(1L, "Lógica de programação I: Os primeiros programas com Javascript e HTML", "logica-programacao-javascript-html", LocalTime.of(12, 00, 00), "", programacao);
+
+        // validando name
+        Lesson lesson = new Lesson(2L, "Comece a programar hoje","logica-programacao-javascript-html", curso1);
+//        Lesson lesson1 = new Lesson(1L,"", "logica-programacao-javascript-html",curso4);
+//        Lesson lesson2 = new Lesson(1L, null, "logica-programacao-javascript-html",curso4);
+
+        // validando urlcode
+        Lesson lesson3 = new Lesson(2L, "Comece a programar hoje","logica-programacao-javascript-html", curso1);
+//        Lesson lesson6 = new Lesson(2L, "Comece a programar hoje","logica-prOgramacao-javascriPt-html", curso1);
+//        Lesson lesson7 = new Lesson(2L, "Comece a programar hoje","logica-programacao-javAscript-html", curso1);
+//        Lesson lesson4 = new Lesson(2L, "Comece a programar hoje","", curso1);
+//        Lesson lesson5 = new Lesson(2L, "Comece a programar hoje",null, curso1);
 
 
     }

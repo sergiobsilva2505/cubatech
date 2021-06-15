@@ -20,7 +20,8 @@ public class Course {
 
     public Course(Long id, String name, String urlCode, LocalTime time, String instructor, Category category) {
         notEmptyOrNull(name , "Course: Name can't be empty or null");
-        urlCodeValidation(urlCode, "Course: UrlCode can't be null or empty!");
+        notEmptyOrNull(urlCode , "Course: UrlCode can't be empty or null");
+        urlCodeValidation(urlCode, "Course: Only lowercase letters, no spaces and bar as separator");
         notEmptyOrNull(category.getName(), "Course: Must have a category");
         notEmptyOrNull(instructor , "Course: Instructor can't be empty or null");
 
