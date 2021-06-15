@@ -1,6 +1,7 @@
 package br.com.sbs.cubatech.course;
 
 import br.com.sbs.cubatech.category.Category;
+import br.com.sbs.cubatech.category.SubCategory;
 import br.com.sbs.cubatech.enums.Visibility;
 import static br.com.sbs.cubatech.validation.Validator.*;
 
@@ -16,13 +17,13 @@ public class Course {
     private String instructor;
     private String menu; // ementa
     private String skillsDeveloped;
-    private Category category;
+    private SubCategory subCategory;
 
-    public Course(Long id, String name, String urlCode, LocalTime time, String instructor, Category category) {
+    public Course(Long id, String name, String urlCode, LocalTime time, String instructor, SubCategory category) {
         notEmptyOrNull(name , "Course: Name can't be empty or null");
         notEmptyOrNull(urlCode , "Course: UrlCode can't be empty or null");
         urlCodeValidation(urlCode, "Course: Only lowercase letters, no spaces and bar as separator");
-        notEmptyOrNull(category.getName(), "Course: Must have a category");
+        //notEmptyOrNull(Scategory.getName(), "Course: Must have a category");
         notEmptyOrNull(instructor , "Course: Instructor can't be empty or null");
 
 
@@ -31,6 +32,6 @@ public class Course {
         this.urlCode = urlCode;
         this.time = time;
         this.instructor = instructor;
-        this.category = category;
+        this.subCategory = subCategory;
     }
 }

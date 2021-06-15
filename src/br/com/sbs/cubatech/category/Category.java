@@ -14,11 +14,6 @@ public class Category {
     private String iconPath;
     private String colorCode;
 
-    public Category(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public Category(Long id, String name, String urlCode, String description, String studyGuide,
                     Byte index, String iconPath, String colorCode) {
         notEmptyOrNull(name, "Category: Name can't be null or empty!");
@@ -33,10 +28,5 @@ public class Category {
         this.index = index;
         this.iconPath = iconPath;
         this.colorCode = colorCode;
-    }
-
-
-    public String getName() {
-        return name;
     }
 }
