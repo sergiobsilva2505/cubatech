@@ -1,5 +1,6 @@
 package br.com.sbs.cubatech.teste;
 
+import br.com.sbs.cubatech.activity.Activity;
 import br.com.sbs.cubatech.alternative.Alternative;
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.course.Course;
@@ -52,7 +53,9 @@ public class Tests {
 //        Lesson lesson4 = new Lesson(2L, "Comece a programar hoje","", curso1);
 //        Lesson lesson5 = new Lesson(2L, "Comece a programar hoje",null, curso1);
 
-        Alternative alt1 = new Alternative(1L, "um texto explicativo, obrigatório e não vazio", false, "questão");
+
+
+        Alternative alt1 = new Alternative(1L, "um texto explicativo, obrigatório e não vazio", true, "questão");
 
 
     }

@@ -12,6 +12,7 @@ public class Alternative {
 
     public Alternative(Long id, String explanationText, Boolean correct, String justification) {
         notEmptyOrNull(explanationText, "Alternative: Explanation can't be empty or null");
+        notNullBoolean(correct, "Alternative: It should indicate if it is the right answer.");
         this.id = id;
         this.explanationText = explanationText;
         this.correct = correct;
