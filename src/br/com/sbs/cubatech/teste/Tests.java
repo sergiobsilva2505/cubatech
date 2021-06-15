@@ -1,5 +1,6 @@
 package br.com.sbs.cubatech.teste;
 
+import br.com.sbs.cubatech.alternative.Alternative;
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.course.Course;
 import br.com.sbs.cubatech.lesson.Lesson;
@@ -50,6 +51,8 @@ public class Tests {
 //        Lesson lesson7 = new Lesson(2L, "Comece a programar hoje","logica-programacao-javAscript-html", curso1);
 //        Lesson lesson4 = new Lesson(2L, "Comece a programar hoje","", curso1);
 //        Lesson lesson5 = new Lesson(2L, "Comece a programar hoje",null, curso1);
+
+        Alternative alt1 = new Alternative(1L, "um texto explicativo, obrigatório e não vazio", false, "questão");
 
 
     }
