@@ -2,18 +2,18 @@ package br.com.sbs.cubatech.activity;
 
 import br.com.sbs.cubatech.lesson.Lesson;
 
-import java.time.LocalTime;
+import static br.com.sbs.cubatech.validation.Validator.*;
 
 public class Video extends Activity{
 
     private String url;
-    private LocalTime duration; // todo duration in minutes Integer
+    private Integer duration;
     private String transcription;
 
-    public Video(Long id, String title, String urlCode, Boolean active, Integer order, Lesson lesson, String url, LocalTime duration, String transcription) {  // todo somente obrigatorio
-        super(id, title, urlCode, active, order, lesson);
+    public Video(String title, String urlCode,  Lesson lesson, String url) {
+        super(title, urlCode,  lesson);
+        notEmptyOrNull(url, "Video: urlCode can not be null");
         this.url = url;
-        this.duration = duration;
-        this.transcription = transcription;
+
     }
 }

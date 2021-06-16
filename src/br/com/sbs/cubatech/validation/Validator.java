@@ -21,9 +21,9 @@ public class Validator {
         }
     }
 
-    // todo validar tempo estimado de cruso entre 1 e 20
-    public static void estimatedTimeValid(Integer estimatedTime, String error){
-        if (estimatedTime < 1 && estimatedTime >= 20){
+
+    public static void intervalValidation(int value, int min, int max, String error){
+        if (value < min || value > max){
             throw  new IllegalArgumentException(error);
         }
     }

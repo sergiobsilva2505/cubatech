@@ -6,14 +6,13 @@ import static br.com.sbs.cubatech.validation.Validator.*;
 
 public class Question extends Activity {
 
-    private String enunciation;
-    private QuestionType questionType; // todo implementar validação
+    private String description;
+    private QuestionType questionType = QuestionType.SINGLE_ANSWER;
 
-    public Question(Long id, String title, String urlCode, Boolean active, Integer order, Lesson lesson, String enunciation, QuestionType questionType) { // todo somente obrigaTORIOS
-        super(id, title, urlCode, active, order, lesson);
-        notEmptyOrNull(enunciation, "Question: The question needs an enunciation"); // TODO enunciation para description
-        objectNotNull(questionType, "Question: QuetionType can't be null");
-        this.enunciation = enunciation;
-        this.questionType = questionType;
+    public Question(String title, String urlCode, Lesson lesson, String description) {
+        super(title, urlCode, lesson);
+        notEmptyOrNull(description, "Question: The question needs an enunciation");
+        objectNotNull(questionType, "Question: QuestionType can't be null");
+        this.description = description;
     }
 }
