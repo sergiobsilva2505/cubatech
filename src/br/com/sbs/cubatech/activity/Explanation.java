@@ -1,0 +1,16 @@
+package br.com.sbs.cubatech.activity;
+
+import br.com.sbs.cubatech.lesson.Lesson;
+
+import static br.com.sbs.cubatech.validation.Validator.notEmptyOrNull;
+
+public class Explanation extends Activity{
+
+    private String explanation;
+
+    public Explanation(String title, String urlCode, Lesson lesson, String explanation) {
+        super(title, urlCode, lesson);
+        notEmptyOrNull(explanation, "Explanation: title can not be null or empty");
+        this.explanation = explanation;
+    }
+}
