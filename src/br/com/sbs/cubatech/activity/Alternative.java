@@ -14,7 +14,7 @@ public class Alternative {
 
     public Alternative(Long id, String explanation, Boolean correct, String justification) { // todo somente obrigatorio
         notEmptyOrNull(explanation, "Alternative: Explanation can't be empty or null");
-        notNullBoolean(correct, "Alternative: It should indicate if it is the right answer.");
+//        notNullBoolean(correct, "Alternative: It should indicate if it is the right answer.");
         this.id = id;
         this.explanation = explanation;
         this.correct = correct;

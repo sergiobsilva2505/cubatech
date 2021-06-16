@@ -17,7 +17,7 @@ public abstract class Activity {
         notEmptyOrNull(title, "Activity: Title can't be empty or null");
         notEmptyOrNull(urlCode, "Activity: urlCode can't be empty or null");
         urlCodeValidation(urlCode, "Activity: Only lowercase letters, no spaces or bar as separator");
-        notNullBoolean(active, "Activity: can't be null");
+//        notNullBoolean(active, "Activity: can't be null");
         objectNotNull(lesson, "Activity: Lesson can't be null");
 
         this.id = id;

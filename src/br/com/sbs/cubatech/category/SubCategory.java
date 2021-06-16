@@ -16,7 +16,7 @@ public class SubCategory {
         notEmptyOrNull(name, "SubCategory: Name can't null or empty.");
         notEmptyOrNull(urlCode, "SubCategory: UrlCode can't be null or empty!");
         urlCodeValidation(urlCode, "SubCategory: Only lowercase letters, no spaces and bar as separator");
-        notNullBoolean(active, "SubCategory: can't be null");
+//        notNullBoolean(active, "SubCategory: can't be null");
         objectNotNull(category, "Subcategory: Category can't not be null");
         this.id = id;
         this.name = name;
