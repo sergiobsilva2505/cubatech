@@ -1,5 +1,7 @@
 package br.com.sbs.cubatech.category;
 
+import java.util.Locale;
+
 import static br.com.sbs.cubatech.validation.Validator.*;
 
 public class Category {
@@ -21,5 +23,21 @@ public class Category {
 
         this.name = name;
         this.urlCode = urlCode;
+    }
+
+    public Category(String name, String urlCode, Integer order, String description, boolean active,  String iconPath, String colorCode) {
+        this.name = name;
+        this.urlCode = urlCode;
+        this.description = description;
+        this.active = active;
+        this.order = order;
+        this.iconPath = iconPath;
+        this.colorCode = colorCode;
+    }
+
+    @Override
+    public String toString() {
+        String n = String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, active, order, iconPath, colorCode);
+        return  n;
     }
 }

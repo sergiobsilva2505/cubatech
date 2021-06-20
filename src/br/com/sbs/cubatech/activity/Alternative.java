@@ -1,8 +1,11 @@
 package br.com.sbs.cubatech.activity;
 
+import java.io.Serializable;
+
 import static br.com.sbs.cubatech.validation.Validator.*;
 
-public class Alternative {
+public class Alternative implements Serializable {
+
 
     private Long id;
     private String explanation;
