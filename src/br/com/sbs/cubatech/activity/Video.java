@@ -12,7 +12,7 @@ public class Video extends Activity{
 
     public Video(String title, String urlCode,  Lesson lesson, String url) {
         super(title, urlCode,  lesson);
-        notEmptyOrNull(url, "Video: urlCode can not be null");
+        notEmptyOrNull(url, "Video: UrlCode");
         this.url = url;
 
     }

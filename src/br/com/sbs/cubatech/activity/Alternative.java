@@ -15,8 +15,8 @@ public class Alternative {
 
 
     public Alternative(String explanation, boolean correct, Question question) {
-        notEmptyOrNull(explanation, "Alternative: Explanation can't be empty or null");
-        objectNotNull(question, "Alternative: Question can not be null");
+        notEmptyOrNull(explanation, "Alternative: Explanation");
+        objectNotNull(question, "Alternative: Question");
         this.explanation = explanation;
         this.correct = correct;
         this.question = question;

@@ -21,12 +21,12 @@ public class Course {
 
 
     public Course(String name, String urlCode, Integer timeToFinishInHours, String instructor, SubCategory subCategory) {
-        notEmptyOrNull(name , "Course: Name can't be empty or null");
-        notEmptyOrNull(urlCode , "Course: UrlCode can't be empty or null");
-        urlCodeValidation(urlCode, "Course: Only lowercase letters, no spaces and bar as separator");
-        notEmptyOrNull(instructor , "Course: Instructor can't be empty or null");
-        objectNotNull(subCategory, "Category: subCategory can nott be null");
-        intervalValidation(timeToFinishInHours, MININUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH, "Course: time to finish, needs to be between 1 or 20 hours");
+        notEmptyOrNull(name , "Course: Name");
+        notEmptyOrNull(urlCode , "Course: UrlCode");
+        urlCodeValidation(urlCode, "Course: UrlCode");
+        notEmptyOrNull(instructor , "Course: Instructor");
+        objectNotNull(subCategory, "Category: SubCategory");
+        intervalValidation(timeToFinishInHours, MININUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH);
 
 
         this.name = name;

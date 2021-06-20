@@ -11,8 +11,8 @@ public class Question extends Activity {
 
     public Question(String title, String urlCode, Lesson lesson, String description) {
         super(title, urlCode, lesson);
-        notEmptyOrNull(description, "Question: The question needs an enunciation");
-        objectNotNull(questionType, "Question: QuestionType can't be null");
+        notEmptyOrNull(description, "Question: Description");
+        objectNotNull(questionType, "Question: QuestionType");
         this.description = description;
     }
 }

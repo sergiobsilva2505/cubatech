@@ -50,7 +50,7 @@ public class Tests {
 //        Lesson lesson2 = new Lesson(1L, null, "logica-programacao-javascript-html",curso4);
 
         // validando urlcode
-        Lesson lesson3 = new Lesson("Comece a programar hoje","logica-programacao-javascript-html", curso1);
+        Lesson lesson3 = new Lesson("Comece a programar hoje","logica-programacao-javascrip-html", curso1);
 //        Lesson lesson6 = new Lesson(2L, "Comece a programar hoje","logica-prOgramacao-javascriPt-html", curso1);
 //        Lesson lesson7 = new Lesson(2L, "Comece a programar hoje","logica-programacao-javAscript-html", curso1);
 //        Lesson lesson4 = new Lesson(2L, "Comece a programar hoje","", curso1);

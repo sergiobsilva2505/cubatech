@@ -15,9 +15,9 @@ public class Category {
     private String colorCode;
 
     public Category(String name, String urlCode) {
-        notEmptyOrNull(name, "Category: Name can't be null or empty!");
-        notEmptyOrNull(urlCode, "Category: UrlCode can't be null or empty!" );
-        urlCodeValidation(urlCode, "Category: Only lowercase letters, no spaces and bar as separator");
+        notEmptyOrNull(name, "Category: Name");
+        notEmptyOrNull(urlCode, "Category: UrlCode" );
+        urlCodeValidation(urlCode, "Category: UrlCode");
 
         this.name = name;
         this.urlCode = urlCode;

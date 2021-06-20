@@ -14,10 +14,11 @@ public abstract class Activity {
     private Lesson lesson;
 
     public Activity(String title, String urlCode,  Lesson lesson) {
-        notEmptyOrNull(title, "Activity: Title can't be empty or null");
-        notEmptyOrNull(urlCode, "Activity: urlCode can't be empty or null");
-        urlCodeValidation(urlCode, "Activity: Only lowercase letters, no spaces or bar as separator");
-        objectNotNull(lesson, "Activity: Lesson can't be null");
+        //
+        notEmptyOrNull(title, "Activity: Title");
+        notEmptyOrNull(urlCode, "Activity: UrlCode");
+        urlCodeValidation(urlCode, "Activity: UrlCode");
+        objectNotNull(lesson, "Activity: Lesson");
 
         this.title = title;
         this.urlCode = urlCode;

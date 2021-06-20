@@ -13,10 +13,10 @@ public class SubCategory {
     private Category category;
 
     public SubCategory(String name, String urlCode, Category category) {
-        notEmptyOrNull(name, "SubCategory: Name can't null or empty.");
-        notEmptyOrNull(urlCode, "SubCategory: UrlCode can't be null or empty!");
-        urlCodeValidation(urlCode, "SubCategory: Only lowercase letters, no spaces and bar as separator");
-        objectNotNull(category, "Subcategory: Category can't not be null");
+        notEmptyOrNull(name, "SubCategory: Name");
+        notEmptyOrNull(urlCode, "SubCategory: UrlCode");
+        urlCodeValidation(urlCode, "SubCategory: UrlCode");
+        objectNotNull(category, "Subcategory: Category");
 
         this.name = name;
         this.urlCode = urlCode;
