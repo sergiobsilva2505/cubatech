@@ -26,6 +26,10 @@ public class Category {
     }
 
     public Category(String name, String urlCode, Integer order, String description, boolean active,  String iconPath, String colorCode) {
+        notEmptyOrNull(name, "Category: Name");
+        notEmptyOrNull(urlCode, "Category: UrlCode" );
+        urlCodeValidation(urlCode, "Category: UrlCode");
+
         this.name = name;
         this.urlCode = urlCode;
         this.description = description;
@@ -35,9 +39,18 @@ public class Category {
         this.colorCode = colorCode;
     }
 
+    public Category(String name) {
+        notEmptyOrNull(name, "Category: Name");
+        this.name = name;
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public String toString() {
-        String n = String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, active, order, iconPath, colorCode);
-        return  n;
+        return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, active, order, iconPath, colorCode);
     }
 }

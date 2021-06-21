@@ -6,7 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TestReader {
+public class TestReaderCategory {
 
     public static void main(String[] args) throws IOException {
 
@@ -47,7 +47,7 @@ public class TestReader {
             line = bufferedReader.readLine();
         }
 
-        System.out.println("CATEGORYS:");
+        System.out.println("CATEGORIES:");
 
         String header = String.format("%-15s - %-15s - %-150s - %-6s - %6s - %-100s - %-8s", headerName, headerUrlCode, headerDescription, headerStatus, headerOrder, headerIcon, headerColor);
 
@@ -57,8 +57,5 @@ public class TestReader {
         }
 
         bufferedReader.close();
-
-
-
     }
 }
