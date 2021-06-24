@@ -15,15 +15,15 @@ import java.util.Optional;
 public class CsvFileReader {
 
     static List<Category> readCategories() throws IOException {
-        String file = "Categoria.csv";
+
         List<Category> categoryList = new ArrayList<>();
 
-        var bufferedReader = new BufferedReader(new FileReader(file));
+        var bufferedReader = new BufferedReader(new FileReader("Categoria.csv"));
 
-        String headerLine = bufferedReader.readLine().toUpperCase();
+        bufferedReader.readLine().toUpperCase();
         String line = bufferedReader.readLine();
 
-        String[] categoryColumnName = headerLine.split(",");
+//        String[] categoryColumnName = headerLine.split(",");
 
         while (line != null){
 
@@ -51,7 +51,6 @@ public class CsvFileReader {
 //        String headerIcon = columnsName[5];
 //        String headerColor = columnsName[6];
 
-//        System.out.println("---===> CATEGORIES <===---");
 //        System.out.format("%-15s - %-15s - %-150s - %-6s - %6s - %-100s - %-8s%n", headerName, headerUrlCode, headerDescription, headerStatus, headerOrder, headerIcon, headerColor);
 
         bufferedReader.close();
@@ -63,15 +62,14 @@ public class CsvFileReader {
 
         List<Category> categoryList = readCategories();
 
-        String file = "Subcategoria.csv";
         List<SubCategory> listSubCategory = new ArrayList<>();
 
-        var bufferedReader = new BufferedReader(new FileReader(file));
+        var bufferedReader = new BufferedReader(new FileReader("Subcategoria.csv"));
 
-        String headerLine = bufferedReader.readLine().toUpperCase();
+        bufferedReader.readLine().toUpperCase();
         String line = bufferedReader.readLine();
 
-        String[] subCategoriesColumnName = headerLine.split(",");
+//        String[] subCategoriesColumnName = headerLine.split(",");
 
         while (line != null ){
 
@@ -103,7 +101,6 @@ public class CsvFileReader {
 //        String active = columnsName[4];
 //        String category = columnsName[5];
 
-//        System.out.println("---===> SUB CATEGORIES <===---");
 //        System.out.format("%-30s - %-30s - %6s - %-155s - %s - %-8s %n", name, urlCode, order, description, active, category);
 
         bufferedReader.close();
@@ -115,15 +112,14 @@ public class CsvFileReader {
 
         List<SubCategory> subCategoryList = readSubCategories();
 
-        String file = "Curso.csv";
         List<Course> courseList = new ArrayList<>();
 
-        var bufferedReader = new BufferedReader(new FileReader(file));
+        var bufferedReader = new BufferedReader(new FileReader("Curso.csv"));
 
-        String headerLine = bufferedReader.readLine().toUpperCase();
+        bufferedReader.readLine().toUpperCase();
         String line = bufferedReader.readLine();
 
-        String[] courseColumnName = headerLine.split(",");
+//        String[] courseColumnName = headerLine.split(",");
 
         while ( line != null){
 
@@ -149,14 +145,12 @@ public class CsvFileReader {
             }
 
             line = bufferedReader.readLine();
-
-
         }
 
+        bufferedReader.close();
 
         return courseList;
 
     }
-
 
 }

@@ -27,7 +27,7 @@ public class Course {
         notEmptyOrNull(urlCode , "Course: UrlCode");
         urlCodeValidation(urlCode, "Course: UrlCode");
         notEmptyOrNull(instructor , "Course: Instructor");
-        objectNotNull(subCategory, "Category: SubCategory");
+        objectNotNull(subCategory, "Course: SubCategory");
         intervalValidation(timeToFinishInHours, MININUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH);
 
 
@@ -39,6 +39,13 @@ public class Course {
     }
 
     public Course(String name, String urlCode, Integer timeToFinishInHours, CourseVisibility courseVisibility, String targetAudience,  String instructor, String summary, String skillsDeveloped, SubCategory subCategory) {
+        notEmptyOrNull(name , "Course: Name");
+        notEmptyOrNull(urlCode , "Course: UrlCode");
+        urlCodeValidation(urlCode, "Course: UrlCode");
+        notEmptyOrNull(instructor , "Course: Instructor");
+        objectNotNull(subCategory, "Course: SubCategory");
+        intervalValidation(timeToFinishInHours, MININUM_TIME_TO_FINISH, MAXIMUM_TIME_TO_FINISH);
+
         this.name = name;
         this.urlCode = urlCode;
         this.timeToFinishInHours = timeToFinishInHours;
@@ -56,15 +63,6 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course{" +
-                "name='" + name + '\'' +
-                ", urlCode='" + urlCode + '\'' +
-                ", timeToFinishInHours=" + timeToFinishInHours +
-                ", courseVisibility=" + courseVisibility +
-                ", instructor='" + instructor + '\'' +
-                ", summary='" + summary + '\'' +
-                ", skillsDeveloped='" + skillsDeveloped + '\'' +
-                ", subCategory=" + subCategory +
-                '}';
+        return String.format("%-85s - %-60s - %2d - %-8s - %-20s - %-2380s - %-150s - %-15s" , name, urlCode, timeToFinishInHours, courseVisibility, instructor, summary, skillsDeveloped, subCategory);
     }
 }
