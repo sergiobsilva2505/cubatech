@@ -39,6 +39,10 @@ public class SubCategory {
 
     }
 
+    public String getUrlCode() {
+        return urlCode;
+    }
+
     @Override
     public String toString() {
         return String.format("%-30s - %-30s - %6d - %-155s - %s - %-8s", name, urlCode, order, description, active, category.getName());

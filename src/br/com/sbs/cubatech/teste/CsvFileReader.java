@@ -2,6 +2,8 @@ package br.com.sbs.cubatech.teste;
 
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.SubCategory;
+import br.com.sbs.cubatech.course.Course;
+import br.com.sbs.cubatech.course.CourseVisibility;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class TestReaderCategory {
+public class CsvFileReader {
 
     static List<Category> readCategories() throws IOException {
         String file = "Categoria.csv";
@@ -21,7 +23,7 @@ public class TestReaderCategory {
         String headerLine = bufferedReader.readLine().toUpperCase();
         String line = bufferedReader.readLine();
 
-        String[] columnsName = headerLine.split(",");
+        String[] categoryColumnName = headerLine.split(",");
 
         while (line != null){
 
@@ -57,9 +59,9 @@ public class TestReaderCategory {
         return categoryList;
     }
 
-    static List<SubCategory> readSubcategories() throws IOException {
+    static List<SubCategory> readSubCategories() throws IOException {
 
-        List<Category> categoryList = TestReaderCategory.readCategories();
+        List<Category> categoryList = readCategories();
 
         String file = "Subcategoria.csv";
         List<SubCategory> listSubCategory = new ArrayList<>();
@@ -69,7 +71,7 @@ public class TestReaderCategory {
         String headerLine = bufferedReader.readLine().toUpperCase();
         String line = bufferedReader.readLine();
 
-        String[] columnsName = headerLine.split(",");
+        String[] subCategoriesColumnName = headerLine.split(",");
 
         while (line != null ){
 
@@ -107,6 +109,53 @@ public class TestReaderCategory {
         bufferedReader.close();
 
         return listSubCategory;
+    }
+
+    static List<Course> readCourses() throws IOException {
+
+        List<SubCategory> subCategoryList = readSubCategories();
+
+        String file = "Curso.csv";
+        List<Course> courseList = new ArrayList<>();
+
+        var bufferedReader = new BufferedReader(new FileReader(file));
+
+        String headerLine = bufferedReader.readLine().toUpperCase();
+        String line = bufferedReader.readLine();
+
+        String[] courseColumnName = headerLine.split(",");
+
+        while ( line != null){
+
+            String[] courseColumnValues = line.split(",");
+
+            String name = courseColumnValues[0];
+            String courseUrlCode = courseColumnValues[1];
+            Integer timeToFinishInHours = courseColumnValues[2] == "" ? null : Integer.parseInt(courseColumnValues[2]);
+            CourseVisibility courseVisibility = courseColumnValues[3] == "PRIVADA" ? CourseVisibility.PRIVATE : CourseVisibility.PUBLIC;
+            String targetAudience = courseColumnValues[4];
+            String instructor = courseColumnValues[5];
+            String summary = courseColumnValues[6];
+            String skillsDeveloped = courseColumnValues[7];
+            String subCategoryUrlCode = courseColumnValues[8];
+
+            Optional<SubCategory> subCategory = subCategoryList.stream()
+                    .filter(subCategory1 -> subCategory1.getUrlCode().equals(subCategoryUrlCode))
+                    .findAny();
+
+            if(!subCategory.isEmpty()){
+                Course course = new Course(name, courseUrlCode, timeToFinishInHours, courseVisibility, targetAudience,  instructor, summary, skillsDeveloped,  subCategory.get());
+                courseList.add(course);
+            }
+
+            line = bufferedReader.readLine();
+
+
+        }
+
+
+        return courseList;
+
     }
 
 

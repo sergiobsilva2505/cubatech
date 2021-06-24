@@ -49,6 +49,10 @@ public class Category {
         return name;
     }
 
+    public String getUrlCode() {
+        return urlCode;
+    }
+
     @Override
     public String toString() {
         return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, active, order, iconPath, colorCode);
