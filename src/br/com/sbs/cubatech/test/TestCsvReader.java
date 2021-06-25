@@ -1,4 +1,4 @@
-package br.com.sbs.cubatech.teste;
+package br.com.sbs.cubatech.test;
 
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.SubCategory;
@@ -11,9 +11,11 @@ public class TestCsvReader {
 
     public static void main(String[] args) throws IOException {
 
-        List<Category> categoryList = CsvFileReader.readCategories();
-        List<SubCategory> subCategoryList = CsvFileReader.readSubCategories();
-        List<Course> courseList = CsvFileReader.readCourses();
+        CsvFileReader csvFileReader = new CsvFileReader();
+
+        List<Category> categoryList = csvFileReader.readCategories();
+        List<SubCategory> subCategoryList = csvFileReader.readSubCategories(categoryList);
+        List<Course> courseList = csvFileReader.readCourses(subCategoryList);
 
         System.out.println("\n---===> CATEGORIES <===---");
         categoryList.forEach(System.out::println);

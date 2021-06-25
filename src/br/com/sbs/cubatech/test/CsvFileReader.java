@@ -1,6 +1,7 @@
-package br.com.sbs.cubatech.teste;
+package br.com.sbs.cubatech.test;
 
 import br.com.sbs.cubatech.category.Category;
+import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.category.SubCategory;
 import br.com.sbs.cubatech.course.Course;
 import br.com.sbs.cubatech.course.CourseVisibility;
@@ -14,7 +15,7 @@ import java.util.Optional;
 
 public class CsvFileReader {
 
-    static List<Category> readCategories() throws IOException {
+    public List<Category> readCategories() throws IOException {
 
         List<Category> categoryList = new ArrayList<>();
 
@@ -58,9 +59,9 @@ public class CsvFileReader {
         return categoryList;
     }
 
-    static List<SubCategory> readSubCategories() throws IOException {
+    public List<SubCategory> readSubCategories(List<Category> categories) throws IOException {
 
-        List<Category> categoryList = readCategories();
+        List<Category> categoryList = categories;
 
         List<SubCategory> listSubCategory = new ArrayList<>();
 
@@ -79,7 +80,7 @@ public class CsvFileReader {
             String urlCode = valuesSubCategoryColumns[1];
             Integer order = valuesSubCategoryColumns[2] == "" ? null : Integer.parseInt(valuesSubCategoryColumns[2]);
             String description = valuesSubCategoryColumns[3];
-            Boolean active = valuesSubCategoryColumns[4] == "ATIVA" ? true : false;
+            Status status = valuesSubCategoryColumns[4].equals("ATIVA")  ? Status.ATIVA : Status.INATIVA;
             String categoryUrlCode = valuesSubCategoryColumns[5];
 
 
@@ -87,7 +88,7 @@ public class CsvFileReader {
                     .filter(category1 -> category1.getUrlCode().equals(categoryUrlCode))
                     .findAny();
             if(!category.isEmpty()){
-                SubCategory subCategory = new SubCategory(name, urlCode, order, description,active, category.get());
+                SubCategory subCategory = new SubCategory(name, urlCode, order, description, status, category.get());
                 listSubCategory.add(subCategory);
             }
 
@@ -108,9 +109,9 @@ public class CsvFileReader {
         return listSubCategory;
     }
 
-    static List<Course> readCourses() throws IOException {
+    public List<Course> readCourses(List<SubCategory> subCategories) throws IOException {
 
-        List<SubCategory> subCategoryList = readSubCategories();
+        List<SubCategory> subCategoryList = subCategories;
 
         List<Course> courseList = new ArrayList<>();
 

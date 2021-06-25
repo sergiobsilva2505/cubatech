@@ -38,7 +38,7 @@ public class Course {
         this.subCategory = subCategory;
     }
 
-    public Course(String name, String urlCode, Integer timeToFinishInHours, CourseVisibility courseVisibility, String targetAudience,  String instructor, String summary, String skillsDeveloped, SubCategory subCategory) {
+    public Course(String name, String urlCode, Integer timeToFinishInHours, CourseVisibility courseVisibility, String targetAudience, String instructor, String summary, String skillsDeveloped, SubCategory subCategory) {
         notEmptyOrNull(name , "Course: Name");
         notEmptyOrNull(urlCode , "Course: UrlCode");
         urlCodeValidation(urlCode, "Course: UrlCode");

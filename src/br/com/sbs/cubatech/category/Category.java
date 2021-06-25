@@ -53,6 +53,18 @@ public class Category {
         return urlCode;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public String getIconPath() {
+        return iconPath;
+    }
+
+    public String getColorCode() {
+        return colorCode;
+    }
+
     @Override
     public String toString() {
         return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, active, order, iconPath, colorCode);
