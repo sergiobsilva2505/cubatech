@@ -6,8 +6,8 @@ import br.com.sbs.cubatech.category.SubCategory;
 import br.com.sbs.cubatech.course.Course;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class TestHtmlWriter {
@@ -15,25 +15,25 @@ public class TestHtmlWriter {
     public static void main(String[] args) throws IOException {
 
         CsvFileReader csvFileReader = new CsvFileReader();
-//        List<Category> categories = readCsvFile();
 
         List<Category> categories = csvFileReader.readCategories();
-        List<SubCategory> subCategories = csvFileReader.readSubCategories(categories);
-        List<Course> courses = csvFileReader.readCourses(subCategories);
+        Map<String, Category> categoryMap = categories.stream().collect(Collectors.toMap(Category::getUrlCode, Function.identity()));
 
-        List<SubCategory> list = subCategories.stream()
-                .filter(subCategory -> subCategory.getStatus() == Status.INATIVA)
-                .collect(Collectors.toList());
+        List<SubCategory> subCategories = csvFileReader.readSubCategories(categoryMap);
+        Map<String, SubCategory> subCategoryMap = subCategories.stream().collect(Collectors.toMap(SubCategory::getUrlCode, Function.identity()));
+        List<Course> courses = csvFileReader.readCourses(subCategoryMap);
 
-        list.forEach(System.out::println);
-
-//        writeCsvFile(categories);
-
-    }
-
-    private static void writeCsvFile(List<Category> categories) throws IOException {
         String outputFile = "index.html";
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputFile));
+
+
+
+//        String s = "";
+//        for (Category category: categories) {
+//            s = category.getSubCategories().toString();
+//        }
+
+//        System.out.println(cat.getSubCategories());
 
         String textValues = "";
 
@@ -46,8 +46,9 @@ public class TestHtmlWriter {
                             <td>%s</td>
                             <td>%d</td>
                             <td>%d</td>
+                            <td>%s</td>
                         </tr>
-                """, category.getName(), category.getDescription(), category.getIconPath(), category.getColorCode(), 9, 100);
+                """, category.getName(), category.getDescription(), category.getIconPath(), category.getColorCode(),category.getSubCategories().size(), category.totalTimeToFinishPerCategory(), category.getSubCategoryName());
         }
 
         String text = String.format("""
@@ -56,6 +57,7 @@ public class TestHtmlWriter {
                 <head>
                     <meta charset="UTF-8">
                     <title>Document</title>
+                    <link rel="stylesheet" href="style.css">
                 </head>
                 <body>
                     <h2>Categorias</h2><br>
@@ -67,6 +69,7 @@ public class TestHtmlWriter {
                             <th>Cor</th>
                             <th>Total de cursos</th>
                             <th>Total de horas</th>
+                            <th>SubCategorias</th>
                         </tr>
                         %s
                     </table>
@@ -74,42 +77,10 @@ public class TestHtmlWriter {
                 </html>
                 """, textValues);
 
+
         bufferedWriter.write(text);
         bufferedWriter.close();
     }
 
-//    private static List<Category> readCsvFile() throws IOException {
-//        BufferedReader bufferedReader = new BufferedReader(new FileReader("Categoria.csv"));
-//
-//        List<Category> categoryList = new ArrayList<>();
-//
-//        String headerCategory = bufferedReader.readLine().toUpperCase();
-//        String[] categoryColumnName = headerCategory.split(",");
-//
-//        String columnsValueInCsvCategory = bufferedReader.readLine();
-//
-//        String[] sepratorColumns = null;
-//
-//        while (columnsValueInCsvCategory != null){
-//
-//            sepratorColumns = columnsValueInCsvCategory.split(",");
-//
-//            String name = sepratorColumns[0];
-//            String urlCode = sepratorColumns[1];
-//            Integer order = sepratorColumns[2] == "" ? null : Integer.parseInt(sepratorColumns[2]);
-//            String description = sepratorColumns[3];
-//            Boolean active = sepratorColumns[4] == "ATIVA" ? true : false;
-//            String iconPath = sepratorColumns[5];
-//            String colorCode = sepratorColumns[6];
-//
-//            Category category = new Category(name, urlCode, order, description, active, iconPath, colorCode);
-//            categoryList.add(category);
-//
-//            columnsValueInCsvCategory = bufferedReader.readLine();
-//
-//        }
-//        bufferedReader.close();
-//
-//        return categoryList;
-//    }
+
 }

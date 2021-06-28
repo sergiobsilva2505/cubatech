@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public class CsvFileReader {
@@ -34,11 +35,11 @@ public class CsvFileReader {
             String urlCode = valuesCategoryColumns[1];
             Integer order = valuesCategoryColumns[2] == "" ? null : Integer.parseInt(valuesCategoryColumns[2]);
             String description = valuesCategoryColumns[3];
-            Boolean active = valuesCategoryColumns[4] == "ATIVA" ? true : false;
+            Status status = valuesCategoryColumns[4] == "ATIVA" ? Status.ATIVA : Status.INATIVA;
             String iconPath = valuesCategoryColumns[5];
             String colorCode = valuesCategoryColumns[6];
 
-            Category category = new Category(name, urlCode, order, description, active, iconPath, colorCode );
+            Category category = new Category(name, urlCode, order, description, status, iconPath, colorCode );
             categoryList.add(category);
 
             line = bufferedReader.readLine();
@@ -59,9 +60,7 @@ public class CsvFileReader {
         return categoryList;
     }
 
-    public List<SubCategory> readSubCategories(List<Category> categories) throws IOException {
-
-        List<Category> categoryList = categories;
+    public List<SubCategory> readSubCategories(Map<String, Category> categories) throws IOException {
 
         List<SubCategory> listSubCategory = new ArrayList<>();
 
@@ -70,7 +69,6 @@ public class CsvFileReader {
         bufferedReader.readLine().toUpperCase();
         String line = bufferedReader.readLine();
 
-//        String[] subCategoriesColumnName = headerLine.split(",");
 
         while (line != null ){
 
@@ -83,35 +81,21 @@ public class CsvFileReader {
             Status status = valuesSubCategoryColumns[4].equals("ATIVA")  ? Status.ATIVA : Status.INATIVA;
             String categoryUrlCode = valuesSubCategoryColumns[5];
 
-
-            Optional<Category> category = categoryList.stream()
-                    .filter(category1 -> category1.getUrlCode().equals(categoryUrlCode))
-                    .findAny();
-            if(!category.isEmpty()){
-                SubCategory subCategory = new SubCategory(name, urlCode, order, description, status, category.get());
-                listSubCategory.add(subCategory);
-            }
+            Category category =  categories.get(categoryUrlCode);
+            SubCategory subCategory = new SubCategory(name, urlCode, order, description, status, category);
+            listSubCategory.add(subCategory);
+            category.addSubCategories(subCategory);
 
             line = bufferedReader.readLine();
         }
 
-//        String name = columnsName[0];
-//        String urlCode = columnsName[1];
-//        String order = columnsName[2];
-//        String description = columnsName[3];
-//        String active = columnsName[4];
-//        String category = columnsName[5];
-
-//        System.out.format("%-30s - %-30s - %6s - %-155s - %s - %-8s %n", name, urlCode, order, description, active, category);
 
         bufferedReader.close();
 
         return listSubCategory;
     }
 
-    public List<Course> readCourses(List<SubCategory> subCategories) throws IOException {
-
-        List<SubCategory> subCategoryList = subCategories;
+    public List<Course> readCourses(Map<String, SubCategory> subCategories) throws IOException {
 
         List<Course> courseList = new ArrayList<>();
 
@@ -136,13 +120,10 @@ public class CsvFileReader {
             String skillsDeveloped = courseColumnValues[7];
             String subCategoryUrlCode = courseColumnValues[8];
 
-            Optional<SubCategory> subCategory = subCategoryList.stream()
-                    .filter(subCategory1 -> subCategory1.getUrlCode().equals(subCategoryUrlCode))
-                    .findAny();
-
-            if(!subCategory.isEmpty()){
-                Course course = new Course(name, courseUrlCode, timeToFinishInHours, courseVisibility, targetAudience,  instructor, summary, skillsDeveloped,  subCategory.get());
+            if(!subCategories.isEmpty()){
+                Course course = new Course(name, courseUrlCode, timeToFinishInHours, courseVisibility, targetAudience,  instructor, summary, skillsDeveloped,  subCategories.get(subCategoryUrlCode));
                 courseList.add(course);
+
             }
 
             line = bufferedReader.readLine();
