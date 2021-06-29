@@ -71,7 +71,7 @@ public class Category {
 
     public String getSubCategoryName(){
         return this.subCategories.stream()
-                .map(SubCategory::toString2).collect(Collectors.joining(","));
+                .map(SubCategory::getStrinOfCourseFieldsInHtml).collect(Collectors.joining(","));
     }
 
     public void addSubCategories(SubCategory subCategory) {
@@ -80,8 +80,8 @@ public class Category {
 
     @Override
     public String toString() {
-        return String.format("%s - %s - %s - %s - %d - %s - %s - %d", name, urlCode, description, status, order, iconPath, colorCode, totalTimeToFinishPerCategory());
-//        return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, status, order, iconPath, colorCode);
+//        return String.format("%s - %s - %s - %s - %d - %s - %s - %d", name, urlCode, description, status, order, iconPath, colorCode, totalTimeToFinishPerCategory());
+        return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, status, order, iconPath, colorCode);
     }
 
 }

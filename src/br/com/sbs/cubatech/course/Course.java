@@ -66,7 +66,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return String.format("%s - %s - %d - %s - %s - %s - %s - %s" , name, urlCode, timeToFinishInHours, courseVisibility, instructor, summary, skillsDeveloped, subCategory.getName());
-//        return String.format("%-85s - %-60s - %2d - %-8s - %-20s - %-2380s - %-375s - %-30s" , name, urlCode, timeToFinishInHours, courseVisibility, instructor, summary, skillsDeveloped, subCategory.getName());
+//        return String.format("%s - %s - %d - %s - %s - %s - %s - %s" , name, urlCode, timeToFinishInHours, courseVisibility, instructor, summary, skillsDeveloped, subCategory.getName());
+        return String.format("%-85s - %-60s - %2d - %-8s - %-20s - %-2380s - %-375s - %-30s" , name, urlCode, timeToFinishInHours, courseVisibility, instructor, summary, skillsDeveloped, subCategory.getName());
     }
 }

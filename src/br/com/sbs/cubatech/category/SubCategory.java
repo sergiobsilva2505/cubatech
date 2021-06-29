@@ -80,11 +80,11 @@ public class SubCategory {
 
     @Override
     public String toString() {
-        return String.format("%s - %s - %d - %s - %s - %s - %d", name, urlCode, order, description, status , category.getName(), totalityToFinishInHours());
-//        return String.format("%-30s - %-30s - %6d - %-155s - %-8s - %-8s", name, urlCode, order, description, status , category.getName());
+//        return String.format("%s - %s - %d - %s - %s - %s - %d", name, urlCode, order, description, status , category.getName(), totalityToFinishInHours());
+        return String.format("%-30s - %-30s - %6d - %-155s - %-8s - %-8s", name, urlCode, order, description, status , category.getName());
     }
 
-    public String toString2() {
+    public String getStrinOfCourseFieldsInHtml() {
         String coursesName = "";
         for (Course course: this.courses) {
             coursesName += String.format("%s, ", course.getName());
