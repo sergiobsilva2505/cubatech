@@ -44,8 +44,8 @@ public class TestHtmlWriter {
                             <td>%s</td>
                             <td>%s</td>
                             <td>%s</td>
-                            <td>%d</td>
-                            <td>%d</td>
+                            <td>%3d</td>
+                            <td>%3d</td>
                             <td>%s</td>
                         </tr>
                 """, category.getName(), category.getDescription(), category.getIconPath(), category.getColorCode(),category.getSubCategories().size(), category.totalTimeToFinishPerCategory(), category.getSubCategoryName());

@@ -58,6 +58,10 @@ public class SubCategory {
         return order;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public List<Course> getCourses() {
         return courses;
     }
@@ -70,13 +74,13 @@ public class SubCategory {
         return this.courses.size();
     }
 
-    public  Integer totaltimeToFinishInHours(){
+    public  Integer totalityToFinishInHours(){
         return this.courses.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }
 
     @Override
     public String toString() {
-        return String.format("%s - %s - %d - %s - %s - %s - %d", name, urlCode, order, description, status , category.getName(), totaltimeToFinishInHours());
+        return String.format("%s - %s - %d - %s - %s - %s - %d", name, urlCode, order, description, status , category.getName(), totalityToFinishInHours());
 //        return String.format("%-30s - %-30s - %6d - %-155s - %-8s - %-8s", name, urlCode, order, description, status , category.getName());
     }
 

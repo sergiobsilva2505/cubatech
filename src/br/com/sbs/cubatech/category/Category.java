@@ -66,15 +66,12 @@ public class Category {
     }
 
     public  Integer totalTimeToFinishPerCategory(){
-        return this.subCategories.stream().mapToInt(SubCategory::totaltimeToFinishInHours).sum();
+        return this.subCategories.stream().mapToInt(SubCategory::totalityToFinishInHours).sum();
     }
 
     public String getSubCategoryName(){
-//        return this.subCategories.stream().map(SubCategory::getName).collect(Collectors.joining(","));
         return this.subCategories.stream()
                 .map(SubCategory::toString2).collect(Collectors.joining(","));
-
-//        return null;
     }
 
     public void addSubCategories(SubCategory subCategory) {
