@@ -27,13 +27,7 @@ public class TestHtmlWriter {
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputFile));
 
 
-
-//        String s = "";
-//        for (Category category: categories) {
-//            s = category.getSubCategories().toString();
-//        }
-
-//        System.out.println(cat.getSubCategories());
+        String cousesNames = courses.stream().map(Course::getName).collect(Collectors.joining(","));
 
         String textValues = "";
 

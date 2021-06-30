@@ -86,7 +86,6 @@ public class Category {
 
     @Override
     public String toString() {
-//        return String.format("%s - %s - %s - %s - %d - %s - %s - %d", name, urlCode, description, status, order, iconPath, colorCode, totalTimeToFinishPerCategory());
         return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, status, order, iconPath, colorCode);
     }
 
