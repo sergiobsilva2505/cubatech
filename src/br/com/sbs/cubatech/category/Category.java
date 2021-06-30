@@ -61,18 +61,14 @@ public class Category {
         return colorCode;
     }
 
-    public List<SubCategory> getSubCategories() {
-        return subCategories;
+    public List<SubCategory> getActiveSubCategories() {
+        return subCategories.stream()
+                .filter(subCategory -> Status.ATIVA.equals(subCategory.getStatus()))
+                .collect(Collectors.toList());
     }
 
     public  Integer totalTimeToFinishPerCategory(){
         return this.subCategories.stream().mapToInt(SubCategory::totalityToFinishInHours).sum();
-    }
-
-    public String getSubCategoryName(){
-        return this.subCategories.stream()
-                .filter(subCategory -> Status.ATIVA.equals(subCategory.getStatus()))
-                .map(SubCategory::getStrinOfCourseFieldsInHtml).collect(Collectors.joining(","));
     }
 
     public void addSubCategories(SubCategory subCategory) {

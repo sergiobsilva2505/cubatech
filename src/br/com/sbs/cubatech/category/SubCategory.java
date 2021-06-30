@@ -17,7 +17,6 @@ public class SubCategory {
     private Integer order;
     private Status status;
 
-
     private Category category;
 
     private List<Course> courses = new ArrayList<>();
@@ -53,18 +52,6 @@ public class SubCategory {
         return status;
     }
 
-    public Integer getOrder() {
-        return order;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
     public void addCourse(Course course) {
         this.courses.add(course);
     }
@@ -73,23 +60,17 @@ public class SubCategory {
         return this.courses.size();
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public  Integer totalityToFinishInHours(){
         return this.courses.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }
 
     @Override
     public String toString() {
-//        return String.format("%s - %s - %d - %s - %s - %s - %d", name, urlCode, order, description, status , category.getName(), totalityToFinishInHours());
         return String.format("%-30s - %-30s - %6d - %-155s - %-8s - %-8s", name, urlCode, order, description, status , category.getName());
     }
-
-    public String getStrinOfCourseFieldsInHtml() {
-        String coursesName = "";
-        for (Course course: this.courses) {
-            coursesName += String.format("%s, ", course.getName());
-        }
-        return String.format("%s<br>%s<br>%s<br>%d<br>", name, description, coursesName, getTotalCourses());
-    }
-
 
 }

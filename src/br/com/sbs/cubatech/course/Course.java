@@ -37,15 +37,12 @@ public class Course {
         this.subCategory.addCourse(this);
     }
 
-
-
     public Course(String name, String urlCode, Integer timeToFinishInHours, CourseVisibility courseVisibility, String targetAudience, String instructor, String summary, String skillsDeveloped, SubCategory subCategory) {
         this(name, urlCode,timeToFinishInHours, instructor, subCategory);
         this.targetAudience = targetAudience;
         this.courseVisibility = courseVisibility;
         this.summary = summary;
         this.skillsDeveloped = skillsDeveloped;
-
     }
 
     public String getUrlCode() {
@@ -60,13 +57,9 @@ public class Course {
         return timeToFinishInHours;
     }
 
-    public SubCategory getSubCategory() {
-        return subCategory;
-    }
-
     @Override
     public String toString() {
-//        return String.format("%s - %s - %d - %s - %s - %s - %s - %s" , name, urlCode, timeToFinishInHours, courseVisibility, instructor, summary, skillsDeveloped, subCategory.getName());
+//
         return String.format("%-85s - %-60s - %2d - %-8s - %-20s - %-2380s - %-375s - %-30s" , name, urlCode, timeToFinishInHours, courseVisibility, instructor, summary, skillsDeveloped, subCategory.getName());
     }
 }

@@ -5,7 +5,6 @@ import br.com.sbs.cubatech.category.SubCategory;
 import br.com.sbs.cubatech.course.Course;
 import br.com.sbs.cubatech.reader.CategoriesFileReader;
 import br.com.sbs.cubatech.reader.CoursesFileReader;
-import br.com.sbs.cubatech.reader.CsvFileReader;
 import br.com.sbs.cubatech.reader.SubCategoriesFileReader;
 
 import java.io.IOException;
