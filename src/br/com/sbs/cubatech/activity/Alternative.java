@@ -1,8 +1,11 @@
 package br.com.sbs.cubatech.activity;
 
+import java.io.Serializable;
+
 import static br.com.sbs.cubatech.validation.Validator.*;
 
-public class Alternative {
+public class Alternative implements Serializable {
+
 
     private Long id;
     private String explanation;
@@ -15,8 +18,8 @@ public class Alternative {
 
 
     public Alternative(String explanation, boolean correct, Question question) {
-        notEmptyOrNull(explanation, "Alternative: Explanation can't be empty or null");
-        objectNotNull(question, "Alternative: Question can not be null");
+        notEmptyOrNull(explanation, "Alternative: Explanation");
+        objectNotNull(question, "Alternative: Question");
         this.explanation = explanation;
         this.correct = correct;
         this.question = question;

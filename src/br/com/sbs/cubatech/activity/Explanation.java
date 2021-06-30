@@ -10,7 +10,7 @@ public class Explanation extends Activity{
 
     public Explanation(String title, String urlCode, Lesson lesson, String explanation) {
         super(title, urlCode, lesson);
-        notEmptyOrNull(explanation, "Explanation: title can not be null or empty");
+        notEmptyOrNull(explanation, "Activity: Explanation");
         this.explanation = explanation;
     }
 }

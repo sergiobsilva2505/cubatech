@@ -1,9 +1,9 @@
-package br.com.sbs.cubatech.teste;
+package br.com.sbs.cubatech.test;
 import br.com.sbs.cubatech.activity.Alternative;
 import br.com.sbs.cubatech.activity.Question;
-import br.com.sbs.cubatech.activity.QuestionType;
 import br.com.sbs.cubatech.activity.Video;
 import br.com.sbs.cubatech.category.Category;
+import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.category.SubCategory;
 import br.com.sbs.cubatech.course.Course;
 import br.com.sbs.cubatech.lesson.Lesson;
@@ -22,7 +22,8 @@ public class Tests {
 //        Category cat4 = new Category(1L, "Programação", "", "uma descrição bem sucinta", "um guia de estudo, um texto grande e explicativo sobre a categoria", (byte) 0, "c:xyz", "2ECC71");
 //        Category cat5 = new Category(1L, "Programação", null, "uma descrição bem sucinta", "um guia de estudo, um texto grande e explicativo sobre a categoria", (byte) 0, "c:xyz", "2ECC71");
 
-        SubCategory sub1 = new SubCategory("Nome da sub categoria", "urlcode",  programacao);
+        SubCategory sub1 = new SubCategory("Programacao", "urlcode",  programacao);
+        SubCategory sub2 = new SubCategory("Programacao", "urlcode", 1, "uma descrição sucinta", Status.ATIVA, programacao);
 //        SubCategory sub2 = new SubCategory(1L, null, "urlcode", false, programacao);
 //        SubCategory sub3 = new SubCategory(1L, "Nome da sub categoria", "null", false, programacao);
 //        SubCategory sub4 = new SubCategory(1L, "Nome da sub categoria", "urlcode", false, null);
@@ -50,7 +51,7 @@ public class Tests {
 //        Lesson lesson2 = new Lesson(1L, null, "logica-programacao-javascript-html",curso4);
 
         // validando urlcode
-        Lesson lesson3 = new Lesson("Comece a programar hoje","logica-programacao-javascript-html", curso1);
+        Lesson lesson3 = new Lesson("Comece a programar hoje","logica-programacao-javascrip-html", curso1);
 //        Lesson lesson6 = new Lesson(2L, "Comece a programar hoje","logica-prOgramacao-javascriPt-html", curso1);
 //        Lesson lesson7 = new Lesson(2L, "Comece a programar hoje","logica-programacao-javAscript-html", curso1);
 //        Lesson lesson4 = new Lesson(2L, "Comece a programar hoje","", curso1);
@@ -58,11 +59,13 @@ public class Tests {
 
         Question q1 = new Question("um titulo generico", "urlcode", lesson3, "uma descrição");
 
-        Video v1 = new Video("um titulo", "urlcode do video",lesson3, "url");
+        Video v1 = new Video("um titulo", "urlcode-do-video",lesson3, "url");
 
 
 
         Alternative alt1 = new Alternative("um texto explicativo, obrigatório e não vazio", false, q1);
+
+        System.out.println(sub2);
 
 
     }

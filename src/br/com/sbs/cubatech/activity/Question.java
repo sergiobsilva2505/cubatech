@@ -7,12 +7,11 @@ import static br.com.sbs.cubatech.validation.Validator.*;
 public class Question extends Activity {
 
     private String description;
-    private QuestionType questionType = QuestionType.SINGLE_ANSWER;
+    private QuestionType questionType = QuestionType.SINGLE_ANSWER; // todo verificar esse erro
 
     public Question(String title, String urlCode, Lesson lesson, String description) {
         super(title, urlCode, lesson);
-        notEmptyOrNull(description, "Question: The question needs an enunciation");
-        objectNotNull(questionType, "Question: QuestionType can't be null");
+        notEmptyOrNull(description, "Question: Description");
         this.description = description;
     }
 }

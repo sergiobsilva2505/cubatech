@@ -16,10 +16,10 @@ public class Lesson {
     private Course course;
 
     public Lesson(String name, String urlCode, Course course) {
-        notEmptyOrNull(name, "Lesson: Name can't be null or empty!");
-        notEmptyOrNull(urlCode, "Lesson: UrlCode can't be null or empty!");
-        urlCodeValidation(urlCode, "Lesson: Only lowercase letters, no spaces and bar as separator");
-        objectNotNull(course, "Lesson: course can not be null");
+        notEmptyOrNull(name, "Lesson: Name");
+        notEmptyOrNull(urlCode, "Lesson: UrlCode");
+        urlCodeValidation(urlCode, "Lesson: UrlCode");
+        objectNotNull(course, "Lesson: Course");
 
         this.name = name;
         this.urlCode = urlCode;
