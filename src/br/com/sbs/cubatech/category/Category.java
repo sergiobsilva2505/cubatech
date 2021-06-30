@@ -71,11 +71,17 @@ public class Category {
 
     public String getSubCategoryName(){
         return this.subCategories.stream()
+                .filter(subCategory -> Status.ATIVA.equals(subCategory.getStatus()))
                 .map(SubCategory::getStrinOfCourseFieldsInHtml).collect(Collectors.joining(","));
     }
 
     public void addSubCategories(SubCategory subCategory) {
         this.subCategories.add(subCategory);
+    }
+
+    public Integer getTotalCourses(){
+
+        return subCategories.stream().mapToInt(SubCategory::getTotalCourses).sum();
     }
 
     @Override

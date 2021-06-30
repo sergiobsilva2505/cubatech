@@ -1,4 +1,4 @@
-package br.com.sbs.cubatech.test;
+package br.com.sbs.cubatech.reader;
 
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.Status;
@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 public class CsvFileReader {
 
@@ -22,10 +21,8 @@ public class CsvFileReader {
 
         var bufferedReader = new BufferedReader(new FileReader("Categoria.csv"));
 
-        bufferedReader.readLine().toUpperCase();
+        bufferedReader.readLine();
         String line = bufferedReader.readLine();
-
-//        String[] categoryColumnName = headerLine.split(",");
 
         while (line != null){
 
@@ -33,9 +30,9 @@ public class CsvFileReader {
 
             String name = valuesCategoryColumns[0];
             String urlCode = valuesCategoryColumns[1];
-            Integer order = valuesCategoryColumns[2] == "" ? null : Integer.parseInt(valuesCategoryColumns[2]);
+            Integer order = valuesCategoryColumns[2].equals("") ? null : Integer.parseInt(valuesCategoryColumns[2]);
             String description = valuesCategoryColumns[3];
-            Status status = valuesCategoryColumns[4] == "ATIVA" ? Status.ATIVA : Status.INATIVA;
+            Status status = valuesCategoryColumns[4].equals("ATIVA")? Status.ATIVA : Status.INATIVA;
             String iconPath = valuesCategoryColumns[5];
             String colorCode = valuesCategoryColumns[6];
 
@@ -44,17 +41,6 @@ public class CsvFileReader {
 
             line = bufferedReader.readLine();
         }
-
-//        String headerName = columnsName[0];
-//        String headerUrlCode = columnsName[1];
-//        String headerOrder = columnsName[2];
-//        String headerDescription = columnsName[3];
-//        String headerStatus = columnsName[4];
-//        String headerIcon = columnsName[5];
-//        String headerColor = columnsName[6];
-
-//        System.out.format("%-15s - %-15s - %-150s - %-6s - %6s - %-100s - %-8s%n", headerName, headerUrlCode, headerDescription, headerStatus, headerOrder, headerIcon, headerColor);
-
         bufferedReader.close();
 
         return categoryList;
@@ -66,7 +52,7 @@ public class CsvFileReader {
 
         var bufferedReader = new BufferedReader(new FileReader("Subcategoria.csv"));
 
-        bufferedReader.readLine().toUpperCase();
+        bufferedReader.readLine();
         String line = bufferedReader.readLine();
 
 
@@ -76,7 +62,7 @@ public class CsvFileReader {
 
             String name = valuesSubCategoryColumns[0];
             String urlCode = valuesSubCategoryColumns[1];
-            Integer order = valuesSubCategoryColumns[2] == "" ? null : Integer.parseInt(valuesSubCategoryColumns[2]);
+            Integer order = valuesSubCategoryColumns[2].equals("")? null : Integer.parseInt(valuesSubCategoryColumns[2]);
             String description = valuesSubCategoryColumns[3];
             Status status = valuesSubCategoryColumns[4].equals("ATIVA")  ? Status.ATIVA : Status.INATIVA;
             String categoryUrlCode = valuesSubCategoryColumns[5];
@@ -101,10 +87,8 @@ public class CsvFileReader {
 
         var bufferedReader = new BufferedReader(new FileReader("Curso.csv"));
 
-        bufferedReader.readLine().toUpperCase();
+        bufferedReader.readLine();
         String line = bufferedReader.readLine();
-
-//        String[] courseColumnName = headerLine.split(",");
 
         while ( line != null){
 
@@ -112,8 +96,8 @@ public class CsvFileReader {
 
             String name = courseColumnValues[0];
             String courseUrlCode = courseColumnValues[1];
-            Integer timeToFinishInHours = courseColumnValues[2] == "" ? null : Integer.parseInt(courseColumnValues[2]);
-            CourseVisibility courseVisibility = courseColumnValues[3] == "PRIVADA" ? CourseVisibility.PRIVATE : CourseVisibility.PUBLIC;
+            Integer timeToFinishInHours = courseColumnValues[2].equals("")? null : Integer.parseInt(courseColumnValues[2]);
+            CourseVisibility courseVisibility = courseColumnValues[3].equals("PRIVADA")? CourseVisibility.PRIVATE : CourseVisibility.PUBLIC;
             String targetAudience = courseColumnValues[4];
             String instructor = courseColumnValues[5];
             String summary = courseColumnValues[6];

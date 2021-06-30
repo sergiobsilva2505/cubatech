@@ -3,6 +3,7 @@ package br.com.sbs.cubatech.test;
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.SubCategory;
 import br.com.sbs.cubatech.course.Course;
+import br.com.sbs.cubatech.reader.CsvFileReader;
 
 import java.io.IOException;
 import java.util.List;

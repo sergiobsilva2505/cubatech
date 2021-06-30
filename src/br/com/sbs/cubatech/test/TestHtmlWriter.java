@@ -1,9 +1,9 @@
 package br.com.sbs.cubatech.test;
 
 import br.com.sbs.cubatech.category.Category;
-import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.category.SubCategory;
 import br.com.sbs.cubatech.course.Course;
+import br.com.sbs.cubatech.reader.CsvFileReader;
 
 import java.io.*;
 import java.util.*;
@@ -48,7 +48,7 @@ public class TestHtmlWriter {
                             <td>%3d</td>
                             <td>%s</td>
                         </tr>
-                """, category.getName(), category.getDescription(), category.getIconPath(), category.getColorCode(),category.getSubCategories().size(), category.totalTimeToFinishPerCategory(), category.getSubCategoryName());
+                """, category.getName(), category.getDescription(), category.getIconPath(), category.getColorCode(), category.getTotalCourses(), category.totalTimeToFinishPerCategory(), category.getSubCategoryName());
         }
 
         String text = String.format("""
