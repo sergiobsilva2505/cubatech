@@ -9,7 +9,7 @@ public class Lesson {
     private Long id;
     private String name;
     private String urlCode;
-    private Integer index;
+    private Integer order;
     private boolean active;
     private boolean exam;
 
