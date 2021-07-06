@@ -86,6 +86,8 @@ public class TestHtmlWriter {
 
         bufferedWriter.write(text);
         bufferedWriter.close();
+
+
     }
 
 
