@@ -31,8 +31,8 @@ public class SubCategoryTest {
     }
 
     @Test
-    public void shouldReturnIllegalArgumentExceptionWhenCategoryIsNullTest(){
-        assertThrows(IllegalArgumentException.class, ()-> new SubCategory("Java", "java",  null));
+    public void shouldReturnNullPointerExceptionWhenCategoryIsNullTest(){
+        assertThrows(NullPointerException.class, ()-> new SubCategory("Java", "java",  null));
     }
 
     @Test

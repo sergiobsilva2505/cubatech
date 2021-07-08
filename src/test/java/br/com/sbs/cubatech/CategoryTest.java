@@ -1,11 +1,32 @@
 package br.com.sbs.cubatech;
 
 import br.com.sbs.cubatech.category.Category;
+import br.com.sbs.cubatech.category.Status;
+import br.com.sbs.cubatech.category.SubCategory;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CategoryTest {
+
+    private Category cat1;
+    private List<SubCategory> subCategories;
+
+    @BeforeEach
+    public void init(){
+        this.cat1 = new Category("Programação", "programacao", 1, "Programe nas principais linguagens e plataformas. Iniciantes são bem vindos nos cursos de lógica e JavaScript.", Status.ATIVA, "https://www.alura.com.br/assets/api/formacoes/categorias/512/programacao-transparent.png", "#00c86f");
+        this.subCategories = Arrays.asList(
+                new SubCategory("Java","java",1,"Java é uma grande plataforma presente em todo lugar: de corporações à bancos e governo. Desenvolva aplicações robustas com um back-end e construa APIs.", Status.ATIVA, this.cat1),
+                new SubCategory("Java e Persistência","java-e-persistencia",2,null,Status.ATIVA,this.cat1),
+                new SubCategory("PHP","php",3,"PHP é uma das linguagens mais utilizadas.",Status.ATIVA,this.cat1),
+                new SubCategory("COBOL","cobol",null,null,Status.INATIVA,this.cat1)
+        );
+    }
 
     @Test
     public void shouldReturnIllegalArgumentExceptionWhenNameIsBlankTest(){
@@ -39,5 +60,13 @@ public class CategoryTest {
         assertThrows(IllegalArgumentException.class, ()-> new Category("Programação", "pr ogramacao"));
         assertThrows(IllegalArgumentException.class, ()-> new Category("Programação", "programaca o"));
     }
+
+//    @Test
+//    public void shouldReturnOnlyTestActiveSubCategoriesTest(){
+//        cat1.setSubCategories(subCategories);
+//        assertFalse(subCategories.containsAll(getStauts().));
+//    }
+
+
 
 }

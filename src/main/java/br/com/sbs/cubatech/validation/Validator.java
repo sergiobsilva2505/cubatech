@@ -11,7 +11,7 @@ public class Validator {
         if(text.isBlank()) {
             throw new IllegalArgumentException(error + MESSAGE_NOT_EMPTY_OR_NULL);
         }
-        if (text.equals(null)) {
+        if (text == null) {
             throw new NullPointerException(error + MESSAGE_NOT_NULL);
         }
     }

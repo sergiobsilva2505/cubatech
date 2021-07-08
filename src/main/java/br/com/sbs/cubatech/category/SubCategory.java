@@ -64,6 +64,14 @@ public class SubCategory {
         return description;
     }
 
+    public Integer getOrder() {
+        return order;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
     public  Integer totalityToFinishInHours(){
         return this.courses.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }

@@ -1,9 +1,9 @@
-
+DROP DATABASE cubatechDb;
 CREATE DATABASE IF NOT EXISTS cubatechDb;
 
 USE cubatechDb;
 
-CREATE TABLE IF NOT EXISTS categories(
+CREATE TABLE IF NOT EXISTS category(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     urlCode VARCHAR(30) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS categories(
     colorCode VARCHAR(7)
 );
 
-CREATE TABLE IF NOT EXISTS subCategories(
+CREATE TABLE IF NOT EXISTS subCategory(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     urlCode VARCHAR(30) NOT NULL,
@@ -23,12 +23,11 @@ CREATE TABLE IF NOT EXISTS subCategories(
     studyGuide VARCHAR(255),
     orderInSystem INTEGER,
     status VARCHAR(7),
-    category_id BIGINT NOT NULL
+    category_id BIGINT NOT NULL,
+    CONSTRAINT fk_category FOREIGN KEY (category_id) REFERENCES category (id)
 );
 
-ALTER TABLE subCategories ADD CONSTRAINT fk_category FOREIGN KEY (category_id) REFERENCES categories (id);
-
-CREATE TABLE IF NOT EXISTS courses(
+CREATE TABLE IF NOT EXISTS course(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(70) NOT NULL,
     urlCode VARCHAR(60) NOT NULL,
@@ -38,65 +37,57 @@ CREATE TABLE IF NOT EXISTS courses(
     instructor VARCHAR(30),
     summary LONGTEXT,
     skillsDeveloped LONGTEXT,
-    subCategory_id BIGINT
+    subCategory_id BIGINT,
+    CONSTRAINT fk_subCategory FOREIGN KEY (subCategory_id) REFERENCES subCategory (id)
 );
 
-ALTER TABLE courses ADD CONSTRAINT fk_subCategory FOREIGN KEY (subCategory_id) REFERENCES subCategories (id);
-
-CREATE TABLE IF NOT EXISTS lessons(
+CREATE TABLE IF NOT EXISTS lesson(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     urlCode VARCHAR(30) NOT NULL,
     orderInSystem INTEGER,
     active BOOLEAN,
     exam BOOLEAN,
-    course_id BIGINT
+    course_id BIGINT,
+    CONSTRAINT fk_course FOREIGN KEY (course_id) REFERENCES course (id)
 );
 
-ALTER TABLE lessons ADD CONSTRAINT fk_course FOREIGN KEY (course_id) REFERENCES courses (id);
-
-CREATE TABLE IF NOT EXISTS activities(
+CREATE TABLE IF NOT EXISTS activity(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
     urlCode VARCHAR(30) NOT NULL,
     orderInSystem INTEGER,
     active BOOLEAN,
-    lesson_id BIGINT NOT NULL
+    lesson_id BIGINT NOT NULL,
+    CONSTRAINT fk_lesson FOREIGN KEY (lesson_id) REFERENCES lesson (id)
 );
 
-ALTER TABLE activities ADD CONSTRAINT fk_lesson FOREIGN KEY (lesson_id) REFERENCES lessons (id);
-
-CREATE TABLE IF NOT EXISTS explanations(
+CREATE TABLE IF NOT EXISTS explanation(
     description VARCHAR(20),
-    activity_id BIGINT NOT NULL
+    activity_id BIGINT NOT NULL,
+    CONSTRAINT fk_activity_explanations FOREIGN KEY (activity_id) REFERENCES activity(id)
 );
 
-ALTER TABLE explanations ADD CONSTRAINT fk_activity_explanations FOREIGN KEY (activity_id) REFERENCES activities(id);
-
-CREATE TABLE IF NOT EXISTS videos(
+CREATE TABLE IF NOT EXISTS video(
     url VARCHAR(30) NOT NULL,
     durationInMinutes INTEGER,
     transcription LONGTEXT,
     activity_id BIGINT NOT NULL
 );
 
-ALTER TABLE videos ADD CONSTRAINT fk_activity_videos FOREIGN KEY (activity_id) REFERENCES activities(id);
-
-CREATE TABLE IF NOT EXISTS questions(
+CREATE TABLE IF NOT EXISTS question(
     description LONGTEXT NOT NULL,
     questionType VARCHAR(20),
-    activity_id BIGINT NOT NULL
+    activity_id BIGINT NOT NULL,
+    CONSTRAINT fk_activity_questions FOREIGN KEY (activity_id) REFERENCES activity(id)
 );
 
-ALTER TABLE questions ADD CONSTRAINT fk_activity_questions FOREIGN KEY (activity_id) REFERENCES activities(id);
-
-CREATE TABLE IF NOT EXISTS alternatives(
+CREATE TABLE IF NOT EXISTS alternative(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     explanation VARCHAR(255) NOT NULL,
     orderInSystem INTEGER,
     correct BOOLEAN NOT NULL,
     justification VARCHAR(255),
-    activity_id BIGINT NOT NULL
+    activity_id BIGINT NOT NULL,
+    CONSTRAINT fk_alternatives_activity FOREIGN KEY (activity_id) REFERENCES activity(id)
 );
-
-ALTER TABLE alternatives ADD CONSTRAINT fk_alternatives_activity FOREIGN KEY (activity_id) REFERENCES activities(id);
