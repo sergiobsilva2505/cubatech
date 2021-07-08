@@ -73,6 +73,10 @@ public class Category {
         return order;
     }
 
+    public List<SubCategory> getSubCategories() {
+        return subCategories;
+    }
+
     public List<SubCategory> getActiveSubCategories() {
         return subCategories.stream()
                 .filter(subCategory -> Status.ATIVA.equals(subCategory.getStatus()))

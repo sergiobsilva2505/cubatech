@@ -26,6 +26,7 @@ public class CategoryTest {
                 new SubCategory("PHP","php",3,"PHP é uma das linguagens mais utilizadas.",Status.ATIVA,this.cat1),
                 new SubCategory("COBOL","cobol",null,null,Status.INATIVA,this.cat1)
         );
+        this.cat1.setSubCategories(this.subCategories);
     }
 
     @Test
@@ -61,12 +62,10 @@ public class CategoryTest {
         assertThrows(IllegalArgumentException.class, ()-> new Category("Programação", "programaca o"));
     }
 
-//    @Test
-//    public void shouldReturnOnlyTestActiveSubCategoriesTest(){
-//        cat1.setSubCategories(subCategories);
-//        assertFalse(subCategories.containsAll(getStauts().));
-//    }
-
-
+    @Test
+    public void shouldReturnOnlyTestActiveSubCategoriesTest(){
+        assertEquals(4, cat1.getSubCategories().size());
+        assertEquals(3, cat1.getActiveSubCategories().size());
+    }
 
 }
