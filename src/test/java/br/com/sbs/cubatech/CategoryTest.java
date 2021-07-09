@@ -3,13 +3,12 @@ package br.com.sbs.cubatech;
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.category.SubCategory;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class CategoryTest {
 
@@ -52,11 +51,10 @@ class CategoryTest {
 
         List<SubCategory> subCategories = category.getSubCategories();
 
-        assertEquals(4, subCategories.size());
-        assertEquals("java", subCategories.get(0).getUrlCode());
-        assertEquals("java-e-persistencia", subCategories.get(1).getUrlCode());
-        assertEquals("php", subCategories.get(2).getUrlCode());
-        assertEquals("cobol", subCategories.get(3).getUrlCode());
+        assertThat(subCategories)
+                .hasSize(4)
+                .extracting(SubCategory::getUrlCode)
+                .containsExactlyInAnyOrder("java", "java-e-persistencia", "php", "cobol");
     }
 
     @Test
@@ -65,10 +63,10 @@ class CategoryTest {
 
         List<SubCategory> activeSubCategories = category.getActiveSubCategories();
 
-        assertEquals(3, activeSubCategories.size());
-        assertEquals("java", activeSubCategories.get(0).getUrlCode());
-        assertEquals("java-e-persistencia", activeSubCategories.get(1).getUrlCode());
-        assertEquals("php", activeSubCategories.get(2).getUrlCode());
+        assertThat(activeSubCategories)
+                .hasSize(3)
+                .extracting(SubCategory::getUrlCode)
+                .containsExactlyInAnyOrder("java", "java-e-persistencia", "php");
     }
 
     private Category programmingCategory() {
