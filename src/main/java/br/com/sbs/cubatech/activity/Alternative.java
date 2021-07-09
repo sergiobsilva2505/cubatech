@@ -6,7 +6,6 @@ import static br.com.sbs.cubatech.validation.Validator.*;
 
 public class Alternative implements Serializable {
 
-
     private Long id;
     private String explanation;
     private Integer order;
@@ -14,8 +13,6 @@ public class Alternative implements Serializable {
     private String justification;
 
     private Question question;
-
-
 
     public Alternative(String explanation, boolean correct, Question question) {
         notEmptyOrNull(explanation, "Alternative: Explanation");

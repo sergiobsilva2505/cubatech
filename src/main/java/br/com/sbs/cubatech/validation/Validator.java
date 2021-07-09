@@ -8,8 +8,11 @@ public class Validator {
     public static final String MESSAGE_INTERVAL_VALIDATION = "Time to finish, needs to be between 1 or 20 hours.";
 
     public static void notEmptyOrNull(String text, String error){
-        if(text == null || text.isBlank()) {
+        if(text.isBlank()) {
             throw new IllegalArgumentException(error + MESSAGE_NOT_EMPTY_OR_NULL);
+        }
+        if (text == null) {
+            throw new NullPointerException(error + MESSAGE_NOT_NULL);
         }
     }
 
@@ -21,7 +24,7 @@ public class Validator {
 
     public  static void objectNotNull(Object object, String error){
         if (object == null){
-            throw new IllegalArgumentException(error + MESSAGE_NOT_NULL);
+            throw new NullPointerException(error + MESSAGE_NOT_NULL);
         }
     }
 
@@ -30,4 +33,5 @@ public class Validator {
             throw  new IllegalArgumentException(MESSAGE_INTERVAL_VALIDATION);
         }
     }
+
 }

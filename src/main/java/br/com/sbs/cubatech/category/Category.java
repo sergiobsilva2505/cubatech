@@ -41,6 +41,10 @@ public class Category {
         this.colorCode = colorCode;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -61,6 +65,18 @@ public class Category {
         return colorCode;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
+    public Integer getOrder() {
+        return order;
+    }
+
+    public List<SubCategory> getSubCategories() {
+        return subCategories;
+    }
+
     public List<SubCategory> getActiveSubCategories() {
         return subCategories.stream()
                 .filter(subCategory -> Status.ATIVA.equals(subCategory.getStatus()))
@@ -71,7 +87,7 @@ public class Category {
         return this.subCategories.stream().mapToInt(SubCategory::totalityToFinishInHours).sum();
     }
 
-    public void addSubCategories(SubCategory subCategory) {
+    public void addSubCategory(SubCategory subCategory) {
         this.subCategories.add(subCategory);
     }
 

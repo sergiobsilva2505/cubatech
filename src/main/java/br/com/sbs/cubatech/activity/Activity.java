@@ -11,6 +11,7 @@ public abstract class Activity {
     private String urlCode;
     private boolean active;
     private Integer order;
+
     private Lesson lesson;
 
     public Activity(String title, String urlCode,  Lesson lesson) {

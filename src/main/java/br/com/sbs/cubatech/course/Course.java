@@ -45,6 +45,10 @@ public class Course {
         this.skillsDeveloped = skillsDeveloped;
     }
 
+    public SubCategory getSubCategory() {
+        return subCategory;
+    }
+
     public String getUrlCode() {
         return urlCode;
     }
@@ -55,6 +59,26 @@ public class Course {
 
     public Integer getTimeToFinishInHours() {
         return timeToFinishInHours;
+    }
+
+    public CourseVisibility getCourseVisibility() {
+        return courseVisibility;
+    }
+
+    public String getTargetAudience() {
+        return targetAudience;
+    }
+
+    public String getInstructor() {
+        return instructor;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public String getSkillsDeveloped() {
+        return skillsDeveloped;
     }
 
     @Override
