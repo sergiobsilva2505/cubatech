@@ -30,7 +30,7 @@ public class TestGenerateData {
         Map<String, SubCategory> subCategoryMap = subCategories.stream().collect(Collectors.toMap(SubCategory::getUrlCode, Function.identity()));
         List<Course> courses = coursesFileReader.readCourses(subCategoryMap);
 
-        String outputFile = "data.sql";
+        String outputFile = "src/main/resources/data.sql";
 
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(outputFile));
 

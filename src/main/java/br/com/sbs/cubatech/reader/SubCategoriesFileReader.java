@@ -37,7 +37,7 @@ public class SubCategoriesFileReader {
                 Category category =  categories.get(categoryUrlCode);
                 SubCategory subCategory = new SubCategory(name, urlCode, order, description, status, category);
                 listSubCategory.add(subCategory);
-                category.addSubCategories(subCategory);
+                category.addSubCategory(subCategory);
 
                 line = bufferedReader.readLine();
             }

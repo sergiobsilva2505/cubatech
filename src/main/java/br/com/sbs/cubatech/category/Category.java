@@ -83,15 +83,11 @@ public class Category {
                 .collect(Collectors.toList());
     }
 
-    public void setSubCategories(List<SubCategory> subCategories) {
-        this.subCategories = subCategories;
-    }
-
     public  Integer totalTimeToFinishPerCategory(){
         return this.subCategories.stream().mapToInt(SubCategory::totalityToFinishInHours).sum();
     }
 
-    public void addSubCategories(SubCategory subCategory) {
+    public void addSubCategory(SubCategory subCategory) {
         this.subCategories.add(subCategory);
     }
 

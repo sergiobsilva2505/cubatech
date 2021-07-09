@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS subCategory(
     orderInSystem INTEGER,
     status VARCHAR(7),
     category_id BIGINT NOT NULL,
-    CONSTRAINT fk_category FOREIGN KEY (category_id) REFERENCES category (id)
+    CONSTRAINT fk_subCategory_category FOREIGN KEY (category_id) REFERENCES category (id)
 );
 
 CREATE TABLE IF NOT EXISTS course(
@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS course(
     summary LONGTEXT,
     skillsDeveloped LONGTEXT,
     subCategory_id BIGINT,
-    CONSTRAINT fk_subCategory FOREIGN KEY (subCategory_id) REFERENCES subCategory (id)
+    CONSTRAINT fk_course_subCategory FOREIGN KEY (subCategory_id) REFERENCES subCategory (id)
 );
 
 CREATE TABLE IF NOT EXISTS lesson(
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS lesson(
     active BOOLEAN,
     exam BOOLEAN,
     course_id BIGINT,
-    CONSTRAINT fk_course FOREIGN KEY (course_id) REFERENCES course (id)
+    CONSTRAINT fk_lesson_course FOREIGN KEY (course_id) REFERENCES course (id)
 );
 
 CREATE TABLE IF NOT EXISTS activity(
@@ -59,13 +59,13 @@ CREATE TABLE IF NOT EXISTS activity(
     orderInSystem INTEGER,
     active BOOLEAN,
     lesson_id BIGINT NOT NULL,
-    CONSTRAINT fk_lesson FOREIGN KEY (lesson_id) REFERENCES lesson (id)
+    CONSTRAINT fk_activity_lesson FOREIGN KEY (lesson_id) REFERENCES lesson (id)
 );
 
 CREATE TABLE IF NOT EXISTS explanation(
     description VARCHAR(20),
     activity_id BIGINT NOT NULL,
-    CONSTRAINT fk_activity_explanations FOREIGN KEY (activity_id) REFERENCES activity(id)
+    CONSTRAINT fk_explanation_activity FOREIGN KEY (activity_id) REFERENCES activity(id)
 );
 
 CREATE TABLE IF NOT EXISTS video(
@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS question(
     description LONGTEXT NOT NULL,
     questionType VARCHAR(20),
     activity_id BIGINT NOT NULL,
-    CONSTRAINT fk_activity_questions FOREIGN KEY (activity_id) REFERENCES activity(id)
+    CONSTRAINT fk_questions_activity FOREIGN KEY (activity_id) REFERENCES activity(id)
 );
 
 CREATE TABLE IF NOT EXISTS alternative(
@@ -89,5 +89,5 @@ CREATE TABLE IF NOT EXISTS alternative(
     correct BOOLEAN NOT NULL,
     justification VARCHAR(255),
     activity_id BIGINT NOT NULL,
-    CONSTRAINT fk_alternatives_activity FOREIGN KEY (activity_id) REFERENCES activity(id)
+    CONSTRAINT fk_alternative_activity FOREIGN KEY (activity_id) REFERENCES activity(id)
 );
