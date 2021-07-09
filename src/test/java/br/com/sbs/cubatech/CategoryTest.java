@@ -45,18 +45,40 @@ class CategoryTest {
         assertThrows(IllegalArgumentException.class, ()-> new Category("Programação", "pr ogramacao"));
         assertThrows(IllegalArgumentException.class, ()-> new Category("Programação", "programaca o"));
     }
+    
+    @Test
+    void shouldReturnAllSubCategories() {
+        Category category = programmingCategory();
+
+        List<SubCategory> subCategories = category.getSubCategories();
+
+        assertEquals(4, subCategories.size());
+        assertEquals("java", subCategories.get(0).getUrlCode());
+        assertEquals("java-e-persistencia", subCategories.get(1).getUrlCode());
+        assertEquals("php", subCategories.get(2).getUrlCode());
+        assertEquals("cobol", subCategories.get(3).getUrlCode());
+    }
 
     @Test
-    void shouldReturnOnlyTestActiveSubCategories(){
+    void shouldReturnOnlyActiveSubCategories(){
+        Category category = programmingCategory();
+
+        List<SubCategory> activeSubCategories = category.getActiveSubCategories();
+
+        assertEquals(3, activeSubCategories.size());
+        assertEquals("java", activeSubCategories.get(0).getUrlCode());
+        assertEquals("java-e-persistencia", activeSubCategories.get(1).getUrlCode());
+        assertEquals("php", activeSubCategories.get(2).getUrlCode());
+    }
+
+    private Category programmingCategory() {
         Category category = new Category("Programação", "programacao", 1, "Programe nas principais linguagens e plataformas. Iniciantes são bem vindos nos cursos de lógica e JavaScript.", Status.ATIVA, "https://www.alura.com.br/assets/api/formacoes/categorias/512/programacao-transparent.png", "#00c86f");
 
         category.addSubCategory(new SubCategory("Java", "java", 1, "Java é uma grande plataforma presente em todo lugar: de corporações à bancos e governo. Desenvolva aplicações robustas com um back-end e construa APIs.", Status.ATIVA, category));
         category.addSubCategory(new SubCategory("Java e Persistência", "java-e-persistencia", 2, null, Status.ATIVA, category));
         category.addSubCategory(new SubCategory("PHP", "php", 3, "PHP é uma das linguagens mais utilizadas.", Status.ATIVA, category));
         category.addSubCategory(new SubCategory("COBOL", "cobol", null, null, Status.INATIVA, category));
-
-        assertEquals(4, category.getSubCategories().size());
-        assertEquals(3, category.getActiveSubCategories().size());
+        return category;
     }
 
 }
