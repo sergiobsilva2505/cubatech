@@ -28,7 +28,7 @@ public class CategoriesFileReader {
                 String urlCode = valuesCategoryColumns[1];
                 Integer order = valuesCategoryColumns[2].equals("") ? null : Integer.parseInt(valuesCategoryColumns[2]);
                 String description = valuesCategoryColumns[3];
-                Status status = valuesCategoryColumns[4].equals("ATIVA")? Status.ATIVA : Status.INATIVA;
+                Status status = valuesCategoryColumns[4].equals("ATIVA")? Status.ACTIVE : Status.INACTIVE;
                 String iconPath = valuesCategoryColumns[5];
                 String colorCode = valuesCategoryColumns[6];
 

@@ -23,7 +23,7 @@ public class Tests {
 //        Category cat5 = new Category(1L, "Programação", null, "uma descrição bem sucinta", "um guia de estudo, um texto grande e explicativo sobre a categoria", (byte) 0, "c:xyz", "2ECC71");
 
         SubCategory sub1 = new SubCategory("Programacao", "urlcode",  programacao);
-        SubCategory sub2 = new SubCategory("Programacao", "urlcode", 1, "uma descrição sucinta", Status.ATIVA, programacao);
+        SubCategory sub2 = new SubCategory("Programacao", "urlcode", 1, "uma descrição sucinta", Status.ACTIVE, programacao);
 //        SubCategory sub2 = new SubCategory(1L, null, "urlcode", false, programacao);
 //        SubCategory sub3 = new SubCategory(1L, "Nome da sub categoria", "null", false, programacao);
 //        SubCategory sub4 = new SubCategory(1L, "Nome da sub categoria", "urlcode", false, null);
