@@ -1,17 +1,27 @@
 package br.com.sbs.cubatech.connection;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-    public Connection recoverConnection() throws SQLException {
-        String urlDatabase = "jdbc:mysql://localhost/cubatechDb?useTimezone=true&serverTimezone=UTC";
-        String  user = "root";
-        String password = "Alura@123";
+    public DataSource dataSource;
 
-        Connection connection= DriverManager.getConnection(urlDatabase, user, password);
-        return  connection;
+    public ConnectionFactory(){
+        ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
+        comboPooledDataSource.setJdbcUrl("jdbc:mysql://localhost/cubatechDb?useTimezone=true&serverTimezone=UTC");
+        comboPooledDataSource.setUser("root");
+        comboPooledDataSource.setPassword("Alura@123");
+
+        comboPooledDataSource.setMaxPoolSize(15);
+
+        this.dataSource = comboPooledDataSource;
+    }
+
+    public Connection recoverConnection() throws SQLException {
+        return this.dataSource.getConnection();
     }
 }

@@ -16,7 +16,7 @@ public class TestJdbcHtmlWriter {
 
         Connection connection = null;
         BufferedWriter bufferedWriter = null;
-        String htmlPageCode = null;
+        String htmlPageCode= null;
         try {
             ConnectionFactory connectionFactory = new ConnectionFactory();
             connection = connectionFactory.recoverConnection();
@@ -87,9 +87,6 @@ public class TestJdbcHtmlWriter {
             bufferedWriter.close();
             connection.close();
         }
-
-
-
 
     }
 }
