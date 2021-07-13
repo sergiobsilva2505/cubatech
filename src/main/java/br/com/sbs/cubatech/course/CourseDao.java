@@ -13,7 +13,7 @@ public class CourseDao implements Dao<Course> {
     }
 
     @Override
-    public void save(Course course) throws SQLException {
+    public void save(Course course) {
         Integer courseIdEntered;
         Integer subCategoryId = null;
         String sqlSelect = String.format("SELECT id FROM subCategory WHERE urlCode =  '%s' " , course.getSubCategory().getUrlCode());
@@ -33,6 +33,12 @@ public class CourseDao implements Dao<Course> {
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS)){
 
+//            ResultSet resultSet = preparedStatement.getResultSet();
+//            while (resultSet.next()){
+//                courseIdEntered = resultSet.getInt(1);
+//                System.out.println("The id created was -> " + courseIdEntered);
+//            }
+
             this.connection.setAutoCommit(false);
             preparedStatement.setString(1, course.getName());
             preparedStatement.setString(2, course.getUrlCode());
@@ -44,19 +50,11 @@ public class CourseDao implements Dao<Course> {
             preparedStatement.setString(8, course.getSkillsDeveloped());
             preparedStatement.setInt(9, subCategoryId);
 
-            ResultSet resultSet = preparedStatement.getResultSet();
-            while (resultSet.next()){
-                courseIdEntered = resultSet.getInt(1);
-                System.out.println("The id created was -> " + courseIdEntered);
-            }
-
             preparedStatement.execute();
             this.connection.commit();
 
-
-        }catch (SQLException e){
+        }catch (SQLException e ){
             e.printStackTrace();
-            this.connection.rollback();
         }
 
     }
@@ -64,10 +62,37 @@ public class CourseDao implements Dao<Course> {
     @Override
     public void update(Course course) {
 
+        String sqlUpdate = "UPDATE course SET courseVisibility  = 'PUBLIC';";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlUpdate)) {
+
+            this.connection.setAutoCommit(false);
+            preparedStatement.executeUpdate();
+            this.connection.commit();
+            Integer modifiedLines = preparedStatement.getUpdateCount();
+            System.out.println("Number of lines that have been modified: " + modifiedLines);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+
     }
 
     @Override
-    public void deleteById(Integer id) {
+    public void deleteByUrlCode(String  urlCode){
 
+        String sqlDelete = String.format("DELETE FROM course WHERE urlCode = '%s' ", urlCode);
+
+
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlDelete)) {
+
+            this.connection.setAutoCommit(false);
+            preparedStatement.execute();
+            this.connection.commit();
+            Integer modifiedLines = preparedStatement.getUpdateCount();
+            System.out.println("Number of lines that have been modified: " + modifiedLines);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
     }
 }

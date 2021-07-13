@@ -14,6 +14,6 @@ public interface Dao<T> {
 
     void update(T t);
 
-    void deleteById(Integer id);
+    void deleteByUrlCode(String  urlCode) throws SQLException;
 
 }

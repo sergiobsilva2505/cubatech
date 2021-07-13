@@ -11,7 +11,7 @@ import br.com.sbs.cubatech.course.CourseVisibility;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class TesteDaoCourse {
+public class TesteDaoCourseInsert {
 
     public static void main(String[] args){
 
