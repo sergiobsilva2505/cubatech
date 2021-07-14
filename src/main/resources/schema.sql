@@ -6,7 +6,7 @@ USE cubatechDb;
 CREATE TABLE IF NOT EXISTS category(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
-    urlCode VARCHAR(30) NOT NULL,
+    urlCode VARCHAR(30) NOT NULL UNIQUE,
     description LONGTEXT,
     studyGuide VARCHAR(255),
     status VARCHAR(7),
@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS category(
 CREATE TABLE IF NOT EXISTS subCategory(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
-    urlCode VARCHAR(30) NOT NULL,
+    urlCode VARCHAR(30) NOT NULL UNIQUE,
     description LONGTEXT,
     studyGuide VARCHAR(255),
     orderInSystem INTEGER,
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS subCategory(
 CREATE TABLE IF NOT EXISTS course(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(70) NOT NULL,
-    urlCode VARCHAR(60) NOT NULL,
+    urlCode VARCHAR(60) NOT NULL UNIQUE,
     timeToFinishInHours INTEGER NOT NULL,
     targetAudience VARCHAR(255),
     courseVisibility VARCHAR(9),
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS course(
 CREATE TABLE IF NOT EXISTS lesson(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
-    urlCode VARCHAR(30) NOT NULL,
+    urlCode VARCHAR(30) NOT NULL UNIQUE,
     orderInSystem INTEGER,
     active BOOLEAN,
     exam BOOLEAN,
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS lesson(
 CREATE TABLE IF NOT EXISTS activity(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(30) NOT NULL,
-    urlCode VARCHAR(30) NOT NULL,
+    urlCode VARCHAR(30) NOT NULL UNIQUE,
     orderInSystem INTEGER,
     active BOOLEAN,
     lesson_id BIGINT NOT NULL,

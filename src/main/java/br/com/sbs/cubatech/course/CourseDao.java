@@ -1,42 +1,23 @@
 package br.com.sbs.cubatech.course;
-import br.com.sbs.cubatech.connection.Dao;
-import com.mysql.cj.protocol.Resultset;
+import br.com.sbs.cubatech.connection.DaoException;
 
 import java.sql.*;
 
-public class CourseDao implements Dao<Course> {
+public class CourseDao {
 
-    private Connection connection;
+    private final Connection connection;
 
     public CourseDao(Connection connection){
         this.connection = connection;
     }
 
-    @Override
+
     public void save(Course course) {
-
-        Integer subCategoryId = null;
-        String sqlSelect = "SELECT id FROM subCategory WHERE urlCode =  ? " ;
-
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlSelect)){
-            preparedStatement.setString(1, course.getSubCategory().getUrlCode());
-            preparedStatement.execute();
-            ResultSet resultSet = preparedStatement.getResultSet();
-            if (resultSet.next()){
-                subCategoryId = resultSet.getInt( "id");
-            } else {
-                throw new RuntimeException("nova mensagem"); // todo DAO execption
-            }
-        }catch (SQLException e){
-            throw new RuntimeException("nova mensagem"); // todo DAO execption
-        }
 
         String sqlInsert = "INSERT INTO course (name, urlCode, timeToFinishInHours, targetAudience, courseVisibility, instructor, summary, skillsDeveloped, subCategory_id ) " +
                 "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS)){
-
-
 
             this.connection.setAutoCommit(false);
             preparedStatement.setString(1, course.getName());
@@ -47,7 +28,7 @@ public class CourseDao implements Dao<Course> {
             preparedStatement.setString(6, course.getInstructor());
             preparedStatement.setString(7, course.getSummary());
             preparedStatement.setString(8, course.getSkillsDeveloped());
-            preparedStatement.setInt(9, subCategoryId);
+            preparedStatement.setLong(9, course.getSubCategory().getId());
 
             preparedStatement.execute();
             this.connection.commit();
@@ -60,18 +41,18 @@ public class CourseDao implements Dao<Course> {
                 course.setId(courseIdEntered);
             }
 
-        }catch (SQLException e ){
+        }catch (SQLException e){
             try {
                 this.connection.rollback();
-                throw new RuntimeException("nova mensagem"); // todo DAO execption
-            } catch (SQLException throwables) {
-                throw new RuntimeException("nova mensagem"); // todo DAO execption
+                throw new DaoException("Could not save course", e);
+            } catch (SQLException ex) {
+                throw new RuntimeException("Unable to rollback", ex);
             }
         }
     }
 
-    @Override
-    public void update(Course course) {
+
+    public void setPublicVisibilityToAllCourses() {
 
         String sqlUpdate = "UPDATE course SET courseVisibility  = 'PUBLIC';";
 
@@ -83,13 +64,17 @@ public class CourseDao implements Dao<Course> {
             Integer modifiedLines = preparedStatement.getUpdateCount();
             System.out.println("Number of lines that have been modified: " + modifiedLines);
         }catch (SQLException e){
-            e.printStackTrace();
-            // todo a mesma correção do insert e do upodate
+            try {
+                this.connection.rollback();
+                throw new DaoException("Unable to change visibility", e);
+            } catch (SQLException ex) {
+                throw new RuntimeException("Unable to rollback", ex);
+            }
         }
 
     }
 
-    @Override
+
     public void deleteByUrlCode(String  urlCode){
 
         String sqlDelete = "DELETE FROM course WHERE urlCode = ? ";
@@ -104,9 +89,9 @@ public class CourseDao implements Dao<Course> {
         }catch (SQLException e){
             try {
                 this.connection.rollback();
-                throw new RuntimeException("nova mensagem"); // todo DAO execption
-            } catch (SQLException throwables) {
-                throw new RuntimeException("nova mensagem"); // todo DAO execption
+                throw new RuntimeException("Could not remove course: " + urlCode, e);
+            } catch (SQLException ex) {
+                throw new RuntimeException("Unable to rollback", ex);
             }
         }
     }

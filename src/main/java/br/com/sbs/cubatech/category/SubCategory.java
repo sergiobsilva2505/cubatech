@@ -21,6 +21,11 @@ public class SubCategory {
 
     private List<Course> courses = new ArrayList<>();
 
+    @Deprecated
+    public SubCategory(long id){
+        this.id = id;
+    }
+
     public SubCategory(String name, String urlCode, Category category) {
         notEmptyOrNull(name, "SubCategory: Name");
         notEmptyOrNull(urlCode, "SubCategory: UrlCode");
@@ -38,6 +43,10 @@ public class SubCategory {
         this.description = description;
         this.status = status;
 
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getName() {
@@ -80,5 +89,8 @@ public class SubCategory {
     public String toString() {
         return String.format("%-30s - %-30s - %6d - %-155s - %-8s - %-8s", name, urlCode, order, description, status , category.getName());
     }
+
+
+
 
 }
