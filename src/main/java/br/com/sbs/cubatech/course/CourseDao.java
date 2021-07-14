@@ -14,18 +14,21 @@ public class CourseDao implements Dao<Course> {
 
     @Override
     public void save(Course course) {
-        Integer courseIdEntered;
+
         Integer subCategoryId = null;
-        String sqlSelect = String.format("SELECT id FROM subCategory WHERE urlCode =  '%s' " , course.getSubCategory().getUrlCode());
+        String sqlSelect = "SELECT id FROM subCategory WHERE urlCode =  ? " ;
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlSelect)){
+            preparedStatement.setString(1, course.getSubCategory().getUrlCode());
             preparedStatement.execute();
             ResultSet resultSet = preparedStatement.getResultSet();
-            while (resultSet.next()){
+            if (resultSet.next()){
                 subCategoryId = resultSet.getInt( "id");
+            } else {
+                throw new RuntimeException("nova mensagem"); // todo DAO execption
             }
         }catch (SQLException e){
-            e.printStackTrace();
+            throw new RuntimeException("nova mensagem"); // todo DAO execption
         }
 
         String sqlInsert = "INSERT INTO course (name, urlCode, timeToFinishInHours, targetAudience, courseVisibility, instructor, summary, skillsDeveloped, subCategory_id ) " +
@@ -33,11 +36,7 @@ public class CourseDao implements Dao<Course> {
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert, Statement.RETURN_GENERATED_KEYS)){
 
-//            ResultSet resultSet = preparedStatement.getResultSet();
-//            while (resultSet.next()){
-//                courseIdEntered = resultSet.getInt(1);
-//                System.out.println("The id created was -> " + courseIdEntered);
-//            }
+
 
             this.connection.setAutoCommit(false);
             preparedStatement.setString(1, course.getName());
@@ -53,10 +52,22 @@ public class CourseDao implements Dao<Course> {
             preparedStatement.execute();
             this.connection.commit();
 
-        }catch (SQLException e ){
-            e.printStackTrace();
-        }
 
+            ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()){
+                Long courseIdEntered = resultSet.getLong(1);
+                System.out.println("The id created was -> " + courseIdEntered);
+                course.setId(courseIdEntered);
+            }
+
+        }catch (SQLException e ){
+            try {
+                this.connection.rollback();
+                throw new RuntimeException("nova mensagem"); // todo DAO execption
+            } catch (SQLException throwables) {
+                throw new RuntimeException("nova mensagem"); // todo DAO execption
+            }
+        }
     }
 
     @Override
@@ -73,6 +84,7 @@ public class CourseDao implements Dao<Course> {
             System.out.println("Number of lines that have been modified: " + modifiedLines);
         }catch (SQLException e){
             e.printStackTrace();
+            // todo a mesma correção do insert e do upodate
         }
 
     }
@@ -80,19 +92,22 @@ public class CourseDao implements Dao<Course> {
     @Override
     public void deleteByUrlCode(String  urlCode){
 
-        String sqlDelete = String.format("DELETE FROM course WHERE urlCode = '%s' ", urlCode);
-
-
+        String sqlDelete = "DELETE FROM course WHERE urlCode = ? ";
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlDelete)) {
-
+            preparedStatement.setString(1, urlCode);
             this.connection.setAutoCommit(false);
             preparedStatement.execute();
             this.connection.commit();
             Integer modifiedLines = preparedStatement.getUpdateCount();
             System.out.println("Number of lines that have been modified: " + modifiedLines);
         }catch (SQLException e){
-            e.printStackTrace();
+            try {
+                this.connection.rollback();
+                throw new RuntimeException("nova mensagem"); // todo DAO execption
+            } catch (SQLException throwables) {
+                throw new RuntimeException("nova mensagem"); // todo DAO execption
+            }
         }
     }
 }

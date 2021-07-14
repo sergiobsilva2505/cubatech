@@ -13,7 +13,7 @@ import java.sql.SQLException;
 public class TestJdbcHtmlWriter {
 
     public static void main(String[] args) throws SQLException, IOException {
-
+        // todo acrescentar tempo de curso ao select
         Connection connection = null;
         BufferedWriter bufferedWriter = null;
         String htmlPageCode= null;
