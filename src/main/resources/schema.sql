@@ -1,4 +1,4 @@
-DROP DATABASE cubatechDb;
+DROP DATABASE IF EXISTS cubatechDb;
 CREATE DATABASE IF NOT EXISTS cubatechDb;
 
 USE cubatechDb;

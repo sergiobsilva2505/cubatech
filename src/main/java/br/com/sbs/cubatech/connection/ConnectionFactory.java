@@ -14,7 +14,7 @@ public class ConnectionFactory {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         comboPooledDataSource.setJdbcUrl("jdbc:mysql://localhost/cubatechDb?useTimezone=true&serverTimezone=UTC");
         comboPooledDataSource.setUser("root");
-        comboPooledDataSource.setPassword("Alura@123");
+        comboPooledDataSource.setPassword("");
 
         comboPooledDataSource.setMaxPoolSize(15);
 
