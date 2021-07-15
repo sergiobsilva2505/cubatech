@@ -80,7 +80,7 @@ class CourseTest {
     }
 
     @Test
-    void shouldReturnNullPointerExceptionWhenSubCategoryIsNull(){ // todo perguntar se deveria ser mesmo Null poiter
+    void shouldReturnNullPointerExceptionWhenSubCategoryIsNull(){
         assertThrows(NullPointerException.class, ()-> new Course("Git e Github para Sobrevivência", "git-e-github-para-sobrevivencia", 6, "Nico Steppat", null));
     }
 

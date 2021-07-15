@@ -31,7 +31,7 @@ public class SubCategoriesFileReader {
                 String urlCode = valuesSubCategoryColumns[1];
                 Integer order = valuesSubCategoryColumns[2].equals("")? null : Integer.parseInt(valuesSubCategoryColumns[2]);
                 String description = valuesSubCategoryColumns[3];
-                Status status = valuesSubCategoryColumns[4].equals("ATIVA")  ? Status.ATIVA : Status.INATIVA;
+                Status status = valuesSubCategoryColumns[4].equals("ATIVA")  ? Status.ACTIVE : Status.INACTIVE;
                 String categoryUrlCode = valuesSubCategoryColumns[5];
 
                 Category category =  categories.get(categoryUrlCode);

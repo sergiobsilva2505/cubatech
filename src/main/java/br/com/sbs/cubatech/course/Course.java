@@ -83,7 +83,10 @@ public class Course {
 
     @Override
     public String toString() {
-//
         return String.format("%-85s - %-60s - %2d - %-8s - %-20s - %-2380s - %-375s - %-30s" , name, urlCode, timeToFinishInHours, courseVisibility, instructor, summary, skillsDeveloped, subCategory.getName());
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

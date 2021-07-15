@@ -79,7 +79,7 @@ public class Category {
 
     public List<SubCategory> getActiveSubCategories() {
         return subCategories.stream()
-                .filter(subCategory -> Status.ATIVA.equals(subCategory.getStatus()))
+                .filter(subCategory -> Status.ACTIVE.equals(subCategory.getStatus()))
                 .collect(Collectors.toList());
     }
 
