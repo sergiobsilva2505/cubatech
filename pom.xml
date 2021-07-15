@@ -41,6 +41,11 @@
             <artifactId>mchange-commons-java</artifactId>
             <version>0.2.20</version>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>5.5.3.Final</version>
+        </dependency>
     </dependencies>
     
 </project>
