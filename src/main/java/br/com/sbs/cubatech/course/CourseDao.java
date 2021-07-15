@@ -46,7 +46,7 @@ public class CourseDao {
                 this.connection.rollback();
                 throw new DaoException("Could not save course", e);
             } catch (SQLException ex) {
-                throw new RuntimeException("Unable to rollback", ex);
+                throw new DaoException("Unable to rollback", ex);
             }
         }
     }
@@ -68,7 +68,7 @@ public class CourseDao {
                 this.connection.rollback();
                 throw new DaoException("Unable to change visibility", e);
             } catch (SQLException ex) {
-                throw new RuntimeException("Unable to rollback", ex);
+                throw new DaoException("Unable to rollback", ex);
             }
         }
 
@@ -89,9 +89,9 @@ public class CourseDao {
         }catch (SQLException e){
             try {
                 this.connection.rollback();
-                throw new RuntimeException("Could not remove course: " + urlCode, e);
+                throw new DaoException("Could not remove course: " + urlCode, e);
             } catch (SQLException ex) {
-                throw new RuntimeException("Unable to rollback", ex);
+                throw new DaoException("Unable to rollback", ex);
             }
         }
     }
