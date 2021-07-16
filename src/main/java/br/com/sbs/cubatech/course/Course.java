@@ -27,7 +27,6 @@ public class Course {
     private String skillsDeveloped;
 
     @ManyToOne
-    @JoinColumn(name = "subCategory_id")
     private SubCategory subCategory;
 
     public Course(){

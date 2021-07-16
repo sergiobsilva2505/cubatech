@@ -24,7 +24,7 @@ public class Category {
     private String iconPath;
     private String colorCode;
 
-    @OneToMany(mappedBy = "")
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<SubCategory> subCategories = new ArrayList<>();
 
     public Category(){
