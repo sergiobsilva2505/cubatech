@@ -1,23 +1,30 @@
 package br.com.sbs.cubatech.category;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static br.com.sbs.cubatech.validation.Validator.*;
 
+@Entity
 public class Category {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String urlCode;
     private String description;
     private String studyGuide;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
     private Integer order;
     private String iconPath;
     private String colorCode;
 
+    @OneToMany(mappedBy = "")
     private List<SubCategory> subCategories = new ArrayList<>();
 
     public Category(){

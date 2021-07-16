@@ -2,24 +2,37 @@ package br.com.sbs.cubatech.course;
 
 import br.com.sbs.cubatech.category.SubCategory;
 
+import javax.persistence.*;
+
 import static br.com.sbs.cubatech.validation.Validator.*;
 
+@Entity
 public class Course {
 
     public static final int MININUM_TIME_TO_FINISH = 1;
     public static final int MAXIMUM_TIME_TO_FINISH = 20;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String urlCode;
     private Integer timeToFinishInHours;
     private String targetAudience;
+
+    @Enumerated(EnumType.STRING)
     private CourseVisibility courseVisibility = CourseVisibility.PRIVATE;
     private String instructor;
     private String summary;
     private String skillsDeveloped;
 
+    @ManyToOne
+    @JoinColumn(name = "subCategory_id")
     private SubCategory subCategory;
+
+    public Course(){
+
+    }
 
     public Course(String name, String urlCode, Integer timeToFinishInHours, String instructor, SubCategory subCategory) {
         notEmptyOrNull(name , "Course: Name");
