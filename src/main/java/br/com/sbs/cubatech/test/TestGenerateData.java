@@ -41,7 +41,7 @@ public class TestGenerateData {
         for (Category category: categories) {
             textInsertCategory += String.format("""
                             INSERT INTO category (name, urlCode, orderInSystem, description, status, iconPath, colorCode) VALUES ('%s', '%s', %s, '%s',  '%s',  '%s',  '%s');
-                            """, category.getName(), category.getUrlCode(), category.getOrder(), category.getDescription(), category.getStatus(), category.getIconPath(), category.getColorCode());
+                            """, category.getName(), category.getUrlCode(), category.getOrderInSystem(), category.getDescription(), category.getStatus(), category.getIconPath(), category.getColorCode());
         }
 
         for (SubCategory subCategory: subCategories) {

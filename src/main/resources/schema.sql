@@ -1,4 +1,4 @@
-DROP DATABASE cubatechDb;
+DROP DATABASE IF EXISTS cubatechDb;
 CREATE DATABASE IF NOT EXISTS cubatechDb;
 
 USE cubatechDb;
@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS category(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     urlCode VARCHAR(30) NOT NULL UNIQUE,
-    description LONGTEXT,
+    description VARCHAR(255),
     studyGuide VARCHAR(255),
     status VARCHAR(7),
     orderInSystem INTEGER,
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS subCategory(
     id BIGINT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     urlCode VARCHAR(30) NOT NULL UNIQUE,
-    description LONGTEXT,
+    description VARCHAR(255),
     studyGuide VARCHAR(255),
     orderInSystem INTEGER,
     status VARCHAR(7),
@@ -35,8 +35,8 @@ CREATE TABLE IF NOT EXISTS course(
     targetAudience VARCHAR(255),
     courseVisibility VARCHAR(9),
     instructor VARCHAR(30),
-    summary LONGTEXT,
-    skillsDeveloped LONGTEXT,
+    summary VARCHAR(255),
+    skillsDeveloped VARCHAR(255),
     subCategory_id BIGINT,
     CONSTRAINT fk_course_subCategory FOREIGN KEY (subCategory_id) REFERENCES subCategory (id)
 );
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS video(
 );
 
 CREATE TABLE IF NOT EXISTS question(
-    description LONGTEXT NOT NULL,
+    description VARCHAR(255) NOT NULL,
     questionType VARCHAR(20),
     activity_id BIGINT NOT NULL,
     CONSTRAINT fk_questions_activity FOREIGN KEY (activity_id) REFERENCES activity(id)

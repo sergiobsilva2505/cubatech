@@ -1,36 +1,20 @@
 package br.com.sbs.cubatech.category;
 
-import br.com.sbs.cubatech.connection.DaoException;
-
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.persistence.EntityManager;
 
 public class SubCategoryDao  {
 
-    private final Connection connection;
+    private final EntityManager entityManager;
 
-    public SubCategoryDao(Connection connection) {
-        this.connection = connection;
+    public SubCategoryDao(EntityManager entityManager) {
+        this.entityManager = entityManager;
+
     }
-
     public SubCategory findByUrlCode(String urlCode){
+        String jpql = "SELECT s FROM SubCategory s WHERE urlCode = :urlCode";
+        return entityManager.createQuery(jpql, SubCategory.class)
+                .setParameter("urlCode", urlCode)
+                .getSingleResult();
 
-        String sqlSelect = "SELECT id FROM subCategory WHERE urlCode =  ? " ;
-
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlSelect)){
-            preparedStatement.setString(1, urlCode);
-            preparedStatement.execute();
-            ResultSet resultSet = preparedStatement.getResultSet();
-            if (resultSet.next()){
-                long subCategoryId = resultSet.getLong( "id");
-                return new SubCategory(subCategoryId);
-            } else {
-                throw new DaoException("SubCategory not found in database: "+ urlCode);
-            }
-        }catch (SQLException e){
-            throw new DaoException(e.getMessage(), e);
-        }
     }
 }

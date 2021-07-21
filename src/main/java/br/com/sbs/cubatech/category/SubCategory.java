@@ -9,6 +9,7 @@ import java.util.List;
 import static br.com.sbs.cubatech.validation.Validator.*;
 
 @Entity
+@Table(name = "subCategory")
 public class SubCategory {
 
     @Id
@@ -18,12 +19,14 @@ public class SubCategory {
     private String urlCode;
     private String description;
     private String studyGuide;
-    private Integer order;
+    private Integer orderInSystem;
 
     @Enumerated(EnumType.STRING)
     private Status status;
 
+
     @ManyToOne
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @OneToMany(mappedBy = "subCategory", cascade = CascadeType.ALL)
@@ -49,9 +52,9 @@ public class SubCategory {
         this.category = category;
     }
 
-    public SubCategory(String name, String urlCode, Integer order, String description, Status status, Category category){
+    public SubCategory(String name, String urlCode, Integer orderInSystem, String description, Status status, Category category){
         this(name, urlCode, category);
-        this.order = order;
+        this.orderInSystem = orderInSystem;
         this.description = description;
         this.status = status;
 
@@ -87,11 +90,15 @@ public class SubCategory {
     }
 
     public Integer getOrder() {
-        return order;
+        return orderInSystem;
     }
 
     public Category getCategory() {
         return category;
+    }
+
+    public String getStudyGuide() {
+        return studyGuide;
     }
 
     public  Integer totalityToFinishInHours(){
@@ -100,7 +107,7 @@ public class SubCategory {
 
     @Override
     public String toString() {
-        return String.format("%-30s - %-30s - %6d - %-155s - %-8s - %-8s", name, urlCode, order, description, status , category.getName());
+        return String.format("%-30s - %-30s - %6d - %-155s - %-8s - %-8s", name, urlCode, orderInSystem, description, status , category.getName());
     }
 
 

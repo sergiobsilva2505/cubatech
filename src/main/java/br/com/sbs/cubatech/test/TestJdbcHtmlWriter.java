@@ -5,16 +5,15 @@ import br.com.sbs.cubatech.report.ReportDTO;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
 
 public class TestJdbcHtmlWriter {
 
-    public static void main(String[] args) throws SQLException, IOException {
+    public static void main(String[] args) throws  IOException {
         BufferedWriter bufferedWriter = null;
         String htmlPageCode;
 
-        List<ReportDTO> reportDtoList = ReportDTO.getReport();
+//        List<ReportDTO> reportDtoList = ReportDTO.getReport();
 
         String tableRowResult = "";
 
@@ -22,18 +21,18 @@ public class TestJdbcHtmlWriter {
             String outPutFile = "relatorio.html";
             bufferedWriter = new BufferedWriter(new FileWriter(outPutFile));
 
-            for (ReportDTO report :  reportDtoList        ) {
-                tableRowResult += String.format("""
-                            <tr>
-                                <td>%d</td>
-                                <td>%s</td>
-                                <td>%d</td>
-                                <td>%d</td>
-                                <td>%s</td>
-                            </tr>    
-                            """, report.getCourseId(), report.getCourseName(), report.getTimeToFinishCourseInHours(),
-                        report.getSubCategoryId(), report.getSubCategoryName());
-            }
+//            for (ReportDTO report :  reportDtoList        ) {
+//                tableRowResult += String.format("""
+//                            <tr>
+//                                <td>%d</td>
+//                                <td>%s</td>
+//                                <td>%d</td>
+//                                <td>%d</td>
+//                                <td>%s</td>
+//                            </tr>
+//                            """, report.getCourseId(), report.getCourseName(), report.getTimeToFinishCourseInHours(),
+//                        report.getSubCategoryId(), report.getSubCategoryName());
+//            }
 
             htmlPageCode = String.format("""
                             <!DOCTYPE html>

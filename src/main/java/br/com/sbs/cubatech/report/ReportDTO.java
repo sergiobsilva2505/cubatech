@@ -39,9 +39,9 @@ public class ReportDTO {
         return subCategoryName;
     }
 
-    public static List<ReportDTO> getReport() throws SQLException {
-        ReportDao reportDao = new ReportDao();
-        List<ReportDTO> reportDtoList = reportDao.getReportData();
-        return reportDtoList;
-    }
+//    public static List<ReportDTO> getReport()  {
+//        ReportDao reportDao = new ReportDao();
+//        List<ReportDTO> reportDtoList = reportDao.getReportData();
+//        return reportDtoList;
+//    }
 }

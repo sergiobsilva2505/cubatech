@@ -2,9 +2,13 @@ package br.com.sbs.cubatech.lesson;
 
 import br.com.sbs.cubatech.course.Course;
 
+import javax.persistence.*;
+
 import static br.com.sbs.cubatech.validation.Validator.*;
 
+
 public class Lesson {
+
 
     private Long id;
     private String name;
@@ -14,6 +18,10 @@ public class Lesson {
     private boolean exam;
 
     private Course course;
+
+    public Lesson(){
+
+    }
 
     public Lesson(String name, String urlCode, Course course) {
         notEmptyOrNull(name, "Lesson: Name");

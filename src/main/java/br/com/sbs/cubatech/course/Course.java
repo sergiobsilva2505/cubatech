@@ -7,6 +7,7 @@ import javax.persistence.*;
 import static br.com.sbs.cubatech.validation.Validator.*;
 
 @Entity
+@Table(name = "course")
 public class Course {
 
     public static final int MININUM_TIME_TO_FINISH = 1;
@@ -23,10 +24,15 @@ public class Course {
     @Enumerated(EnumType.STRING)
     private CourseVisibility courseVisibility = CourseVisibility.PRIVATE;
     private String instructor;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String summary;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String skillsDeveloped;
 
     @ManyToOne
+    @JoinColumn(name = "subCategory_id")
     private SubCategory subCategory;
 
     public Course(){
@@ -55,6 +61,14 @@ public class Course {
         this.courseVisibility = courseVisibility;
         this.summary = summary;
         this.skillsDeveloped = skillsDeveloped;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public SubCategory getSubCategory() {
@@ -98,7 +112,5 @@ public class Course {
         return String.format("%-85s - %-60s - %2d - %-8s - %-20s - %-2380s - %-375s - %-30s" , name, urlCode, timeToFinishInHours, courseVisibility, instructor, summary, skillsDeveloped, subCategory.getName());
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 }

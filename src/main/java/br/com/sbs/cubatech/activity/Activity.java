@@ -2,9 +2,13 @@ package br.com.sbs.cubatech.activity;
 
 import br.com.sbs.cubatech.lesson.Lesson;
 
+import javax.persistence.*;
+
 import static br.com.sbs.cubatech.validation.Validator.*;
 
+
 public abstract class Activity {
+
 
     private Long id;
     private String title;
@@ -12,7 +16,12 @@ public abstract class Activity {
     private boolean active;
     private Integer order;
 
+
     private Lesson lesson;
+
+    public Activity(){
+
+    }
 
     public Activity(String title, String urlCode,  Lesson lesson) {
         notEmptyOrNull(title, "Activity: Title");
@@ -22,7 +31,7 @@ public abstract class Activity {
 
         this.title = title;
         this.urlCode = urlCode;
-        this.lesson = lesson;
+//        this.lesson = lesson;
     }
 
 
