@@ -1,6 +1,7 @@
 package br.com.sbs.cubatech.category;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 
 public class SubCategoryDao  {
 
@@ -16,5 +17,17 @@ public class SubCategoryDao  {
                 .setParameter("urlCode", urlCode)
                 .getSingleResult();
 
+    }
+
+    public List<SubCategory> getActiveSubCategory() {
+        String jpql = "SELECT s FROM SubCategory s WHERE status = 'ACTIVE' ORDER BY orderInSystem";
+        return entityManager.createQuery(jpql, SubCategory.class)
+                .getResultList();
+    }
+
+    public List<SubCategory> getSubCategoryDescriptionNullOrEmpty() {
+        String jpql = "SELECT c FROM SubCategory c WHERE description = null or description = ''";
+        return entityManager.createQuery(jpql, SubCategory.class)
+                .getResultList();
     }
 }

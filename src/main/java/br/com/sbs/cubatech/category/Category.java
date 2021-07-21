@@ -16,6 +16,7 @@ public class Category {
     private Long id;
     private String name;
     private String urlCode;
+
     @Column(columnDefinition = "LONGTEXT")
     private String description;
     private String studyGuide;
@@ -78,13 +79,22 @@ public class Category {
         return status;
     }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public Integer getOrderInSystem() {
         return orderInSystem;
+    }
+
+    public void setOrderInSystem(Integer orderInSystem) {
+        this.orderInSystem = orderInSystem;
     }
 
     public String getStudyGuide() {
         return studyGuide;
     }
+
 
     public List<SubCategory> getSubCategories() {
         return subCategories;

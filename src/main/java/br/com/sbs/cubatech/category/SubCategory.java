@@ -17,6 +17,7 @@ public class SubCategory {
     private Long id;
     private String name;
     private String urlCode;
+
     @Column(columnDefinition = "LONGTEXT")
     private String description;
     private String studyGuide;
@@ -77,6 +78,10 @@ public class SubCategory {
         return status;
     }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     public void addCourse(Course course) {
 //        course.setSubCategory(this);
         this.courses.add(course);
@@ -88,6 +93,10 @@ public class SubCategory {
 
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getOrder() {

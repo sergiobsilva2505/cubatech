@@ -1,5 +1,6 @@
 package br.com.sbs.cubatech.test;
 
+import br.com.sbs.cubatech.course.Course;
 import br.com.sbs.cubatech.course.CourseDao;
 import br.com.sbs.cubatech.util.JPAUtil;
 
@@ -13,7 +14,8 @@ public class TestDaoCourseDelete {
         CourseDao courseDao = new CourseDao(entityManager);
 
         entityManager.getTransaction().begin();
-        courseDao.deleteByUrlCode("angular-cli");
+        Course course = courseDao.findByUrlCode("angular-cli");
+        courseDao.delete(course);
         entityManager.getTransaction().commit();
 
         entityManager.close();

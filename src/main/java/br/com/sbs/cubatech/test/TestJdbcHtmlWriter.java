@@ -1,11 +1,8 @@
 package br.com.sbs.cubatech.test;
 
-import br.com.sbs.cubatech.report.ReportDTO;
-
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 
 public class TestJdbcHtmlWriter {
 

@@ -24,13 +24,25 @@ public class CourseDao {
                 .executeUpdate();
     }
 
-    public void deleteByUrlCode(String urlCode){
+    public void delete(Course course){
+        entityManager.remove(course);
+    }
+
+    public Course findByUrlCode(String urlCode){
         String jpql = "SELECT c FROM Course c WHERE urlCode = :urlCode";
         Course course = entityManager.createQuery(jpql, Course.class)
                 .setParameter("urlCode", urlCode)
                 .getSingleResult();
-        entityManager.remove(course);
+        return  course;
     }
+
+    public List<Course> getPublicCourse() {
+        String jpql = "SELECT c FROM Course c WHERE courseVisibility = 'PUBLIC'";
+        return entityManager.createQuery(jpql, Course.class)
+                .getResultList();
+    }
+
+
 
 
 }

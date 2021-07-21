@@ -1,10 +1,14 @@
 package br.com.sbs.cubatech.test;
 
 import br.com.sbs.cubatech.category.Category;
+import br.com.sbs.cubatech.category.CategoryDao;
 import br.com.sbs.cubatech.category.SubCategory;
+import br.com.sbs.cubatech.category.SubCategoryDao;
 import br.com.sbs.cubatech.course.Course;
-import br.com.sbs.cubatech.report.ReportDao;
+import br.com.sbs.cubatech.course.CourseDao;
+import br.com.sbs.cubatech.util.JPAUtil;
 
+import javax.persistence.EntityManager;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,12 +18,16 @@ public class TestReportWriter {
 
     public static void main(String[] args) throws IOException {
 
-        ReportDao reportDao = new ReportDao();
+        EntityManager entityManager = JPAUtil.getEntityManager();
 
-        List<Category> categoryList = reportDao.getActiveCategory();
-        List<SubCategory> subCategoryList = reportDao.getActiveSubCategory();
-        List<Course> courseList = reportDao.getPublicCourse();
-        List<SubCategory> subCategoryNames = reportDao.getSubCategoryDescriptionNull();
+        CategoryDao categoryDao = new CategoryDao(entityManager);
+        SubCategoryDao subCategoryDao = new SubCategoryDao(entityManager);
+        CourseDao courseDao = new CourseDao(entityManager);
+
+        List<Category> categoryList = categoryDao.getActiveCategory();
+        List<SubCategory> subCategoryList = subCategoryDao.getActiveSubCategory();
+        List<Course> courseList = courseDao.getPublicCourse();
+        List<SubCategory> subCategoryNames = subCategoryDao.getSubCategoryDescriptionNullOrEmpty();
 
         BufferedWriter bufferedWriter = null;
         String htmlPageCode;

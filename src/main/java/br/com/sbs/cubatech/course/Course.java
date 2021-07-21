@@ -91,6 +91,10 @@ public class Course {
         return courseVisibility;
     }
 
+    public void setCourseVisibility(CourseVisibility courseVisibility) {
+        this.courseVisibility = courseVisibility;
+    }
+
     public String getTargetAudience() {
         return targetAudience;
     }

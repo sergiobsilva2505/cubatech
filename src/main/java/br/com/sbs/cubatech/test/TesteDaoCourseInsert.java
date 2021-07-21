@@ -29,7 +29,7 @@ public class TesteDaoCourseInsert {
                 "Conheça todos os comando da CLI do Angular. <br> - Saiba como funcionam as Workspaces no angular.json. <br> - Saiba como o Schematics pode aumentar sua produtividade <br> -",
                 "vira um gênio", subCategory);
         entityManager.getTransaction().begin();
-//        courseDao.save(course);
+        courseDao.save(course);
         entityManager.getTransaction().commit();
         entityManager.close();
 
