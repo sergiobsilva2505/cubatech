@@ -10,9 +10,9 @@ import java.util.List;
 
 public class ReportDao {
 
-    private EntityManager entityManager = JPAUtil.getEntityManager();
+    private final EntityManager entityManager = JPAUtil.getEntityManager();
 
-    @Deprecated
+
     public ReportDao() {
     }
 

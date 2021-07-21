@@ -6,17 +6,21 @@ import javax.persistence.*;
 
 import static br.com.sbs.cubatech.validation.Validator.*;
 
-
+@Entity
+@Table(name = "activity")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Activity {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String urlCode;
     private boolean active;
+    @Column(name = "orderInSystem")
     private Integer order;
 
-
+    @ManyToOne
     private Lesson lesson;
 
     public Activity(){
@@ -31,7 +35,7 @@ public abstract class Activity {
 
         this.title = title;
         this.urlCode = urlCode;
-//        this.lesson = lesson;
+        this.lesson = lesson;
     }
 
 

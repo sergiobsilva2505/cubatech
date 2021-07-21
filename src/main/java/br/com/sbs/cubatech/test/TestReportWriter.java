@@ -24,7 +24,7 @@ public class TestReportWriter {
         BufferedWriter bufferedWriter = null;
         String htmlPageCode;
 
-        String tableRowResultCategory = String.format("");
+        String tableRowResultCategory = "";
         String tableRowResultSubCategory = "";
         String tableRowResultCourse = "";
         String tableRowResultNames = "";

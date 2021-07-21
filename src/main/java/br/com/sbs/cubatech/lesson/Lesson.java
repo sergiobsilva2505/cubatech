@@ -6,17 +6,23 @@ import javax.persistence.*;
 
 import static br.com.sbs.cubatech.validation.Validator.*;
 
-
+@Entity
+@Table(name = "lesson")
 public class Lesson {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String urlCode;
+
+    @Column(name = "orderInSystem")
     private Integer order;
     private boolean active;
     private boolean exam;
 
+    @ManyToOne
+    @JoinColumn(name = "course_id")
     private Course course;
 
     public Lesson(){

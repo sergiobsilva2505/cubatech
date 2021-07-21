@@ -17,11 +17,11 @@ public class CourseDao {
         this.entityManager.persist(course);
     }
 
-    public void setPublicVisibilityToAllCourses(CourseVisibility courseVisibility) {
+    public void setPublicVisibilityToAllCourses() {
         String jpql = "UPDATE Course c SET c.courseVisibility = :courseVisibility";
-        List<Course> courses = entityManager.createQuery(jpql, Course.class)
-                .setParameter("courseVisibility", courseVisibility)
-                .getResultList();
+        entityManager.createQuery(jpql)
+                .setParameter("courseVisibility", CourseVisibility.PUBLIC)
+                .executeUpdate();
     }
 
     public void deleteByUrlCode(String urlCode){

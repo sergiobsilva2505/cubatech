@@ -14,7 +14,7 @@ public class TestDaoCourseUpdate {
         CourseDao courseDao = new CourseDao(entityManager);
 
         entityManager.getTransaction().begin();
-        courseDao.setPublicVisibilityToAllCourses(CourseVisibility.PUBLIC);
+        courseDao.setPublicVisibilityToAllCourses();
         entityManager.getTransaction().commit();
         entityManager.close();
     }

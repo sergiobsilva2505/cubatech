@@ -17,6 +17,7 @@ public class SubCategory {
     private Long id;
     private String name;
     private String urlCode;
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
     private String studyGuide;
     private Integer orderInSystem;
