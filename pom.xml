@@ -13,7 +13,6 @@
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
     <packaging>war</packaging>
-
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
