@@ -34,6 +34,7 @@ public class SubCategory {
     @OneToMany(mappedBy = "subCategory", cascade = CascadeType.ALL)
     private List<Course> courses = new ArrayList<>();
 
+    @Deprecated
     public SubCategory(){
 
     }
@@ -83,7 +84,6 @@ public class SubCategory {
     }
 
     public void addCourse(Course course) {
-//        course.setSubCategory(this);
         this.courses.add(course);
     }
 

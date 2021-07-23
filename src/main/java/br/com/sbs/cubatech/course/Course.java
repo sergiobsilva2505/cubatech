@@ -35,6 +35,7 @@ public class Course {
     @JoinColumn(name = "subCategory_id")
     private SubCategory subCategory;
 
+    @Deprecated
     public Course(){
 
     }

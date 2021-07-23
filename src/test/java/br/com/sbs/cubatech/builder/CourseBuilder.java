@@ -1,6 +1,5 @@
 package br.com.sbs.cubatech.builder;
 
-import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.category.SubCategory;
 import br.com.sbs.cubatech.course.Course;
 import br.com.sbs.cubatech.course.CourseVisibility;

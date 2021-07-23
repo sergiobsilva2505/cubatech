@@ -23,6 +23,7 @@ public abstract class Activity {
     @ManyToOne
     private Lesson lesson;
 
+    @Deprecated
     public Activity(){
 
     }

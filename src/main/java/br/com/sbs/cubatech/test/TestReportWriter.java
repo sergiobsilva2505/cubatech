@@ -16,7 +16,7 @@ import java.util.List;
 
 public class TestReportWriter {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args){
 
         EntityManager entityManager = JPAUtil.getEntityManager();
 
@@ -29,7 +29,7 @@ public class TestReportWriter {
         List<Course> courseList = courseDao.getPublicCourse();
         List<SubCategory> subCategoryNames = subCategoryDao.getSubCategoryDescriptionNullOrEmpty();
 
-        BufferedWriter bufferedWriter = null;
+        //BufferedWriter bufferedWriter = null;
         String htmlPageCode;
 
         String tableRowResultCategory = "";
@@ -98,13 +98,11 @@ public class TestReportWriter {
             tableRowResultNames += String.format("""
                     <tr>
                         <td>%s</td>
-                    </tr>                    
+                    </tr>                
                     """, subCategory.getName());
         }
 
-        try {
-            String outPutFile = "relatorionovo.html";
-            bufferedWriter = new BufferedWriter(new FileWriter(outPutFile));
+        try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("relatorionovo.html")); ){
 
             htmlPageCode = String.format("""
                             <!DOCTYPE html>
@@ -176,10 +174,8 @@ public class TestReportWriter {
                     """, tableRowResultCategory, tableRowResultSubCategory, tableRowResultCourse, tableRowResultNames);
             bufferedWriter.write(htmlPageCode);
 
-        } catch (IOException e){
+        } catch (NullPointerException | IOException e){
             e.printStackTrace();
-        } finally {
-            bufferedWriter.close();
         }
     }
 }

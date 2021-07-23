@@ -25,6 +25,7 @@ public class Lesson {
     @JoinColumn(name = "course_id")
     private Course course;
 
+    @Deprecated
     public Lesson(){
 
     }

@@ -16,6 +16,7 @@ public class Question extends Activity {
     @Enumerated(EnumType.STRING)
     private QuestionType questionType = QuestionType.SINGLE_ANSWER;
 
+    @Deprecated
     public Question(){
 
     }

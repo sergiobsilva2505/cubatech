@@ -22,6 +22,7 @@ public class Alternative implements Serializable {
     @JoinColumn(name = "activity_id")
     private Question question;
 
+    @Deprecated
     public Alternative() {
     }
 

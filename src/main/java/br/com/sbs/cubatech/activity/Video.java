@@ -20,6 +20,7 @@ public class Video extends Activity{
     @Column(columnDefinition = "LONGTEXT")
     private String transcription;
 
+    @Deprecated
     public Video(){
 
     }

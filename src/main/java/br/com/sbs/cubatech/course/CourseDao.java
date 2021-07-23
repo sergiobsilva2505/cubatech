@@ -1,13 +1,11 @@
 package br.com.sbs.cubatech.course;
 
-import br.com.sbs.cubatech.category.SubCategory;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 
 public class CourseDao {
 
-    private EntityManager entityManager;
+    private final EntityManager entityManager;
 
     public CourseDao(EntityManager entityManager){
         this.entityManager = entityManager;
