@@ -3,6 +3,10 @@ body {
     font-size: 14px;
 }
 
+h1, h3{
+    text-align: center;
+}
+
 table, th, td {
   border: 1px solid #ddd;
   border-collapse: collapse;
@@ -10,7 +14,7 @@ table, th, td {
 }
 
 table {
-    width: 70%;
+    width: 90%;
     margin: auto;
 }
 

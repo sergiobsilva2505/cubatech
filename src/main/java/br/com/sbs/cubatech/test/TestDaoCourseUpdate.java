@@ -1,21 +1,20 @@
 package br.com.sbs.cubatech.test;
 
-import br.com.sbs.cubatech.connection.ConnectionFactory;
 import br.com.sbs.cubatech.course.CourseDao;
+import br.com.sbs.cubatech.util.JPAUtil;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import javax.persistence.EntityManager;
 
 public class TestDaoCourseUpdate {
 
     public static void main(String[] args) {
 
-        ConnectionFactory connectionFactory = new ConnectionFactory();
-        try(Connection connection = connectionFactory.recoverConnection()) {
-            CourseDao courseDao = new CourseDao(connection);
-            courseDao.setPublicVisibilityToAllCourses();
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
+        EntityManager entityManager = JPAUtil.getEntityManager();
+        CourseDao courseDao = new CourseDao(entityManager);
+
+        entityManager.getTransaction().begin();
+        courseDao.setPublicVisibilityToAllCourses();
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 }

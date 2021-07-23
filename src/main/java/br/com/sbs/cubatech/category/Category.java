@@ -1,23 +1,33 @@
 package br.com.sbs.cubatech.category;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static br.com.sbs.cubatech.validation.Validator.*;
 
+@Entity
+@Table(name = "category")
 public class Category {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String urlCode;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
     private String studyGuide;
+
+    @Enumerated(EnumType.STRING)
     private Status status;
-    private Integer order;
+    private Integer orderInSystem;
     private String iconPath;
     private String colorCode;
 
+    @OneToMany (mappedBy = "category", cascade = CascadeType.ALL)
     private List<SubCategory> subCategories = new ArrayList<>();
 
     public Category(){
@@ -32,11 +42,11 @@ public class Category {
         this.urlCode = urlCode;
     }
 
-    public Category(String name, String urlCode, Integer order, String description, Status status,  String iconPath, String colorCode) {
+    public Category(String name, String urlCode, Integer orderInSystem, String description, Status status, String iconPath, String colorCode) {
         this(name, urlCode);
         this.description = description;
         this.status = status;
-        this.order = order;
+        this.orderInSystem = orderInSystem;
         this.iconPath = iconPath;
         this.colorCode = colorCode;
     }
@@ -69,9 +79,22 @@ public class Category {
         return status;
     }
 
-    public Integer getOrder() {
-        return order;
+    public void setStatus(Status status) {
+        this.status = status;
     }
+
+    public Integer getOrderInSystem() {
+        return orderInSystem;
+    }
+
+    public void setOrderInSystem(Integer orderInSystem) {
+        this.orderInSystem = orderInSystem;
+    }
+
+    public String getStudyGuide() {
+        return studyGuide;
+    }
+
 
     public List<SubCategory> getSubCategories() {
         return subCategories;
@@ -92,13 +115,12 @@ public class Category {
     }
 
     public Integer getTotalCourses(){
-
         return subCategories.stream().mapToInt(SubCategory::getTotalCourses).sum();
     }
 
     @Override
     public String toString() {
-        return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, status, order, iconPath, colorCode);
+        return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, status, orderInSystem, iconPath, colorCode);
     }
 
 }
