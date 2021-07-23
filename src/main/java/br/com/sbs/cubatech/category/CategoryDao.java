@@ -16,4 +16,10 @@ public class CategoryDao {
         return entityManager.createQuery(jpql, Category.class)
                 .getResultList();
     }
+
+    public List<Category> getAllCategories()  {
+        String jpql = "SELECT c FROM Category c ORDER BY c.orderInSystem";
+        return entityManager.createQuery(jpql, Category.class)
+                .getResultList();
+    }
 }

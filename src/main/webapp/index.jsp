@@ -6,6 +6,6 @@
 </head>
 <body>
     <h1>Bem vindo ao Cubatech.</h1>
-    <a href="olaMundo">It works?</a>
+    <a href="listaCategorias">Lista de Categorias</a>
 </body>
 </html>
