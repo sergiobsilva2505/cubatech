@@ -22,18 +22,23 @@ public class CategoryListServlet extends HttpServlet {
 
         List<Category> categoryList = categoryDao.getAllCategories();
 
-        PrintWriter printWriter = response.getWriter();
+        request.setAttribute("categories", categoryList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/listaEmpresas2.jsp");
+        requestDispatcher.forward(request, response);
 
-        printWriter.println("<html><body>");
-        printWriter.println("<h1>Lista de Categorias</h1>");
-        printWriter.println("<ul>");
-        for (Category category : categoryList ) {
-            printWriter.println("<li> " + category + "</li>");
-        }
-        printWriter.println("</ul>");
-        printWriter.println("<a href=\"index.jsp\">Index</a>");
-        printWriter.println("</body></html>");
+//        PrintWriter printWriter = response.getWriter();
+//
+//        printWriter.println("<html><body>");
+//        printWriter.println("<h1>Lista de Categorias</h1>");
+//        printWriter.println("<ul>");
+//        for (Category category : categoryList ) {
+//            printWriter.println("<li> " + category + "</li>");
+//        }
+//        printWriter.println("</ul>");
+//        printWriter.println("<a href=\"index.jsp\">Index</a>");
+//        printWriter.println("</body></html>");
 
-        printWriter.close();
+//        printWriter.close();
+        entityManager.close();
     }
 }
