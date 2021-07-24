@@ -17,8 +17,8 @@ public class CategoryDao {
                 .getResultList();
     }
 
-    public List<Category> getAllCategories()  {
-        String jpql = "SELECT c FROM Category c ORDER BY c.orderInSystem";
+    public  List<Category> getAllCategories()  {
+        String jpql = "SELECT c FROM Category c ";
         return entityManager.createQuery(jpql, Category.class)
                 .getResultList();
     }
