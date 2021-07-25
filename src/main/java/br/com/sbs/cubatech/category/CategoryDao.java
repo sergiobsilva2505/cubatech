@@ -1,5 +1,7 @@
 package br.com.sbs.cubatech.category;
 
+import br.com.sbs.cubatech.course.Course;
+
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -9,6 +11,10 @@ public class CategoryDao {
 
     public CategoryDao(EntityManager entityManager) {
         this.entityManager = entityManager;
+    }
+
+    public void save(Category category){
+        this.entityManager.persist(category);
     }
 
     public List<Category> getActiveCategory()  {
@@ -22,4 +28,5 @@ public class CategoryDao {
         return entityManager.createQuery(jpql, Category.class)
                 .getResultList();
     }
+
 }

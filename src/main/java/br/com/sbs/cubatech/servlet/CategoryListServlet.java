@@ -23,8 +23,8 @@ public class CategoryListServlet extends HttpServlet {
         List<Category> categoryList = categoryDao.getAllCategories();
 
         request.setAttribute("categories", categoryList);
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/categoryList2.jsp");
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/categoryList.jsp");
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/listaCategorias1.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/listaCategorias2.jsp");
         requestDispatcher.forward(request, response);
 
 //        PrintWriter printWriter = response.getWriter();
