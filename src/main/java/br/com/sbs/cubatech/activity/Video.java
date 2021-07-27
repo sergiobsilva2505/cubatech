@@ -17,7 +17,7 @@ public class Video extends Activity{
     private String url;
     @Column(name = "durationInMinutes")
     private Integer duration;
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String transcription;
 
     @Deprecated

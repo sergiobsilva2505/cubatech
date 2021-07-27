@@ -1,5 +1,7 @@
 package br.com.sbs.cubatech.category;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ public class Category {
     private String name;
     private String urlCode;
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String studyGuide;
 
@@ -83,6 +85,38 @@ public class Category {
         this.status = status;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUrlCode(String urlCode) {
+        this.urlCode = urlCode;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setStudyGuide(String studyGuide) {
+        this.studyGuide = studyGuide;
+    }
+
+    public void setIconPath(String iconPath) {
+        this.iconPath = iconPath;
+    }
+
+    public void setColorCode(String colorCode) {
+        this.colorCode = colorCode;
+    }
+
+    public void setSubCategories(List<SubCategory> subCategories) {
+        this.subCategories = subCategories;
+    }
+
     public Integer getOrderInSystem() {
         return orderInSystem;
     }
@@ -117,6 +151,9 @@ public class Category {
     public Integer getTotalCourses(){
         return subCategories.stream().mapToInt(SubCategory::getTotalCourses).sum();
     }
+
+
+
 
     @Override
     public String toString() {

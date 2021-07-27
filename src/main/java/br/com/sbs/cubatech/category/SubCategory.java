@@ -1,6 +1,7 @@
 package br.com.sbs.cubatech.category;
 
 import br.com.sbs.cubatech.course.Course;
+import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class SubCategory {
     private String name;
     private String urlCode;
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String description;
     private String studyGuide;
     private Integer orderInSystem;

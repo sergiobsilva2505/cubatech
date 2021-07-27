@@ -11,8 +11,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-@WebServlet(name = "AddCategoryServlet", value = "/novaCategoria")
-public class AddCategoryServlet extends HttpServlet {
+@WebServlet(name = "UpdateCategoryServlet", value = "/alteraCategoria")
+public class UpdateCategoryServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -20,22 +20,32 @@ public class AddCategoryServlet extends HttpServlet {
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
-        String name = request.getParameter("name");
-        String urlCode = request.getParameter("urlCode");
+        String paramId = request.getParameter("id");
+        Long id = Long.parseLong(paramId);
+
+        Category category = categoryDao.findById(id);
+
+        category.setName(request.getParameter("name"));
+        category.setUrlCode(request.getParameter("urlCode"));
         String paramOrderInSystem = request.getParameter("orderInSystem");
         Integer orderInSystem = Integer.parseInt(paramOrderInSystem);
-        String description = request.getParameter("description");
-        Status status = request.getParameter("status").equals("ACITVE") ? Status.ACTIVE : Status.INACTIVE ;
-        String iconPath = request.getParameter("iconPath");
-        String colorCode = request.getParameter("colorCode");
-
-        Category category = new Category(name, urlCode, orderInSystem, description, status, iconPath, colorCode);
+        category.setOrderInSystem(orderInSystem);
+        category.setDescription(request.getParameter("description"));
+        String status = request.getParameter("status");
+        if (status.equals("ACTIVE")){
+            category.setStatus(Status.ACTIVE);
+        }
+        if (status.equals("INACTIVE")){
+            category.setStatus(Status.INACTIVE);
+        }
+        category.setIconPath(request.getParameter("iconPath"));
+        category.setColorCode(request.getParameter("colorCode"));
 
         entityManager.getTransaction().begin();
-        categoryDao.save(category);
+        categoryDao.update(category);
         entityManager.getTransaction().commit();
-        entityManager.close();
 
         response.sendRedirect("listaCategorias");
+
     }
 }

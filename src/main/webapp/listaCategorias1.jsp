@@ -1,9 +1,8 @@
 <%@ page import="br.com.sbs.cubatech.category.Category" %>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html" language="java" %>
 <html>
 <head>
-    <meta charset="UTF-8">
     <title>Scriptlet - Lista CubaTech</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style.css">

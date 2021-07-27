@@ -1,7 +1,5 @@
 package br.com.sbs.cubatech.category;
 
-import br.com.sbs.cubatech.course.Course;
-
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -23,10 +21,28 @@ public class CategoryDao {
                 .getResultList();
     }
 
+    public void setCategoryInactive(){
+        List<Category> categories = getActiveCategory();
+        for (Category category : categories) {
+            String jpql = "UPDATE c FROM Category c WHERE id = :id";
+            entityManager.createQuery(jpql, Category.class)
+                    .setParameter("id", category.getId());
+        }
+    }
+
     public  List<Category> getAllCategories()  {
         String jpql = "SELECT c FROM Category c ";
         return entityManager.createQuery(jpql, Category.class)
                 .getResultList();
     }
+
+    public void update(Category transientCategory) {
+        entityManager.merge(transientCategory);
+    }
+
+    public Category findById(Long id){
+        return entityManager.find(Category.class, id);
+    }
+
 
 }
