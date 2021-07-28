@@ -30,11 +30,11 @@ public class TestCsvReader {
 
         List<Course> courseList = coursesFileReader.readCourses(subCategoryMap);
 
-        System.out.println("\n---===> CATEGORIES <===---");
+        System.out.println("\n----===> CATEGORIES <===----");
         categoryList.forEach(System.out::println);
-        System.out.println("\n---===> SUB CATEGORIES <===---");
+        System.out.println("\n----===> SUB CATEGORIES <===----");
         subCategoryList.forEach(System.out::println);
-        System.out.println("\n---===> COURSES <===---");
+        System.out.println("\n----===> COURSES <===----");
         courseList.forEach(System.out::println);
     }
 
