@@ -1,7 +1,5 @@
 package br.com.sbs.cubatech.category;
 
-import br.com.sbs.cubatech.category.Status;
-
 public class EditCategoryForm {
 
     private String name;
@@ -13,7 +11,7 @@ public class EditCategoryForm {
     private String colorCode;
 
     public EditCategoryForm(String name, String urlCode, String paramOrderInSystem, String description, String status, String iconPath, String colorCode) {
-//        String status,
+
         this.name = name;
         this.urlCode = urlCode;
         this.paramOrderInSystem = paramOrderInSystem;

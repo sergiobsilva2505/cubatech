@@ -10,7 +10,7 @@
     <div>
         <h1>Bem vindo ao Cubatech.</h1>
         <a href="/listaCategorias">Lista de Categorias</a>
-        <a href="/adicionarCategoria">Adicionar Categoria</a>
+        <a href="/adicionaCategoria">Adicionar Categoria</a>
     </div>
 </body>
 </html>

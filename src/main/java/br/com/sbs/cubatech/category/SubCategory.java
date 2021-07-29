@@ -1,7 +1,6 @@
 package br.com.sbs.cubatech.category;
 
 import br.com.sbs.cubatech.course.Course;
-import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
 import java.util.ArrayList;

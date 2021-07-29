@@ -6,23 +6,25 @@ import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.util.JPAUtil;
 
 import javax.persistence.EntityManager;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "AddCategoryServlet", value = "/adicionarCategoria")
+@WebServlet(name = "AddCategoryServlet", value = "/adicionaCategoria")
 public class AddCategoryServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/view/formNovaCategoria.jsp");
+        requestDispatcher.forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-//        request.setCharacterEncoding("UTF-8");
 
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);

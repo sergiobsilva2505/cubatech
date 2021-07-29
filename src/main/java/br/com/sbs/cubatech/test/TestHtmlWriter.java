@@ -1,15 +1,17 @@
 package br.com.sbs.cubatech.test;
 
 import br.com.sbs.cubatech.category.Category;
-import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.category.SubCategory;
 import br.com.sbs.cubatech.course.Course;
 import br.com.sbs.cubatech.reader.CategoriesFileReader;
 import br.com.sbs.cubatech.reader.CoursesFileReader;
 import br.com.sbs.cubatech.reader.SubCategoriesFileReader;
 
-import java.io.*;
-import java.util.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 

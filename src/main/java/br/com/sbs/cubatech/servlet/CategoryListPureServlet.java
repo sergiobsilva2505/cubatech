@@ -5,15 +5,17 @@ import br.com.sbs.cubatech.category.CategoryDao;
 import br.com.sbs.cubatech.util.JPAUtil;
 
 import javax.persistence.EntityManager;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "CategoryListTestServlet", value = "/listaCategoriasTeste")
-public class CategoryListTestServlet extends HttpServlet {
+@WebServlet(name = "CategoryLisPureServlet", value = "/listaCategoriasServletPura")
+public class CategoryListPureServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

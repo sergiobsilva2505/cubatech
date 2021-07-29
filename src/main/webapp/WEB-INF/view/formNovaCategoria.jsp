@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-        <form action="/adicionarCategoria" method="post" >
+        <form action="/adicionaCategoria" method="post" >
             <h3>Nova Categoria:</h3>
             <br>
             <div class="tableRow">
