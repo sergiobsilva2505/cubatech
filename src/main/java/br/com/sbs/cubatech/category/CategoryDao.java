@@ -11,9 +11,29 @@ public class CategoryDao {
         this.entityManager = entityManager;
     }
 
-    public List<Category> getActiveCategory()  {
+    public void save(Category category){
+        this.entityManager.persist(category);
+    }
+
+    public List<Category> findAllByStatusActiveOrderByOrderInSystemAsc()  {
         String jpql = "SELECT c FROM Category c WHERE c.status = 'ACTIVE' ORDER BY c.orderInSystem";
         return entityManager.createQuery(jpql, Category.class)
                 .getResultList();
     }
+
+    public  List<Category> findAll()  {
+        String jpql = "SELECT c FROM Category c ";
+        return entityManager.createQuery(jpql, Category.class)
+                .getResultList();
+    }
+
+    public void update(Category transientCategory) {
+        entityManager.merge(transientCategory);
+    }
+
+    public Category findById(Long id){
+        return entityManager.find(Category.class, id);
+    }
+
+
 }

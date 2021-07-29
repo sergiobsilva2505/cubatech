@@ -1,0 +1,44 @@
+
+
+
+body{
+    font-family: "Lucida Console", "Courier New", monospace;
+    width: 85%;
+    margin: auto;
+}
+
+form{
+    display: table;
+    padding: 10px;
+    border: thin solid;
+}
+
+form textarea{
+    width: 500px;
+    height: 200px
+}
+
+div.tableRow {
+    display: table-row;
+}
+
+div.tableRow p {
+    display: table-cell;
+    vertical-align: top;
+    padding: 3px;
+}
+
+div.tableRow p:first-child{
+    text-align: right;
+}
+
+p.heading {
+    font-weight: bold;
+}
+
+.changeStatus{
+    border: none;
+    padding: 0;
+    display: inline-block;
+}
+

@@ -24,10 +24,10 @@ public class TestReportWriter {
         SubCategoryDao subCategoryDao = new SubCategoryDao(entityManager);
         CourseDao courseDao = new CourseDao(entityManager);
 
-        List<Category> categoryList = categoryDao.getActiveCategory();
-        List<SubCategory> subCategoryList = subCategoryDao.getActiveSubCategory();
+        List<Category> categoryList = categoryDao.findAllByStatusActiveOrderByOrderInSystemAsc();
+        List<SubCategory> subCategoryList = subCategoryDao.findAllByStatusActiveOrderByOrderInSystemAsc();
         List<Course> courseList = courseDao.getPublicCourse();
-        List<SubCategory> subCategoryNames = subCategoryDao.getSubCategoryDescriptionNullOrEmpty();
+        List<SubCategory> subCategoryNames = subCategoryDao.findAllByDescriptionIsNullOrEmpty();
 
         //BufferedWriter bufferedWriter = null;
         String htmlPageCode;

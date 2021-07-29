@@ -11,7 +11,7 @@ import static br.com.sbs.cubatech.validation.Validator.*;
 @PrimaryKeyJoinColumn(name = "activity_id")
 public class Question extends Activity {
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String description;
     @Enumerated(EnumType.STRING)
     private QuestionType questionType = QuestionType.SINGLE_ANSWER;

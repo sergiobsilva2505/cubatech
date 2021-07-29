@@ -25,13 +25,13 @@ public class Course {
     private CourseVisibility courseVisibility = CourseVisibility.PRIVATE;
     private String instructor;
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String summary;
 
-    @Column(columnDefinition = "LONGTEXT")
+    @Column(columnDefinition = "TEXT")
     private String skillsDeveloped;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "subCategory_id")
     private SubCategory subCategory;
 
