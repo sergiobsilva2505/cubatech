@@ -1,13 +1,14 @@
 package br.com.sbs.cubatech.category;
 
-import com.google.gson.annotations.Expose;
+import br.com.sbs.cubatech.servlet.EditCategoryForm;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static br.com.sbs.cubatech.validation.Validator.*;
+import static br.com.sbs.cubatech.validation.Validator.notEmptyOrNull;
+import static br.com.sbs.cubatech.validation.Validator.urlCodeValidation;
 
 @Entity
 @Table(name = "category")
@@ -52,6 +53,8 @@ public class Category {
         this.iconPath = iconPath;
         this.colorCode = colorCode;
     }
+
+
 
     public Long getId() {
         return id;
@@ -152,7 +155,25 @@ public class Category {
         return subCategories.stream().mapToInt(SubCategory::getTotalCourses).sum();
     }
 
+    public void toUpdate(EditCategoryForm form) {
+        this.setName(form.getName());
+        this.setUrlCode(form.getUrlCode());
+        this.setOrderInSystem(form.getOrderInSystem());
+        this.setDescription(form.getDescription());
+//        this.setStatus(form.getStatus());
+        this.setIconPath(form.getIconPath());
+        this.setColorCode(form.getColorCode());
+    }
 
+    public static Category changeStatus(Category category, String status) {
+        if (status.equals("ACTIVE")){
+            category.setStatus(Status.INACTIVE);
+        }
+        if (status.equals("INACTIVE")){
+            category.setStatus(Status.ACTIVE);
+        }
+        return category;
+    }
 
 
     @Override

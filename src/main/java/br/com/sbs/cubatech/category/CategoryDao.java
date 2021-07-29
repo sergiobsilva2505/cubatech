@@ -21,15 +21,6 @@ public class CategoryDao {
                 .getResultList();
     }
 
-    public void setCategoryInactive(){
-        List<Category> categories = getActiveCategory();
-        for (Category category : categories) {
-            String jpql = "UPDATE c FROM Category c WHERE id = :id";
-            entityManager.createQuery(jpql, Category.class)
-                    .setParameter("id", category.getId());
-        }
-    }
-
     public  List<Category> getAllCategories()  {
         String jpql = "SELECT c FROM Category c ";
         return entityManager.createQuery(jpql, Category.class)

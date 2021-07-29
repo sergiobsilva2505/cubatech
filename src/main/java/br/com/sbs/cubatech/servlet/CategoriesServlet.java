@@ -14,20 +14,21 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @WebServlet(name = "CategoriesServlet", value = "/api/categorias")
 public class CategoriesServlet extends HttpServlet {
     @Override
-    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
 
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
         List<Category> categories = categoryDao.getAllCategories();
-        List<CategoryDto> categoriesDto = new ArrayList<>();
-        for (Category category : categories) {
-            categoriesDto.add(new CategoryDto(category));
-        }
+
+        List<CategoryDto> categoriesDto = categories.stream().map(CategoryDto::new).collect(Collectors.toList());
 
         String valor = request.getHeader("Accept");
 
@@ -43,8 +44,7 @@ public class CategoriesServlet extends HttpServlet {
             response.setContentType("application/json");
             response.getWriter().print(json);
         } else {
-            response.setContentType("application/json");
-            response.getWriter().print("{'message':'no content'}");
+            response.setStatus(406);
         }
     }
 }

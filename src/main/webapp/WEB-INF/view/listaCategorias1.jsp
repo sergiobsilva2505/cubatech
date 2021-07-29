@@ -1,11 +1,11 @@
 <%@ page import="br.com.sbs.cubatech.category.Category" %>
 <%@ page import="java.util.List" %>
-<%@ page contentType="text/html" language="java" %>
-<html>
+<!DOCTYPE>
+<html lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
     <title>Scriptlet - Lista CubaTech</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
     <div>
@@ -21,7 +21,7 @@
             %>
         </ul>
         <br>
-        <a href="index.jsp">Index</a>
+        <a href="../../index.jsp">Index</a>
     </div>
 
     </script>

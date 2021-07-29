@@ -1,16 +1,17 @@
 
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<c:url value="/novaCategoria" var="linkServletNewCategory"/>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<html>
+<c:url value="/entrada" var="linkEntradaServlet"/>
+
+<!DOCTYPE>
+<html lang="pt-BR">
 <head>
+    <meta charset="UTF-8">
     <title>Nova Categoria</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
-        <form action="${ linkServletNewCategory }" method="post" >
+        <form action="${ linkEntradaServlet }" method="post" >
             <h3>Nova Categoria:</h3>
             <br>
             <div class="tableRow">
@@ -49,6 +50,7 @@
             </div>
             <div class="tableRow">
                 <p></p>
+                <input type="hidden" name="acao" value="AddCategory">
                 <p><input type="submit" />
             </div>
         </form>

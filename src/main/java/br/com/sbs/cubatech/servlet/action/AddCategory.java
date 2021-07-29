@@ -1,4 +1,4 @@
-package br.com.sbs.cubatech.servlet;
+package br.com.sbs.cubatech.servlet.action;
 
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.CategoryDao;
@@ -6,16 +6,15 @@ import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.util.JPAUtil;
 
 import javax.persistence.EntityManager;
-import javax.servlet.*;
-import javax.servlet.http.*;
-import javax.servlet.annotation.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "AddCategoryServlet", value = "/novaCategoria")
-public class AddCategoryServlet extends HttpServlet {
-
+public class AddCategory implements Action{
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        request.setCharacterEncoding("UTF-8");
 
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
@@ -36,6 +35,8 @@ public class AddCategoryServlet extends HttpServlet {
         entityManager.getTransaction().commit();
         entityManager.close();
 
-        response.sendRedirect("listaCategorias");
+//        response.sendRedirect("entrada?acao=CategoryList");
+
+        return "redirect:entrada?acao=CategoryList";
     }
 }
