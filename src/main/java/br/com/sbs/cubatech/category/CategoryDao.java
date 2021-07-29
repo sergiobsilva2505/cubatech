@@ -15,13 +15,13 @@ public class CategoryDao {
         this.entityManager.persist(category);
     }
 
-    public List<Category> getActiveCategory()  {
+    public List<Category> findAllByStatusActiveOrderByOrderInSystemAsc()  {
         String jpql = "SELECT c FROM Category c WHERE c.status = 'ACTIVE' ORDER BY c.orderInSystem";
         return entityManager.createQuery(jpql, Category.class)
                 .getResultList();
     }
 
-    public  List<Category> getAllCategories()  {
+    public  List<Category> findAll()  {
         String jpql = "SELECT c FROM Category c ";
         return entityManager.createQuery(jpql, Category.class)
                 .getResultList();

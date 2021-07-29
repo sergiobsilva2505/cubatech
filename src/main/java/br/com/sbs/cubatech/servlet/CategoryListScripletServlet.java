@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet(name = "CategoryListScripletServlet", value = "/listaCategoriasScriptlet")
@@ -23,7 +22,7 @@ public class CategoryListScripletServlet extends HttpServlet {
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
-        List<Category> categoryList = categoryDao.getAllCategories();
+        List<Category> categoryList = categoryDao.findAll();
 
         request.setAttribute("categories", categoryList);
 

@@ -36,7 +36,7 @@ public class CategoryDaoTest {
         aCategoryActive("Programação", "programacao");
         aCategoryActive("Devops", "devops");
         aCategoryInactive("Mobile", "mobile");
-        List<Category> categoryList = categoryDao.getActiveCategory();
+        List<Category> categoryList = categoryDao.findAllByStatusActiveOrderByOrderInSystemAsc();
         assertThat(categoryList)
                 .hasSize(2)
                 .extracting(Category::getUrlCode)

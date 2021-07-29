@@ -19,13 +19,13 @@ public class SubCategoryDao  {
 
     }
 
-    public List<SubCategory> getActiveSubCategory() {
+    public List<SubCategory> findAllByStatusActiveOrderByOrderInSystemAsc() {
         String jpql = "SELECT s FROM SubCategory s WHERE status = 'ACTIVE' ORDER BY orderInSystem";
         return entityManager.createQuery(jpql, SubCategory.class)
                 .getResultList();
     }
 
-    public List<SubCategory> getSubCategoryDescriptionNullOrEmpty() {
+    public List<SubCategory> findAllByDescriptionIsNullOrEmpty() {
         String jpql = "SELECT c FROM SubCategory c WHERE description = null or description = ''";
         return entityManager.createQuery(jpql, SubCategory.class)
                 .getResultList();

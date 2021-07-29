@@ -19,7 +19,7 @@ public class CategoryListServlet extends HttpServlet {
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
-        List<Category> categoryList = categoryDao.getAllCategories();
+        List<Category> categoryList = categoryDao.findAll();
 
         request.setAttribute("categories", categoryList);
 

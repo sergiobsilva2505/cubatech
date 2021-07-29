@@ -42,7 +42,7 @@ public class SubCategoryDaoTest {
         aSubCategoryActive("PHP", "php", category);
         aSubCategoryActive("Builds", "builds-e-controle-de-versao", category);
         aSubCategoryInactive("JavaScript", "javascript", category);
-        List<SubCategory> subCategoryList = subCategoryDao.getActiveSubCategory();
+        List<SubCategory> subCategoryList = subCategoryDao.findAllByStatusActiveOrderByOrderInSystemAsc();
         assertThat(subCategoryList)
                 .hasSize(4)
                 .extracting(SubCategory::getUrlCode)
@@ -55,7 +55,7 @@ public class SubCategoryDaoTest {
         aSubCategoryActive("Cobol", "cobol", category);
         aSubCategoryWithDescription("Java e persistencia", "java-e-persistencia", category, "");
         aSubCategoryWithDescription("Builds", "builds-e-controle-de-versao", category, "Lorem Ipsulum");
-        List<SubCategory> subCategoryList = subCategoryDao.getSubCategoryDescriptionNullOrEmpty();
+        List<SubCategory> subCategoryList = subCategoryDao.findAllByDescriptionIsNullOrEmpty();
         assertThat(subCategoryList)
                 .hasSize(2)
                 .extracting(SubCategory::getUrlCode)

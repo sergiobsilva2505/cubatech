@@ -20,7 +20,7 @@ public class CategoryListTestServlet extends HttpServlet {
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
-        List<Category> categoryList = categoryDao.getAllCategories();
+        List<Category> categoryList = categoryDao.findAll();
 
         PrintWriter printWriter = response.getWriter();
 

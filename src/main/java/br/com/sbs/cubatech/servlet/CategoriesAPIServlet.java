@@ -12,7 +12,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +25,7 @@ public class CategoriesAPIServlet extends HttpServlet {
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
-        List<Category> categories = categoryDao.getAllCategories();
+        List<Category> categories = categoryDao.findAll();
 
         List<CategoryDto> categoriesDto = categories.stream().map(CategoryDto::new).collect(Collectors.toList());
 
