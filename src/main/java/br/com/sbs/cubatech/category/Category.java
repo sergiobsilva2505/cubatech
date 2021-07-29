@@ -1,7 +1,5 @@
 package br.com.sbs.cubatech.category;
 
-import br.com.sbs.cubatech.servlet.EditCategoryForm;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -160,19 +158,17 @@ public class Category {
         this.setUrlCode(form.getUrlCode());
         this.setOrderInSystem(form.getOrderInSystem());
         this.setDescription(form.getDescription());
-//        this.setStatus(form.getStatus());
+        this.setStatus(form.getStatus());
         this.setIconPath(form.getIconPath());
         this.setColorCode(form.getColorCode());
     }
 
-    public static Category changeStatus(Category category, String status) {
-        if (status.equals("ACTIVE")){
-            category.setStatus(Status.INACTIVE);
+    public void toggleStatus() {
+        if(Status.ACTIVE.equals(status)){
+            this.status = Status.INACTIVE;
+            return;
         }
-        if (status.equals("INACTIVE")){
-            category.setStatus(Status.ACTIVE);
-        }
-        return category;
+        this.status = Status.ACTIVE;
     }
 
 

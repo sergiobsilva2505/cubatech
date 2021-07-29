@@ -1,4 +1,4 @@
-package br.com.sbs.cubatech.servlet.action;
+package br.com.sbs.cubatech.servlet;
 
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.CategoryDao;
@@ -6,15 +6,23 @@ import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.util.JPAUtil;
 
 import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
 
-public class AddCategory implements Action{
-    @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+@WebServlet(name = "AddCategoryServlet", value = "/adicionarCategoria")
+public class AddCategoryServlet extends HttpServlet {
 
-        request.setCharacterEncoding("UTF-8");
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        RequestDispatcher requestDispatcher = req.getRequestDispatcher("WEB-INF/view/formNovaCategoria.jsp");
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+//        request.setCharacterEncoding("UTF-8");
 
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
@@ -35,8 +43,6 @@ public class AddCategory implements Action{
         entityManager.getTransaction().commit();
         entityManager.close();
 
-//        response.sendRedirect("entrada?acao=CategoryList");
-
-        return "redirect:entrada?acao=CategoryList";
+        response.sendRedirect("/listaCategorias");
     }
 }

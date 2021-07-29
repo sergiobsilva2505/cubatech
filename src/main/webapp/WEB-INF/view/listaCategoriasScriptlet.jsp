@@ -1,3 +1,4 @@
+
 <%@ page import="br.com.sbs.cubatech.category.Category" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE>
@@ -5,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Scriptlet - Lista CubaTech</title>
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <div>

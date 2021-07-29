@@ -1,3 +1,6 @@
+
+
+
 body{
     font-family: "Lucida Console", "Courier New", monospace;
     width: 85%;
@@ -32,3 +35,10 @@ div.tableRow p:first-child{
 p.heading {
     font-weight: bold;
 }
+
+.changeStatus{
+    border: none;
+    padding: 0;
+    display: inline-block;
+}
+

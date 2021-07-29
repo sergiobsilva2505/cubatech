@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "CategoryServlet", value = "/listaCategorias1")
+@WebServlet(name = "CategoryListScripletServlet", value = "/listaCategoriasScriptlet")
 public class CategoryListScripletServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class CategoryListScripletServlet extends HttpServlet {
 
         request.setAttribute("categories", categoryList);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/listaCategorias1.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/listaCategoriasScriptlet.jsp");
         requestDispatcher.forward(request, response);
 
         entityManager.close();

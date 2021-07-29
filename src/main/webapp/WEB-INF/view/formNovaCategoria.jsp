@@ -1,17 +1,17 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<c:url value="/entrada" var="linkEntradaServlet"/>
+
 
 <!DOCTYPE>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <title>Nova Categoria</title>
-    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
-        <form action="${ linkEntradaServlet }" method="post" >
+        <form action="/adicionarCategoria" method="post" >
             <h3>Nova Categoria:</h3>
             <br>
             <div class="tableRow">

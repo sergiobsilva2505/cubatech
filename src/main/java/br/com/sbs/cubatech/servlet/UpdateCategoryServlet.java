@@ -1,21 +1,24 @@
-package br.com.sbs.cubatech.servlet.action;
+package br.com.sbs.cubatech.servlet;
 
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.CategoryDao;
-import br.com.sbs.cubatech.servlet.EditCategoryForm;
+import br.com.sbs.cubatech.category.EditCategoryForm;
 import br.com.sbs.cubatech.util.JPAUtil;
 
 import javax.persistence.EntityManager;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.*;
+import javax.servlet.http.*;
+import javax.servlet.annotation.*;
 import java.io.IOException;
 
-public class UpdateCategory implements Action {
+@WebServlet(name = "UpdateCategoryServlet", value = "/atualizaCategoria")
+public class UpdateCategoryServlet extends HttpServlet {
+
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.setCharacterEncoding("UTF-8");
+//        request.setCharacterEncoding("UTF-8");
 
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
@@ -27,11 +30,11 @@ public class UpdateCategory implements Action {
         String urlCode = request.getParameter("urlCode");
         String paramOrderInSystem = request.getParameter("orderInSystem");
         String description = request.getParameter("description");
-//        String status = request.getParameter("status");
+        String status = request.getParameter("status");
         String iconPath = request.getParameter("iconPath");
         String colorCode = request.getParameter("colorCode");
 
-        EditCategoryForm editCategoryForm = new EditCategoryForm(name, urlCode, paramOrderInSystem, description, iconPath, colorCode);
+        EditCategoryForm editCategoryForm = new EditCategoryForm(name, urlCode, paramOrderInSystem, description, status, iconPath, colorCode);
 
         Category category = categoryDao.findById(id);
 
@@ -41,8 +44,7 @@ public class UpdateCategory implements Action {
         categoryDao.update(category);
         entityManager.getTransaction().commit();
 
-//        response.sendRedirect("entrada?acao=CategoryList");
+        response.sendRedirect("/listaCategorias");
 
-        return "redirect:entrada?acao=CategoryList";
     }
 }

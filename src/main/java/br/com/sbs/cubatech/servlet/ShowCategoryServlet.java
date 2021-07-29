@@ -2,6 +2,7 @@ package br.com.sbs.cubatech.servlet;
 
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.CategoryDao;
+import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.util.JPAUtil;
 
 import javax.persistence.EntityManager;
@@ -9,21 +10,25 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
-import java.util.List;
 
-@WebServlet(name = "CategoryLisServlet", value = "/listaCategorias")
-public class CategoryListServlet extends HttpServlet {
+@WebServlet(name = "ShowCategoryServlet", value = "/editaCategoria")
+public class ShowCategoryServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        request.setCharacterEncoding("UTF-8");
+
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
-        List<Category> categoryList = categoryDao.getAllCategories();
+        String paramId = request.getParameter("id");
+        Long id = Long.parseLong(paramId);
 
-        request.setAttribute("categories", categoryList);
+        Category category = categoryDao.findById(id);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/listaCategorias.jsp");
+        request.setAttribute("category", category);
+        request.setAttribute("statusValues", Status.values());
+
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/formAlteraCategoria.jsp");
         requestDispatcher.forward(request, response);
 
     }

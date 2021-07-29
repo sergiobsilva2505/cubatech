@@ -16,8 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@WebServlet(name = "CategoriesServlet", value = "/api/categorias")
-public class CategoriesServlet extends HttpServlet {
+@WebServlet(name = "CategoriesAPIServlet", value = "/api/categorias")
+public class CategoriesAPIServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

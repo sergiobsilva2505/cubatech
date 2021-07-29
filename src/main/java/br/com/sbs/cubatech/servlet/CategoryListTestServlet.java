@@ -9,22 +9,33 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet(name = "CategoryLisServlet", value = "/listaCategorias")
-public class CategoryListServlet extends HttpServlet {
+@WebServlet(name = "CategoryListTestServlet", value = "/listaCategoriasTeste")
+public class CategoryListTestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        request.setCharacterEncoding("UTF-8");
+
         EntityManager entityManager = JPAUtil.getEntityManager();
         CategoryDao categoryDao = new CategoryDao(entityManager);
 
         List<Category> categoryList = categoryDao.getAllCategories();
 
-        request.setAttribute("categories", categoryList);
+        PrintWriter printWriter = response.getWriter();
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("WEB-INF/view/listaCategorias.jsp");
-        requestDispatcher.forward(request, response);
+        printWriter.println("<html><body>");
+        printWriter.println("<h1>Lista de Categorias</h1>");
+        printWriter.println("<ul>");
+        for (Category category : categoryList ) {
+            printWriter.println("<li> " + category + "</li>");
+        }
+        printWriter.println("</ul>");
+        printWriter.println("<a href=\"index.jsp\">Index</a>");
+        printWriter.println("</body></html>");
+
+        printWriter.close();
+        entityManager.close();
 
     }
 
