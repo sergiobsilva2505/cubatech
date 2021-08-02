@@ -130,7 +130,6 @@ public class Category {
         return studyGuide;
     }
 
-
     public List<SubCategory> getSubCategories() {
         return subCategories;
     }
@@ -170,7 +169,6 @@ public class Category {
         }
         this.status = Status.ACTIVE;
     }
-
 
     @Override
     public String toString() {

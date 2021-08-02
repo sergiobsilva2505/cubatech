@@ -28,7 +28,7 @@ public abstract class Activity {
 
     }
 
-    public Activity(String title, String urlCode,  Lesson lesson) {
+    public Activity(String title, String urlCode, Lesson lesson) {
         notEmptyOrNull(title, "Activity: Title");
         notEmptyOrNull(urlCode, "Activity: UrlCode");
         urlCodeValidation(urlCode, "Activity: UrlCode");

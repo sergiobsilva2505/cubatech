@@ -95,6 +95,10 @@ public class SubCategory {
         return description;
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
