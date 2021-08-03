@@ -30,6 +30,19 @@ public class CategoryDto {
         return categories.stream().map(CategoryDto::new).collect(Collectors.toList());
     }
 
+    public static Category toEntity(CategoryDto categoryDto){
+        Category category = new Category();
+        category.setName(categoryDto.getName());
+        category.setUrlCode(categoryDto.getUrlCode());
+        category.setDescription(categoryDto.getDescription());
+        category.setStudyGuide(categoryDto.getStudyGuide());
+        category.setStatus(categoryDto.getStatus());
+        category.setOrderInSystem(categoryDto.getOrderInSystem());
+        category.setIconPath(categoryDto.getIconPath());
+        category.setColorCode(categoryDto.getColorCode());
+        return category;
+    }
+
     public String getName() {
         return name;
     }

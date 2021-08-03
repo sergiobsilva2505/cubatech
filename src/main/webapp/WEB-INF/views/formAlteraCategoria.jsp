@@ -9,48 +9,65 @@
     <link rel='stylesheet' href='/webjars/bootstrap/3.1.0/css/bootstrap.min.css'>
 </head>
 <body>
+<div class="container">
 <h3>Edita Categoria:</h3>
 <br>
-<form action="/admin/categories{categoryCode}" method="post" >
+<form action="/admin/categories/${ category.urlCode }" method="post" >
+    <input type="hidden" name="id" value="${ category.id }">
+    <div class="mb-3">
+        <label for="name">Nome</label>
+        <input id="name" class="form-control" type="text" name="name" value="${ category.name }"/>
+    </div>
+    <br>
+    <div class="mb-3">
+        <label for="urlCode">Código</label>
+        <input id="urlCode" class="form-control" type="text" name="urlCode" value="${ category.urlCode }" />
+    </div>
+    <br>
+    <div class="mb-3">
+        <label for="status">Categoria ativa?</label><br>
+        <select id="status" class="form-control" name="status" >
+            <option value="${ category.status }" selected >Selecione</option>
+            <c:forEach items="${ statusValues }" var="status">
+                <option value="${ status }" ${ status.equals(category.status)? 'selected': '' } >${ status }</option>
+            </c:forEach>
 
-
-
-    <label for="name">Nome</label>
-    <input id="name" type="text" name="name" />
+        </select>
     </div>
-    <div>
-    <label for="urlCode">Código</label>
-    <input id="urlCode" type="text" name="urlCode" />
+    <br>
+    <div class="mb-3">
+        <label for="orderInSystem">Ordem da categoria</label>
+        <input id="orderInSystem" class="form-control" type="text" name="orderInSystem" value="${ category.orderInSystem }" />
     </div>
-    <div>
-    <input type="checkbox" id="cActive" name="vehicle1" value="Bike">
-    <label for="cActive">Categoria ativa?</label><br>
+    <br>
+    <div class="mb-3">
+        <label for="studyGuide">Guia de estudo</label>
+        <textarea id="studyGuide" class="form-control" value="${ category.studyGuide }" name="studyGuide" rows="4" cols="50">
+        </textarea>
     </div>
-    <div>
-    <label for="orderInSystem">Ordem da categoria</label>
-    <input id="orderInSystem" type="text" name="orderInSystem" />
+    <br>
+    <div class="mb-3">
+        <label for="iconPath">Caminho do ícone</label>
+        <input id="iconPath" class="form-control" type="text" name="iconPath" value="${ category.iconPath }" />
     </div>
-    <div>
-    <label for="studyGuide">Guia de estudo</label>
-    <textarea id="studyGuide" name="studyGuide" rows="4" cols="50">
-    </textarea>
+    <br>
+    <div class="mb-3">
+        <label for="colorCode">Cor</label>
+        <input id="colorCode" class="form-control" type="text" name="colorCode" value="${ category.colorCode }" />
     </div>
-    <div>
-    <label for="iconPath">Caminho do ícone</label>
-    <input id="iconPath" type="text" name="iconPath" />
+    <br>
+    <div class="mb-3">
+        <label for="description">Descrição</label>
+        <input id="description" class="form-control" type="text" name="description" value="${ category.description }" />
     </div>
-    <div>
-    <label for="colorCode">Cor</label>
-    <input id="colorCode" type="text" name="colorCode" />
-    </div>
-    <div>
-    <label for="description">Descrição</label>
-    <input id="description" type="text" name="description" />
-    </div>
-    <div>
-    <button type="submit">Enviar</button>
+    <br>
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary" >Enviar</button>
     </div>
 </form>
+    <br><br>
+
+</div>
 </body>
 </html>
 

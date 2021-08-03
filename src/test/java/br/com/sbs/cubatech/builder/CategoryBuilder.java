@@ -7,8 +7,8 @@ public class CategoryBuilder {
 
     private final Category category;
 
-    public CategoryBuilder(String name, String urlcode){
-        this.category = new Category(name, urlcode);
+    public CategoryBuilder(String name, String urlCode){
+        this.category = new Category(name, urlCode);
     }
 
     public CategoryBuilder withOrderInSystem(Integer orderInSystem){

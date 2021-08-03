@@ -10,7 +10,10 @@
 <body>
     <div class="container">
         <h2>Categorias:</h2>
-        <button type="button" class="btn btn-primary" >Nova Categoria</button>
+        <form action="/admin/categories/new" method="get" >
+            <button type="submit"  class="btn btn-primary" >Nova Categoria</button>
+        </form>
+
         <br><br>
         <table class="table table-bordered">
             <thead>
@@ -28,12 +31,9 @@
                         <td>${ category.name } </td>
                         <td>${ category.urlCode } </td>
                         <td>${ category.status } </td>
-                        <td><a href="/admin/subcategories/${ category.urlCode }">Subcategorias</a></td>
+                        <td><a href="/admin/subcategories">Subcategorias</a></td>
                         <td>
-                            <form class="" action="/admin/categories/${ category.urlCode }" method="">
-                                <input type="hidden" name="id" value="${ category.id }">
-                                <button type="submit" class="btn" >Editar</button>
-                            </form>
+                            <a class="btn btn-default" href="/admin/categories/${ category.urlCode }">Editar</a>
                         </td>
                     </tr>
                 </c:forEach>

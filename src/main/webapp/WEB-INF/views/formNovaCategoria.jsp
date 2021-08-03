@@ -4,53 +4,68 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <title>Nova Categoria</title>
-    <link rel='stylesheet' href='/webjars/bootstrap/3.1.0/css/bootstrap.min.css'>
-</head>
+    <head>
+        <title>Nova Categoria</title>
+        <link rel='stylesheet' href='/webjars/bootstrap/3.1.0/css/bootstrap.min.css'>
+    </head>
 <body>
-<div class="container">
-        <form action="/admin/categories" method="post" >
+        <div class="container">
+            <form action="/admin/categories" method="post" >
             <h3>Nova Categoria:</h3>
             <br>
-            <div class="input-group">
-                <label for="name">Nome</label>
+            <div class="mb-3">
+                <label for="name" >Nome</label>
                 <input id="name" class="form-control" placeholder="nome aqui" type="text" name="name" />
             </div>
-            <div class="input-group">
-                <label for="urlCode">Código</label>
+                <br>
+            <div class="mb-3">
+                <label for="urlCode" >Código</label>
                 <input id="urlCode" class="form-control" type="text" name="urlCode" />
             </div>
-            <div class="input-group">
-            <input type="checkbox"  id="cActive" name="vehicle1" value="Bike">
-            <label for="cActive">Categoria ativa?</label><br>
+                <br>
+            <div class="mb-3">
+                <label for="status">Categoria ativa?</label><br>
+                <select id="status" class="form-control" name="status" >
+                    <option value="Selecione" selected>Selecione</option>
+                    <c:forEach items="${ statusValues }" var="status">
+                        <option value="${ status }" ${ status.equals(category.status)? 'selected': '' } >${ status }</option>
+                    </c:forEach>
+                </select>
+
             </div>
-            <div class="input-group">
+                <br>
+            <div class="mb-3">
                 <label for="orderInSystem">Ordem da categoria</label>
                 <input id="orderInSystem" class="form-control" type="text" name="orderInSystem" />
             </div>
-            <div class="input-group">
-            <label for="studyGuide">Guia de estudo</label>
-            <textarea id="studyGuide" class="form-control" name="studyGuide" rows="4" cols="50">
-
-            </textarea>
+                <br>
+            <div class="mb-3">
+                <label for="studyGuide">Guia de estudo</label>
+                <textarea id="studyGuide" class="form-control" name="studyGuide" rows="4" cols="50">
+<%--                    Texto aqui--%>
+                </textarea>
             </div>
-            <div class="input-group">
-            <label for="iconPath">Caminho do ícone</label>
-            <input id="iconPath" class="form-control" type="text" name="iconPath" />
+                <br>
+            <div class="mb-3">
+                <label for="iconPath">Caminho do ícone</label>
+                <input id="iconPath" class="form-control" type="text" name="iconPath" />
             </div>
-            <div class="input-group">
-            <label for="colorCode">Cor</label>
-            <input id="colorCode" class="form-control" type="text" name="colorCode" />
+                <br>
+            <div class="mb-3">
+                <label for="colorCode">Cor</label>
+                <input id="colorCode" class="form-control" type="text" name="colorCode" />
             </div>
-            <div class="input-group">
-            <label for="description">Descrição</label>
-            <input id="description" class="form-control" type="text" name="description" />
+                <br>
+            <div class="mb-3">
+                <label for="description">Descrição</label>
+                <input id="description" class="form-control" type="text" name="description" />
             </div>
-            <div class="input-group">
-            <button type="submit">Enviar</button>
+                <br>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Enviar</button>
             </div>
-        </form>
-</div>
-</body>
+            </form>
+            <br><br>
+        </div>
+    </body>
 </html>
