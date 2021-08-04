@@ -53,9 +53,9 @@ public class CategoryController {
     }
 
     @PostMapping("/admin/categories/{urlCode}")
-    public String editCategory(@Valid UpdateCategoryForm updateCategoryForm, BindingResult bindingResult){
+    public String editCategory(@PathVariable String urlCode, @Valid UpdateCategoryForm updateCategoryForm, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
-            return "formAlteraCategoria";
+            return showCategory(urlCode, model);
         }
         Category category = UpdateCategoryForm.toEntity(updateCategoryForm);
         categoryRepository.save(category);

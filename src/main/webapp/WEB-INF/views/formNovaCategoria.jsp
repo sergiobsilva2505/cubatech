@@ -17,13 +17,13 @@
             <div class="mb-3">
                 <label for="name" >Nome</label>
                 <input id="name" class="form-control" type="text" name="name"
-                       placeholder="Digite aqui o nome da categoria"/>
+                       placeholder="Digite aqui o nome da categoria" />
                 <form:errors path="categoryForm.name" cssStyle="color: red" />
             </div>
                 <br>
             <div class="mb-3">
                 <label for="urlCode" >Código</label>
-                <input id="urlCode" class="form-control" type="number" name="urlCode"
+                <input id="urlCode" class="form-control" type="text" name="urlCode"
                        placeholder="por exemplo: desenvolvimento, mobile (não use letras maiúsculas, acentos ou caracteres especiais)"/>
                 <form:errors path="categoryForm.urlCode" cssStyle="color: red" />
             </div>
@@ -42,7 +42,7 @@
                 <br>
             <div class="mb-3">
                 <label for="orderInSystem">Ordem da categoria</label>
-                <input id="orderInSystem" class="form-control" type="text" name="orderInSystem"
+                <input id="orderInSystem" class="form-control" type="number" name="orderInSystem"
                        placeholder="por exemplo: categoria de ordem 1 aparece antes de ordem 2"/>
                 <form:errors path="categoryForm.orderInSystem" cssStyle="color: red" />
             </div>

@@ -8,7 +8,7 @@ public enum Status {
 
     public static Status get(String status){
        return Arrays.stream(Status.values())
-               .filter(s -> s.name().equals(status)) // todo lançar execeção apropriada
+               .filter(s -> s.name().equals(status))
                .findFirst()
                .orElseThrow(() -> new RuntimeException("Status não suportado"));
     }

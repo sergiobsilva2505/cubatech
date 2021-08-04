@@ -1,17 +1,20 @@
 package br.com.sbs.cubatech.category;
 
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.validation.constraints.*;
 
 public class UpdateCategoryForm {
 
     private Long id;
-    @NotNull @Size(min = 5)
+    @NotNull @Size(min = 3, message = "{blankornull}")
     private String name;
-    @NotNull @Size(min = 5)
-    @Pattern(regexp = "[a-z-]+")
+    @NotNull @Size(min = 5, message = "{blankornull}")
+    @Pattern(regexp = "[a-z-]+", message = "{urlcodevalidation}")
     private String urlCode;
     @Positive
+    @Range(min = 1, max = 10, message = "{ordem}")
     private Integer orderInSystem;
     private String colorCode;
     private String studyGuide;

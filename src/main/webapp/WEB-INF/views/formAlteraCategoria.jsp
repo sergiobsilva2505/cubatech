@@ -19,14 +19,14 @@
         <label for="name">Nome</label>
         <input id="name" class="form-control" type="text" name="name" value="${ category.name }"
                placeholder="Digite aqui o nome da categoria"/>
-        <form:errors path="category.name" />
+        <form:errors path="updateCategoryForm.name" cssStyle="color: red" />
     </div>
     <br>
     <div class="mb-3">
         <label for="urlCode">Código</label>
         <input id="urlCode" class="form-control" type="text" name="urlCode" value="${ category.urlCode }"
                placeholder="por exemplo: desenvolvimento, mobile (não use letras maiúsculas, acentos ou caracteres especiais)"/>
-        <form:errors path="category.urlCode" />
+        <form:errors path="updateCategoryForm.urlCode" cssStyle="color: red" />
     </div>
     <br>
     <div class="mb-3">
@@ -44,7 +44,7 @@
         <label for="orderInSystem">Ordem da categoria</label>
         <input id="orderInSystem" class="form-control" type="text" name="orderInSystem" value="${ category.orderInSystem }"
             placeholder="por exemplo: categoria de ordem 1 aparece antes de ordem 2"/>
-        <form:errors path="category.name" />
+        <form:errors path="updateCategoryForm.orderInSystem" cssStyle="color: red" />
     </div>
     <br>
     <div class="mb-3">
