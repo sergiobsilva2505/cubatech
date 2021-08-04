@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -16,12 +17,16 @@
     <input type="hidden" name="id" value="${ category.id }">
     <div class="mb-3">
         <label for="name">Nome</label>
-        <input id="name" class="form-control" type="text" name="name" value="${ category.name }"/>
+        <input id="name" class="form-control" type="text" name="name" value="${ category.name }"
+               placeholder="Digite aqui o nome da categoria"/>
+        <form:errors path="category.name" />
     </div>
     <br>
     <div class="mb-3">
         <label for="urlCode">Código</label>
-        <input id="urlCode" class="form-control" type="text" name="urlCode" value="${ category.urlCode }" />
+        <input id="urlCode" class="form-control" type="text" name="urlCode" value="${ category.urlCode }"
+               placeholder="por exemplo: desenvolvimento, mobile (não use letras maiúsculas, acentos ou caracteres especiais)"/>
+        <form:errors path="category.urlCode" />
     </div>
     <br>
     <div class="mb-3">
@@ -37,28 +42,33 @@
     <br>
     <div class="mb-3">
         <label for="orderInSystem">Ordem da categoria</label>
-        <input id="orderInSystem" class="form-control" type="text" name="orderInSystem" value="${ category.orderInSystem }" />
+        <input id="orderInSystem" class="form-control" type="text" name="orderInSystem" value="${ category.orderInSystem }"
+            placeholder="por exemplo: categoria de ordem 1 aparece antes de ordem 2"/>
+        <form:errors path="category.name" />
     </div>
     <br>
     <div class="mb-3">
         <label for="studyGuide">Guia de estudo</label>
-        <textarea id="studyGuide" class="form-control" value="${ category.studyGuide }" name="studyGuide" rows="4" cols="50">
-        </textarea>
+        <textarea id="studyGuide" class="form-control"  name="studyGuide" rows="4" cols="50"
+            placeholder="Um texto apontando para formações para ajudar pessoas perdidas">${ category.studyGuide }</textarea>
     </div>
     <br>
     <div class="mb-3">
         <label for="iconPath">Caminho do ícone</label>
-        <input id="iconPath" class="form-control" type="text" name="iconPath" value="${ category.iconPath }" />
+        <input id="iconPath" class="form-control" type="text" name="iconPath" value="${ category.iconPath }"
+            placeholder="por exmplo: /images/categorias/programação.svg"/>
     </div>
     <br>
     <div class="mb-3">
         <label for="colorCode">Cor</label>
-        <input id="colorCode" class="form-control" type="text" name="colorCode" value="${ category.colorCode }" />
+        <input id="colorCode" class="form-control" type="text" name="colorCode" value="${ category.colorCode }"
+            placeholder="por exemplo: #fcc14a"/>
     </div>
     <br>
     <div class="mb-3">
         <label for="description">Descrição</label>
-        <input id="description" class="form-control" type="text" name="description" value="${ category.description }" />
+        <input id="description" class="form-control" type="text" name="description" value="${ category.description }"
+            placeholder="por exemplo: iOS, Android, PhoneGap e mais."/>
     </div>
     <br>
     <div class="mb-3">

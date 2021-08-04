@@ -5,17 +5,18 @@ import java.util.stream.Collectors;
 
 public class CategoryDto {
 
-    private String name;
-    private String urlCode;
-    private Integer orderInSystem;
-    private String colorCode;
-    private String studyGuide;
-    private String description;
-    private Status status;
-    private String iconPath;
-
+    private final Long id;
+    private final String name;
+    private final String urlCode;
+    private final Integer orderInSystem;
+    private final String colorCode;
+    private final String studyGuide;
+    private final String description;
+    private final Status status;
+    private final String iconPath;
 
     public CategoryDto(Category category) {
+        this.id = category.getId();
         this.name = category.getName();
         this.urlCode = category.getUrlCode();
         this.description = category.getDescription();
@@ -30,17 +31,8 @@ public class CategoryDto {
         return categories.stream().map(CategoryDto::new).collect(Collectors.toList());
     }
 
-    public static Category toEntity(CategoryDto categoryDto){
-        Category category = new Category();
-        category.setName(categoryDto.getName());
-        category.setUrlCode(categoryDto.getUrlCode());
-        category.setDescription(categoryDto.getDescription());
-        category.setStudyGuide(categoryDto.getStudyGuide());
-        category.setStatus(categoryDto.getStatus());
-        category.setOrderInSystem(categoryDto.getOrderInSystem());
-        category.setIconPath(categoryDto.getIconPath());
-        category.setColorCode(categoryDto.getColorCode());
-        return category;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

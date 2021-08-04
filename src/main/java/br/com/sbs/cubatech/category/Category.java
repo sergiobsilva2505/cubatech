@@ -1,6 +1,7 @@
 package br.com.sbs.cubatech.category;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,7 +16,11 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
+    @Size(min = 5)
     private String name;
+    @NotNull @Size(min = 5)
+    @Pattern(regexp = "[a-z-]+")
     private String urlCode;
 
     @Column(columnDefinition = "TEXT")
@@ -24,6 +29,7 @@ public class Category {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+    @Positive
     private Integer orderInSystem;
     private String iconPath;
     private String colorCode;
@@ -36,9 +42,6 @@ public class Category {
     }
 
     public Category(String name, String urlCode) {
-        notEmptyOrNull(name, "Category: Name");
-        notEmptyOrNull(urlCode, "Category: UrlCode" );
-        urlCodeValidation(urlCode, "Category: UrlCode");
         this.name = name;
         this.urlCode = urlCode;
     }
@@ -51,8 +54,6 @@ public class Category {
         this.iconPath = iconPath;
         this.colorCode = colorCode;
     }
-
-
 
     public Long getId() {
         return id;
@@ -80,6 +81,18 @@ public class Category {
 
     public Status getStatus() {
         return status;
+    }
+
+    public String getStudyGuide() {
+        return studyGuide;
+    }
+
+    public Integer getOrderInSystem() {
+        return orderInSystem;
+    }
+
+    public List<SubCategory> getSubCategories() {
+        return subCategories;
     }
 
     public void setStatus(Status status) {
@@ -118,20 +131,8 @@ public class Category {
         this.subCategories = subCategories;
     }
 
-    public Integer getOrderInSystem() {
-        return orderInSystem;
-    }
-
     public void setOrderInSystem(Integer orderInSystem) {
         this.orderInSystem = orderInSystem;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public List<SubCategory> getSubCategories() {
-        return subCategories;
     }
 
     public List<SubCategory> getActiveSubCategories() {
