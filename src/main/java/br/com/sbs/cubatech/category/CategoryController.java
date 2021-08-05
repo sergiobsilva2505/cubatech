@@ -29,13 +29,13 @@ public class CategoryController {
         List<Category> categories = categoryRepository.findAll();
         List<CategoryDto> categoryDtos = CategoryDto.convertAll(categories);
         model.addAttribute("categories", categoryDtos);
-        return "listaCategorias";
+        return "category/viewCategoryList";
     }
 
     @GetMapping("/admin/categories/new")
     public String formAddCategory(Model model){
         model.addAttribute("statusValues", Status.values());
-        return "formNovaCategoria";
+        return "category/formNewCategory";
     }
 
     @PostMapping("/admin/categories")
@@ -54,7 +54,7 @@ public class CategoryController {
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, urlCode));
         model.addAttribute("category", new CategoryDto(category));
         model.addAttribute("statusValues", Status.values());
-        return "formAlteraCategoria";
+        return "category/formUpdateCategory";
     }
 
     @PostMapping("/admin/categories/{urlCode}")
@@ -69,6 +69,6 @@ public class CategoryController {
 
     @GetMapping("/admin/subcategories")
     public String getAllSubcategories(){
-        return "listaSubCategorias";
+        return "subCategory/viewSubCategoryList";
     }
 }

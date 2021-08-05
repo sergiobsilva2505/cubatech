@@ -1,20 +1,21 @@
 package br.com.sbs.cubatech.category;
 
-
-import org.hibernate.validator.constraints.Range;
-
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 public class UpdateCategoryForm {
 
     private Long id;
-    @NotNull @Size(min = 3, message = "{blankornull}")
+    @NotEmpty(message = "{category.name.notempty}")
+    @Size(min = 3, message = "{category.name.invalid.size}")
     private String name;
-    @NotNull @Size(min = 5, message = "{blankornull}")
-    @Pattern(regexp = "[a-z-]+", message = "{urlcodevalidation}")
+    @NotEmpty(message = "{category.urlcode.notempty}")
+    @Size(min = 5, message = "{category.urlcode.invalid.size}")
+    @Pattern(regexp = "[a-z-]+", message = "{category.urlcode.invalid.pattern}")
     private String urlCode;
-    @Positive
-    @Range(min = 1, max = 10, message = "{ordem}")
+    @Positive(message = "{category.orderinsystem.invalid.number}")
     private Integer orderInSystem;
     private String colorCode;
     private String studyGuide;

@@ -6,9 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static br.com.sbs.cubatech.validation.Validator.notEmptyOrNull;
-import static br.com.sbs.cubatech.validation.Validator.urlCodeValidation;
-
 @Entity
 @Table(name = "category")
 public class Category {
@@ -137,7 +134,7 @@ public class Category {
 
     public List<SubCategory> getActiveSubCategories() {
         return subCategories.stream()
-                .filter(subCategory -> Status.ACTIVE.equals(subCategory.getStatus()))
+                .filter(subCategory -> Status.ATIVA.equals(subCategory.getStatus()))
                 .collect(Collectors.toList());
     }
 
@@ -164,11 +161,11 @@ public class Category {
     }
 
     public void toggleStatus() {
-        if(Status.ACTIVE.equals(status)){
-            this.status = Status.INACTIVE;
+        if(Status.ATIVA.equals(status)){
+            this.status = Status.INATIVA;
             return;
         }
-        this.status = Status.ACTIVE;
+        this.status = Status.ATIVA;
     }
 
     @Override

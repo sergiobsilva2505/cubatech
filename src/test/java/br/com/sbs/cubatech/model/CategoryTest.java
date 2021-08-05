@@ -70,12 +70,12 @@ class CategoryTest {
     }
 
     private Category programmingCategory() {
-        Category category = new Category("Programação", "programacao", 1, "Programe nas principais linguagens e plataformas. Iniciantes são bem vindos nos cursos de lógica e JavaScript.", Status.ACTIVE, "https://www.alura.com.br/assets/api/formacoes/categorias/512/programacao-transparent.png", "#00c86f");
+        Category category = new Category("Programação", "programacao", 1, "Programe nas principais linguagens e plataformas. Iniciantes são bem vindos nos cursos de lógica e JavaScript.", Status.ATIVA, "https://www.alura.com.br/assets/api/formacoes/categorias/512/programacao-transparent.png", "#00c86f");
 
-        category.addSubCategory(new SubCategory("Java", "java", 1, "Java é uma grande plataforma presente em todo lugar: de corporações à bancos e governo. Desenvolva aplicações robustas com um back-end e construa APIs.", Status.ACTIVE, category));
-        category.addSubCategory(new SubCategory("Java e Persistência", "java-e-persistencia", 2, null, Status.ACTIVE, category));
-        category.addSubCategory(new SubCategory("PHP", "php", 3, "PHP é uma das linguagens mais utilizadas.", Status.ACTIVE, category));
-        category.addSubCategory(new SubCategory("COBOL", "cobol", null, null, Status.INACTIVE, category));
+        category.addSubCategory(new SubCategory("Java", "java", 1, "Java é uma grande plataforma presente em todo lugar: de corporações à bancos e governo. Desenvolva aplicações robustas com um back-end e construa APIs.", Status.ATIVA, category));
+        category.addSubCategory(new SubCategory("Java e Persistência", "java-e-persistencia", 2, null, Status.ATIVA, category));
+        category.addSubCategory(new SubCategory("PHP", "php", 3, "PHP é uma das linguagens mais utilizadas.", Status.ATIVA, category));
+        category.addSubCategory(new SubCategory("COBOL", "cobol", null, null, Status.INATIVA, category));
         return category;
     }
 

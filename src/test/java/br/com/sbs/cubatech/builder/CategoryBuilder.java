@@ -17,12 +17,12 @@ public class CategoryBuilder {
     }
 
     public CategoryBuilder active(){
-        this.category.setStatus(Status.ACTIVE);
+        this.category.setStatus(Status.ATIVA);
         return this;
     }
 
     public CategoryBuilder inactive(){
-        this.category.setStatus(Status.INACTIVE);
+        this.category.setStatus(Status.INATIVA);
         return this;
     }
 
