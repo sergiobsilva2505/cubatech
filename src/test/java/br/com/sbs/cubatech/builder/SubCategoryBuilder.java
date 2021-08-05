@@ -18,12 +18,12 @@ public class SubCategoryBuilder {
     }
 
     public SubCategoryBuilder active(){
-        this.subCategory.setStatus(Status.ATIVA);
+        this.subCategory.setStatus(Status.ACTIVE);
         return this;
     }
 
     public SubCategoryBuilder inactive(){
-        this.subCategory.setStatus(Status.INATIVA);
+        this.subCategory.setStatus(Status.INACTIVE);
         return this;
     }
 

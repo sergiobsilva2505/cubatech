@@ -29,7 +29,7 @@
                         <tr>
                             <td>${ category.name } </td>
                             <td>${ category.urlCode } </td>
-                            <td>${ category.status } </td> <!-- todo mudar para exibir em portugues -->
+                            <td>${ category.status.description} </td> <!-- todo mudar para exibir em portugues -->
                             <td><a href="/admin/subcategories">Subcategorias</a></td>
                             <td>
                                 <a class="btn btn-default" href="/admin/categories/${ category.urlCode }">Editar</a>

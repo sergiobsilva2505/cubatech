@@ -31,7 +31,7 @@
         <select id="status" class="form-control" name="status" >
             <option value="${ category.status }" selected >Selecione</option>
             <c:forEach items="${ statusValues }" var="status">
-                <option value="${ status }" ${ status.equals(category.status)? 'selected': '' } >${ status }</option>
+                <option value="${ status }" ${ status.equals(category.status)? 'selected': '' } >${ status.description }</option>
             </c:forEach>
 
         </select>

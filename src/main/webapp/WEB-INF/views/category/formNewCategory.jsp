@@ -10,8 +10,6 @@
         <link rel='stylesheet' href='/webjars/bootstrap/3.1.0/css/bootstrap.min.css'>
     </head>
 <body>
-
-<%-- todo organizar em pastas em --%>
         <div class="container">
             <form action="/admin/categories" method="post" >
                 <h3>Nova Categoria</h3>
@@ -32,7 +30,7 @@
                     <select id="status" class="form-control" name="status" >
                         <option value="" >Selecione</option>
                         <c:forEach items="${ statusValues }" var="status">
-                            <option value="${ status }" ${ status.equals(category.status)? 'selected': '' } >${ status }</option>
+                            <option value="${ status }" ${ status.equals(category.status)? 'selected': '' } >${ status.description }</option>
                         </c:forEach>
                     </select>
                     <form:errors path="categoryForm.status" />

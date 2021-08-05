@@ -4,7 +4,18 @@ import java.util.Arrays;
 
 public enum Status {
 
-    ATIVA, INATIVA;
+    ACTIVE("Ativa"),
+    INACTIVE("Inativa");
+
+    private String description;
+
+    Status (String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
     public static Status get(String status){
        return Arrays.stream(Status.values())

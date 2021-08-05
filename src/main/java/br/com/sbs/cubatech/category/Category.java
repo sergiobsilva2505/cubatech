@@ -134,7 +134,7 @@ public class Category {
 
     public List<SubCategory> getActiveSubCategories() {
         return subCategories.stream()
-                .filter(subCategory -> Status.ATIVA.equals(subCategory.getStatus()))
+                .filter(subCategory -> Status.ACTIVE.equals(subCategory.getStatus()))
                 .collect(Collectors.toList());
     }
 
@@ -161,11 +161,11 @@ public class Category {
     }
 
     public void toggleStatus() {
-        if(Status.ATIVA.equals(status)){
-            this.status = Status.INATIVA;
+        if(Status.ACTIVE.equals(status)){
+            this.status = Status.INACTIVE;
             return;
         }
-        this.status = Status.ATIVA;
+        this.status = Status.ACTIVE;
     }
 
     @Override
