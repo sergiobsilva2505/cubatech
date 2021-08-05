@@ -3,14 +3,14 @@ package br.com.sbs.cubatech.course;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class CourseReport {
+public class CourseApiDto {
 
     private final String name;
     private final String urlCode;
     private final Integer timeToFinishInHours;
     private final String skillsDeveloped;
 
-    public CourseReport(Course course) {
+    public CourseApiDto(Course course) {
         this.name = course.getName();
         this.urlCode = course.getUrlCode();
         this.timeToFinishInHours = course.getTimeToFinishInHours();
@@ -33,7 +33,7 @@ public class CourseReport {
         return skillsDeveloped;
     }
 
-    public static List<CourseReport> convertAll(List<Course> courses){
-        return courses.stream().map(CourseReport::new).collect(Collectors.toList());
+    public static List<CourseApiDto> convertAll(List<Course> courses){
+        return courses.stream().map(CourseApiDto::new).collect(Collectors.toList());
     }
 }

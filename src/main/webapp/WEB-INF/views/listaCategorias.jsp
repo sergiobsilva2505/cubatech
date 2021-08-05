@@ -9,12 +9,10 @@
 </head>
 <body>
     <div class="container">
-        <h2>Categorias:</h2>
-        <form action="/admin/categories/new" method="get" >
-            <button type="submit"  class="btn btn-primary" >Nova Categoria</button>
-        </form>
+        <h1>Categorias</h1>
 
-        <br><br>
+        <a class="btn btn-primary" href="/admin/categories/new"${ category.urlCode }">Nova Categoria</a>
+
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -30,7 +28,7 @@
                     <tr>
                         <td>${ category.name } </td>
                         <td>${ category.urlCode } </td>
-                        <td>${ category.status } </td>
+                        <td>${ category.status } </td> <!-- todo mudar para exibir em portugues -->
                         <td><a href="/admin/subcategories">Subcategorias</a></td>
                         <td>
                             <a class="btn btn-default" href="/admin/categories/${ category.urlCode }">Editar</a>

@@ -1,23 +1,23 @@
 package br.com.sbs.cubatech.category;
 
-import br.com.sbs.cubatech.course.CourseReport;
+import br.com.sbs.cubatech.course.CourseApiDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class SubCategoryReport {
+public class SubCategoryApiDto {
 
     private final String name;
     private final String urlCode;
     private final String studyGuide;
 
-    private final List<CourseReport> courseReports;
+    private final List<CourseApiDto> courses;
 
-    public SubCategoryReport(SubCategory subCategory) {
+    public SubCategoryApiDto(SubCategory subCategory) {
         this.name = subCategory.getName();
         this.urlCode = subCategory.getUrlCode();
         this.studyGuide = subCategory.getStudyGuide();
-        this.courseReports = CourseReport.convertAll(subCategory.getCourses());
+        this.courses = CourseApiDto.convertAll(subCategory.getCourses());
     }
 
     public String getName() {
@@ -32,11 +32,11 @@ public class SubCategoryReport {
         return studyGuide;
     }
 
-    public List<CourseReport> getCourseReports() {
-        return courseReports;
+    public List<CourseApiDto> getCourses() {
+        return courses;
     }
 
-    public static List<SubCategoryReport> convertAll(List<SubCategory> subCategories){
-        return subCategories.stream().map(SubCategoryReport::new).collect(Collectors.toList());
+    public static List<SubCategoryApiDto> convertAll(List<SubCategory> subCategories){
+        return subCategories.stream().map(SubCategoryApiDto::new).collect(Collectors.toList());
     }
 }

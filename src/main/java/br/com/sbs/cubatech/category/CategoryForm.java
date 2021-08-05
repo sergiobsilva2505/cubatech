@@ -7,13 +7,13 @@ import javax.validation.constraints.*;
 
 public class CategoryForm {
 
-    @NotNull @Size(min = 3, message = "{blankornull}")
+    @NotNull
+    @Size(min = 3, message = "{category.name.invalid.size}")
     private String name;
     @NotNull @Size(min = 5, message = "{blankornull}")
     @Pattern(regexp = "[a-z-]+", message = "{urlcodevalidation}")
     private String urlCode;
     @Positive
-    @Range(min = 1, max = 10, message = "{ordem}")
     private Integer orderInSystem;
     private String colorCode;
     private String studyGuide;

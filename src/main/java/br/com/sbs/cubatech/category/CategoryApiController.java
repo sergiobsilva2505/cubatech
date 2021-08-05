@@ -15,8 +15,8 @@ public class CategoryApiController {
     private CategoryRepository categoryRepository;
 
     @GetMapping(value = "/api/categories", produces ={ MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE } )
-    public ResponseEntity<List<CategoryReport>> findActiveCategories(){
+    public ResponseEntity<List<CategoryApiDto>> findActiveCategories(){
         List<Category> categoryList = categoryRepository.findByStatusActive();
-        return ResponseEntity.ok().body(CategoryReport.convertAll(categoryList));
+        return ResponseEntity.ok().body(CategoryApiDto.convertAll(categoryList));
     }
 }

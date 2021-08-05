@@ -22,7 +22,7 @@
             %>
         </ul>
         <br>
-        <a href="../../index.jsp">Index</a>
+        <a href="index.jsp">Index</a>
     </div>
 
     </script>

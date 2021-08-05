@@ -19,6 +19,11 @@ public class CategoryController {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @GetMapping("/")
+    public String home(){
+        return "index";
+    }
+
     @GetMapping("/admin/categories")
     public String getAll(Model model) {
         List<Category> categories = categoryRepository.findAll();

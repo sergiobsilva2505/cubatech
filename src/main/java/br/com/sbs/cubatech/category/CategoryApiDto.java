@@ -1,37 +1,34 @@
 package br.com.sbs.cubatech.category;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class CategoryReport {
+public class CategoryApiDto {
 
     private final String name;
     private final String urlCode;
     private final Integer orderInSystem;
     private final String colorCode;
     private final String studyGuide;
-    private final int totalCoursesInCategory;
+    private final int totalCourses; // todo trocar nome para totalCourses
 
-    @JsonProperty("subCategories")
-    private final List<SubCategoryReport> subCategoryReports;
+    private final List<SubCategoryApiDto> subCategories;
 
 
-    public CategoryReport(Category category) {
+    public CategoryApiDto(Category category) {
         this.name = category.getName();
         this.urlCode = category.getUrlCode();
         this.orderInSystem = category.getOrderInSystem();
         this.colorCode = category.getColorCode();
         this.studyGuide = category.getStudyGuide();
-        this.totalCoursesInCategory = category.getTotalCourses();
-        this.subCategoryReports = SubCategoryReport.convertAll(category.getSubCategories());
+        this.totalCourses = category.getTotalCourses();
+        this.subCategories = SubCategoryApiDto.convertAll(category.getSubCategories());
 
     }
 
-    public static List<CategoryReport> convertAll(List<Category> categoryList) {
-        return categoryList.stream().map(CategoryReport::new).collect(Collectors.toList());
+    public static List<CategoryApiDto> convertAll(List<Category> categoryList) {
+        return categoryList.stream().map(CategoryApiDto::new).collect(Collectors.toList());
     }
 
     public String getName() {
@@ -54,11 +51,11 @@ public class CategoryReport {
         return studyGuide;
     }
 
-    public int getTotalCoursesInCategory() {
-        return totalCoursesInCategory;
+    public int getTotalCourses() {
+        return totalCourses;
     }
 
-    public List<SubCategoryReport> getSubCategoryReports() {
-        return subCategoryReports;
+    public List<SubCategoryApiDto> getSubCategories() {
+        return subCategories;
     }
 }
