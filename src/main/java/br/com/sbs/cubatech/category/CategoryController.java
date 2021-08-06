@@ -16,8 +16,11 @@ import java.util.List;
 @Controller
 public class CategoryController {
 
-    @Autowired
     private CategoryRepository categoryRepository;
+
+    public CategoryController(CategoryRepository categoryRepository){
+        this.categoryRepository = categoryRepository;
+    }
 
     @GetMapping("/")
     public String home(){
@@ -58,11 +61,11 @@ public class CategoryController {
     }
 
     @PostMapping("/admin/categories/{urlCode}")
-    public String editCategory(@PathVariable String urlCode, @Valid UpdateCategoryForm updateCategoryForm, BindingResult bindingResult, Model model){
+    public String editCategory(@PathVariable String urlCode, @Valid CategoryForm categoryForm, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return showCategory(urlCode, model);
         }
-        Category category = UpdateCategoryForm.toEntity(updateCategoryForm);
+        Category category = CategoryForm.toEntity(categoryForm);
         categoryRepository.save(category);
         return "redirect:/admin/categories";
     }

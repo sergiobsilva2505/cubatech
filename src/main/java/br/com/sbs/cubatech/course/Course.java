@@ -17,6 +17,7 @@ public class Course {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(unique = true)
     private String urlCode;
     private Integer timeToFinishInHours;
     private String targetAudience;

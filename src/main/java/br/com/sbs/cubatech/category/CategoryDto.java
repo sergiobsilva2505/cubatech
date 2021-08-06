@@ -28,7 +28,7 @@ public class CategoryDto {
     }
 
     public static List<CategoryDto> convertAll(List<Category> categories){
-        return categories.stream().map(CategoryDto::new).collect(Collectors.toList());
+        return categories.stream().map(CategoryDto::new).toList();
     }
 
     public Long getId() {

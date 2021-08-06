@@ -1,16 +1,17 @@
 package br.com.sbs.cubatech.category;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.UniqueElements;
+
+import javax.validation.constraints.*;
 
 public class CategoryForm {
 
-    @NotEmpty(message = "{category.name.notempty}")
+
+    private Long id;
+    @NotBlank(message = "{category.name.notempty}")
     @Size(min = 3, message = "{category.name.invalid.size}")
     private String name;
-    @NotEmpty(message = "{category.urlcode.notempty}")
+    @NotBlank(message = "{category.urlcode.notempty}")
     @Size(min = 5, message = "{category.urlcode.invalid.size}")
     @Pattern(regexp = "[a-z-]+", message = "{category.urlcode.invalid.pattern}")
     private String urlCode;
@@ -22,7 +23,8 @@ public class CategoryForm {
     private Status status;
     private String iconPath;
 
-    public CategoryForm(String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide, String description, Status status, String iconPath) {
+    public CategoryForm(Long id, String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide, String description, Status status, String iconPath) {
+        this.id = id;
         this.name = name;
         this.urlCode = urlCode;
         this.orderInSystem = orderInSystem;
@@ -35,6 +37,7 @@ public class CategoryForm {
 
     public static Category toEntity(CategoryForm categoryForm){
         Category category = new Category();
+        category.setId(categoryForm.getId());
         category.setName(categoryForm.getName());
         category.setUrlCode(categoryForm.getUrlCode());
         category.setDescription(categoryForm.getDescription());
@@ -44,6 +47,10 @@ public class CategoryForm {
         category.setIconPath(categoryForm.getIconPath());
         category.setColorCode(categoryForm.getColorCode());
         return category;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

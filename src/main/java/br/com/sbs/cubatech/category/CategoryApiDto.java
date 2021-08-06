@@ -11,7 +11,7 @@ public class CategoryApiDto {
     private final Integer orderInSystem;
     private final String colorCode;
     private final String studyGuide;
-    private final int totalCourses; // todo trocar nome para totalCourses
+    private final int totalCourses;
 
     private final List<SubCategoryApiDto> subCategories;
 
@@ -24,11 +24,10 @@ public class CategoryApiDto {
         this.studyGuide = category.getStudyGuide();
         this.totalCourses = category.getTotalCourses();
         this.subCategories = SubCategoryApiDto.convertAll(category.getSubCategories());
-
     }
 
     public static List<CategoryApiDto> convertAll(List<Category> categoryList) {
-        return categoryList.stream().map(CategoryApiDto::new).collect(Collectors.toList());
+        return categoryList.stream().map(CategoryApiDto::new).toList();
     }
 
     public String getName() {

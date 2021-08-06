@@ -1,5 +1,7 @@
 package br.com.sbs.cubatech.category;
 
+import org.hibernate.validator.constraints.UniqueElements;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.ArrayList;
@@ -13,11 +15,13 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    @Size(min = 5)
+    @NotBlank(message = "{category.name.notempty}")
+    @Size(min = 3, message = "{category.name.invalid.size}")
     private String name;
-    @NotNull @Size(min = 5)
-    @Pattern(regexp = "[a-z-]+")
+    @NotBlank(message = "{category.urlcode.notempty}")
+    @Size(min = 5, message = "{category.urlcode.invalid.size}")
+    @Pattern(regexp = "[a-z-]+", message = "{category.urlcode.invalid.pattern}")
+    @Column(unique = true)
     private String urlCode;
 
     @Column(columnDefinition = "TEXT")
@@ -26,7 +30,7 @@ public class Category {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-    @Positive
+    @Positive(message = "{category.orderinsystem.invalid.number}")
     private Integer orderInSystem;
     private String iconPath;
     private String colorCode;
@@ -148,16 +152,6 @@ public class Category {
 
     public Integer getTotalCourses(){
         return subCategories.stream().mapToInt(SubCategory::getTotalCourses).sum();
-    }
-
-    public void toUpdate(EditCategoryForm form) {
-        this.setName(form.getName());
-        this.setUrlCode(form.getUrlCode());
-        this.setOrderInSystem(form.getOrderInSystem());
-        this.setDescription(form.getDescription());
-        this.setStatus(form.getStatus());
-        this.setIconPath(form.getIconPath());
-        this.setColorCode(form.getColorCode());
     }
 
     public void toggleStatus() {

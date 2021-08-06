@@ -12,7 +12,7 @@
     <div class="container ">
         <h1>Categorias</h1>
 
-        <a class="btn btn-primary" href="/admin/categories/new"${ category.urlCode }">Nova Categoria</a>
+        <a class="btn btn-primary" href="/admin/categories/new">Nova Categoria</a>
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
@@ -29,7 +29,7 @@
                         <tr>
                             <td>${ category.name } </td>
                             <td>${ category.urlCode } </td>
-                            <td>${ category.status.description} </td> <!-- todo mudar para exibir em portugues -->
+                            <td>${ category.status.description} </td>
                             <td><a href="/admin/subcategories">Subcategorias</a></td>
                             <td>
                                 <a class="btn btn-default" href="/admin/categories/${ category.urlCode }">Editar</a>

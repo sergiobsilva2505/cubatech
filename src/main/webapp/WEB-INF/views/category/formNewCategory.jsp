@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
@@ -30,7 +29,8 @@
                     <select id="status" class="form-control" name="status" >
                         <option value="" >Selecione</option>
                         <c:forEach items="${ statusValues }" var="status">
-                            <option value="${ status }" ${ status.equals(category.status)? 'selected': '' } >${ status.description }</option>
+                            <option value="${ status }" ${ status.equals(category.status)
+                            ? 'selected' : '' } >${ status.description }</option>
                         </c:forEach>
                     </select>
                     <form:errors path="categoryForm.status" />
@@ -44,7 +44,7 @@
                 </div>
                 <div class="form-group">
                     <label for="studyGuide">Guia de estudo</label>
-                    <textarea id="studyGuide" class="form-control" name="studyGuide" rows="4" cols="50"
+                    <textarea id="studyGuide" class="form-control"  name="studyGuide" rows="4" cols="50"
                               placeholder="Um texto apontando para formações para ajudar pessoas perdidas">
                     </textarea>
                 </div>

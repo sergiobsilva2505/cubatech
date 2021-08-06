@@ -11,8 +11,11 @@ import java.util.List;
 @RestController
 public class CategoryApiController {
 
-    @Autowired
     private CategoryRepository categoryRepository;
+
+    public CategoryApiController(CategoryRepository categoryRepository){
+        this.categoryRepository = categoryRepository;
+    }
 
     @GetMapping(value = "/api/categories", produces ={ MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE } )
     public ResponseEntity<List<CategoryApiDto>> findActiveCategories(){
