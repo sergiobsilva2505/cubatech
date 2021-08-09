@@ -1,8 +1,6 @@
 package br.com.sbs.cubatech.category;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
 
 public class CategoryApiDto {
 
@@ -14,7 +12,6 @@ public class CategoryApiDto {
     private final int totalCourses;
 
     private final List<SubCategoryApiDto> subCategories;
-
 
     public CategoryApiDto(Category category) {
         this.name = category.getName();

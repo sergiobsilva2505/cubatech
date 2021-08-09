@@ -104,7 +104,7 @@ public class SubCategory {
         this.description = description;
     }
 
-    public Integer getOrder() {
+    public Integer getOrderInsystem() {
         return orderInSystem;
     }
 
@@ -119,6 +119,11 @@ public class SubCategory {
     public  Integer totalityToFinishInHours(){
         return this.courses.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }
+
+    public boolean isActive(){
+        return Status.ACTIVE.equals(status);
+    }
+
 
     @Override
     public String toString() {

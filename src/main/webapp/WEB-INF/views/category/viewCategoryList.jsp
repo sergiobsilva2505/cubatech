@@ -30,7 +30,7 @@
                             <td>${ category.name } </td>
                             <td>${ category.urlCode } </td>
                             <td>${ category.status.description} </td>
-                            <td><a href="/admin/subcategories">Subcategorias</a></td>
+                            <td><a href="/admin/subcategories/${ category.urlCode }">Subcategorias</a></td>
                             <td>
                                 <a class="btn btn-default" href="/admin/categories/${ category.urlCode }">Editar</a>
                             </td>

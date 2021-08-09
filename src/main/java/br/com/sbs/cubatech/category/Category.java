@@ -9,7 +9,6 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "category")
@@ -64,15 +63,10 @@ public class Category {
     }
 
     public Category(Long id, String name, String urlCode, String description, String studyGuide, Status status, Integer orderInSystem, String iconPath, String colorCode) {
+        this(name, urlCode, orderInSystem, description, status,  iconPath, colorCode);
         this.id = id;
         this.name = name;
-        this.urlCode = urlCode;
-        this.description = description;
         this.studyGuide = studyGuide;
-        this.status = status;
-        this.orderInSystem = orderInSystem;
-        this.iconPath = iconPath;
-        this.colorCode = colorCode;
     }
 
     public Long getId() {
@@ -115,50 +109,10 @@ public class Category {
         return subCategories;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setUrlCode(String urlCode) {
-        this.urlCode = urlCode;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setStudyGuide(String studyGuide) {
-        this.studyGuide = studyGuide;
-    }
-
-    public void setIconPath(String iconPath) {
-        this.iconPath = iconPath;
-    }
-
-    public void setColorCode(String colorCode) {
-        this.colorCode = colorCode;
-    }
-
-    public void setSubCategories(List<SubCategory> subCategories) {
-        this.subCategories = subCategories;
-    }
-
-    public void setOrderInSystem(Integer orderInSystem) {
-        this.orderInSystem = orderInSystem;
-    }
-
     public List<SubCategory> getActiveSubCategories() {
         return subCategories.stream()
-                .filter(subCategory -> Status.ACTIVE.equals(subCategory.getStatus()))
-                .collect(Collectors.toList());
+                .filter(SubCategory::isActive)
+                .toList();
     }
 
     public  Integer totalTimeToFinishPerCategory(){
@@ -183,12 +137,8 @@ public class Category {
 
     @Override
     public String toString() {
-        return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, status, orderInSystem, iconPath, colorCode);
+        return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, status,
+                orderInSystem, iconPath, colorCode);
     }
 
 }
-
-
-
-
-
