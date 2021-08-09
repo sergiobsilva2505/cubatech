@@ -4,7 +4,7 @@ import br.com.sbs.cubatech.lesson.Lesson;
 
 import javax.persistence.*;
 
-import static br.com.sbs.cubatech.validation.Validator.*;
+import static br.com.sbs.cubatech.validation.Validator.notEmptyOrNull;
 
 @Entity
 @Table(name = "question")

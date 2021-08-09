@@ -1,7 +1,6 @@
 package br.com.sbs.cubatech.category;
 
 import br.com.sbs.cubatech.course.Course;
-import com.google.gson.annotations.Expose;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -17,6 +16,7 @@ public class SubCategory {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    @Column(unique = true)
     private String urlCode;
 
     @Column(columnDefinition = "TEXT")
@@ -96,11 +96,15 @@ public class SubCategory {
         return description;
     }
 
+    public List<Course> getCourses() {
+        return courses;
+    }
+
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public Integer getOrder() {
+    public Integer getOrderInsystem() {
         return orderInSystem;
     }
 
@@ -115,6 +119,11 @@ public class SubCategory {
     public  Integer totalityToFinishInHours(){
         return this.courses.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }
+
+    public boolean isActive(){
+        return Status.ACTIVE.equals(status);
+    }
+
 
     @Override
     public String toString() {

@@ -3,7 +3,8 @@ package br.com.sbs.cubatech.activity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-import static br.com.sbs.cubatech.validation.Validator.*;
+import static br.com.sbs.cubatech.validation.Validator.notEmptyOrNull;
+import static br.com.sbs.cubatech.validation.Validator.objectNotNull;
 
 @Entity
 @Table(name = "alternative")

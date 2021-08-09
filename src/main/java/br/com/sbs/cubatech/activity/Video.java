@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import static br.com.sbs.cubatech.validation.Validator.*;
+import static br.com.sbs.cubatech.validation.Validator.notEmptyOrNull;
 
 @Entity
 @Table(name = "video")

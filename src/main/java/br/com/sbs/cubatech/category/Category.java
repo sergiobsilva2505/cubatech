@@ -1,12 +1,14 @@
 package br.com.sbs.cubatech.category;
 
+import org.apache.commons.lang3.Validate;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import static br.com.sbs.cubatech.validation.Validator.notEmptyOrNull;
-import static br.com.sbs.cubatech.validation.Validator.urlCodeValidation;
 
 @Entity
 @Table(name = "category")
@@ -15,7 +17,13 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "{category.name.notempty}")
+    @Size(min = 3, message = "{category.name.invalid.size}")
     private String name;
+    @NotBlank(message = "{category.urlcode.notempty}")
+    @Size(min = 5, message = "{category.urlcode.invalid.size}")
+    @Pattern(regexp = "[a-z-]+", message = "{category.urlcode.invalid.pattern}")
+    @Column(unique = true)
     private String urlCode;
 
     @Column(columnDefinition = "TEXT")
@@ -24,6 +32,7 @@ public class Category {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+    @Positive(message = "{category.orderinsystem.invalid.number}")
     private Integer orderInSystem;
     private String iconPath;
     private String colorCode;
@@ -31,14 +40,15 @@ public class Category {
     @OneToMany (mappedBy = "category", cascade = CascadeType.ALL)
     private List<SubCategory> subCategories = new ArrayList<>();
 
+    @Deprecated
     public Category(){
 
     }
 
     public Category(String name, String urlCode) {
-        notEmptyOrNull(name, "Category: Name");
-        notEmptyOrNull(urlCode, "Category: UrlCode" );
-        urlCodeValidation(urlCode, "Category: UrlCode");
+        Validate.notBlank(name);
+        Validate.notBlank(urlCode);
+        Validate.matchesPattern(urlCode,"[a-z-]+");
         this.name = name;
         this.urlCode = urlCode;
     }
@@ -52,7 +62,12 @@ public class Category {
         this.colorCode = colorCode;
     }
 
-
+    public Category(Long id, String name, String urlCode, String description, String studyGuide, Status status, Integer orderInSystem, String iconPath, String colorCode) {
+        this(name, urlCode, orderInSystem, description, status,  iconPath, colorCode);
+        this.id = id;
+        this.name = name;
+        this.studyGuide = studyGuide;
+    }
 
     public Long getId() {
         return id;
@@ -82,54 +97,13 @@ public class Category {
         return status;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setUrlCode(String urlCode) {
-        this.urlCode = urlCode;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setStudyGuide(String studyGuide) {
-        this.studyGuide = studyGuide;
-    }
-
-    public void setIconPath(String iconPath) {
-        this.iconPath = iconPath;
-    }
-
-    public void setColorCode(String colorCode) {
-        this.colorCode = colorCode;
-    }
-
-    public void setSubCategories(List<SubCategory> subCategories) {
-        this.subCategories = subCategories;
+    public String getStudyGuide() {
+        return studyGuide;
     }
 
     public Integer getOrderInSystem() {
         return orderInSystem;
     }
-
-    public void setOrderInSystem(Integer orderInSystem) {
-        this.orderInSystem = orderInSystem;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
 
     public List<SubCategory> getSubCategories() {
         return subCategories;
@@ -137,8 +111,8 @@ public class Category {
 
     public List<SubCategory> getActiveSubCategories() {
         return subCategories.stream()
-                .filter(subCategory -> Status.ACTIVE.equals(subCategory.getStatus()))
-                .collect(Collectors.toList());
+                .filter(SubCategory::isActive)
+                .toList();
     }
 
     public  Integer totalTimeToFinishPerCategory(){
@@ -153,16 +127,6 @@ public class Category {
         return subCategories.stream().mapToInt(SubCategory::getTotalCourses).sum();
     }
 
-    public void toUpdate(EditCategoryForm form) {
-        this.setName(form.getName());
-        this.setUrlCode(form.getUrlCode());
-        this.setOrderInSystem(form.getOrderInSystem());
-        this.setDescription(form.getDescription());
-        this.setStatus(form.getStatus());
-        this.setIconPath(form.getIconPath());
-        this.setColorCode(form.getColorCode());
-    }
-
     public void toggleStatus() {
         if(Status.ACTIVE.equals(status)){
             this.status = Status.INACTIVE;
@@ -171,15 +135,10 @@ public class Category {
         this.status = Status.ACTIVE;
     }
 
-
     @Override
     public String toString() {
-        return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, status, orderInSystem, iconPath, colorCode);
+        return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, status,
+                orderInSystem, iconPath, colorCode);
     }
 
 }
-
-
-
-
-
