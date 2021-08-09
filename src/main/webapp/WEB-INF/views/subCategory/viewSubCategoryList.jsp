@@ -9,10 +9,7 @@
 <body>
     <section class="jumbotron">
         <div class="container text-center">
-            <h1><strong>Subacategorias em construção</strong></h1>
-            <br>
-            <br>
-            <br>
+            <h1>Subacategorias em construção</h1>
             <a class="btn btn-primary btn-lg" href="/admin/categories">Listar Categorias</a>
         </div>
     </section>

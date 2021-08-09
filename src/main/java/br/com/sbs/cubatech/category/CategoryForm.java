@@ -1,8 +1,9 @@
 package br.com.sbs.cubatech.category;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 
 public class CategoryForm {
 
@@ -23,7 +24,8 @@ public class CategoryForm {
     private Status status;
     private String iconPath;
 
-    public CategoryForm(Long id, String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide, String description, Status status, String iconPath) {
+    public CategoryForm(Long id, String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide,
+                        String description, Status status, String iconPath) {
         this.id = id;
         this.name = name;
         this.urlCode = urlCode;
@@ -35,19 +37,19 @@ public class CategoryForm {
         this.iconPath = iconPath;
     }
 
-    public static Category toEntity(CategoryForm categoryForm){
-        Category category = new Category();
-        category.setId(categoryForm.getId());
-        category.setName(categoryForm.getName());
-        category.setUrlCode(categoryForm.getUrlCode());
-        category.setDescription(categoryForm.getDescription());
-        category.setStudyGuide(categoryForm.getStudyGuide());
-        category.setStatus(categoryForm.getStatus());
-        category.setOrderInSystem(categoryForm.getOrderInSystem());
-        category.setIconPath(categoryForm.getIconPath());
-        category.setColorCode(categoryForm.getColorCode());
-        return category;
-    }
+//    public static Category toEntity(CategoryForm categoryForm){
+//        Category category = new Category();
+//        category.setId(categoryForm.getId());
+//        category.setName(categoryForm.getName());
+//        category.setUrlCode(categoryForm.getUrlCode());
+//        category.setDescription(categoryForm.getDescription());
+//        category.setStudyGuide(categoryForm.getStudyGuide());
+//        category.setStatus(categoryForm.getStatus());
+//        category.setOrderInSystem(categoryForm.getOrderInSystem());
+//        category.setIconPath(categoryForm.getIconPath());
+//        category.setColorCode(categoryForm.getColorCode());
+//        return category;
+//    }
 
     public Long getId() {
         return id;

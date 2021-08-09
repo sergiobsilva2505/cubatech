@@ -71,8 +71,6 @@
             <version>9.0.44</version>
             <scope>provided</scope>
         </dependency>
-
-
     </dependencies>
 
     <build>

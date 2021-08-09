@@ -1,5 +1,5 @@
 
-<!DOCTYPE>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -9,10 +9,7 @@
 <body>
     <div class="jumbotron">
         <div class="container text-center">
-            <h1><strong>Bem vindo ao Cubatech</strong></h1>
-            <br>
-            <br>
-            <br>
+            <h1>Bem vindo ao Cubatech</h1>
             <a class="btn btn-primary btn-lg" href="/admin/categories">Entrar</a>
         </div>
     </div>
