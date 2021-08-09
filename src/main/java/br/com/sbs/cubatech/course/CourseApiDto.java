@@ -1,7 +1,6 @@
 package br.com.sbs.cubatech.course;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CourseApiDto {
 
@@ -34,6 +33,6 @@ public class CourseApiDto {
     }
 
     public static List<CourseApiDto> convertAll(List<Course> courses){
-        return courses.stream().map(CourseApiDto::new).collect(Collectors.toList());
+        return courses.stream().map(CourseApiDto::new).toList();
     }
 }

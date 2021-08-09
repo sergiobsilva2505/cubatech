@@ -37,19 +37,9 @@ public class CategoryForm {
         this.iconPath = iconPath;
     }
 
-//    public static Category toEntity(CategoryForm categoryForm){
-//        Category category = new Category();
-//        category.setId(categoryForm.getId());
-//        category.setName(categoryForm.getName());
-//        category.setUrlCode(categoryForm.getUrlCode());
-//        category.setDescription(categoryForm.getDescription());
-//        category.setStudyGuide(categoryForm.getStudyGuide());
-//        category.setStatus(categoryForm.getStatus());
-//        category.setOrderInSystem(categoryForm.getOrderInSystem());
-//        category.setIconPath(categoryForm.getIconPath());
-//        category.setColorCode(categoryForm.getColorCode());
-//        return category;
-//    }
+    public Category toEntity(){
+        return new Category(id, name, urlCode, description, studyGuide, status, orderInSystem, iconPath, colorCode);
+    }
 
     public Long getId() {
         return id;

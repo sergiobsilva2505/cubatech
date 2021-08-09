@@ -1,9 +1,12 @@
 package br.com.sbs.cubatech.category;
 
-import org.hibernate.validator.constraints.UniqueElements;
+import org.apache.commons.lang3.Validate;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,11 +41,15 @@ public class Category {
     @OneToMany (mappedBy = "category", cascade = CascadeType.ALL)
     private List<SubCategory> subCategories = new ArrayList<>();
 
+    @Deprecated
     public Category(){
 
     }
 
     public Category(String name, String urlCode) {
+        Validate.notBlank(name);
+        Validate.notBlank(urlCode);
+        Validate.matchesPattern(urlCode,"[a-z-]+");
         this.name = name;
         this.urlCode = urlCode;
     }
@@ -50,6 +57,18 @@ public class Category {
     public Category(String name, String urlCode, Integer orderInSystem, String description, Status status, String iconPath, String colorCode) {
         this(name, urlCode);
         this.description = description;
+        this.status = status;
+        this.orderInSystem = orderInSystem;
+        this.iconPath = iconPath;
+        this.colorCode = colorCode;
+    }
+
+    public Category(Long id, String name, String urlCode, String description, String studyGuide, Status status, Integer orderInSystem, String iconPath, String colorCode) {
+        this.id = id;
+        this.name = name;
+        this.urlCode = urlCode;
+        this.description = description;
+        this.studyGuide = studyGuide;
         this.status = status;
         this.orderInSystem = orderInSystem;
         this.iconPath = iconPath;

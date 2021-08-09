@@ -3,7 +3,6 @@ package br.com.sbs.cubatech.category;
 import br.com.sbs.cubatech.course.CourseApiDto;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class SubCategoryApiDto {
 
@@ -37,6 +36,6 @@ public class SubCategoryApiDto {
     }
 
     public static List<SubCategoryApiDto> convertAll(List<SubCategory> subCategories){
-        return subCategories.stream().map(SubCategoryApiDto::new).collect(Collectors.toList());
+        return subCategories.stream().map(SubCategoryApiDto::new).toList();
     }
 }

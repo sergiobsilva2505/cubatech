@@ -1,6 +1,5 @@
 package br.com.sbs.cubatech.category;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +15,7 @@ import java.util.List;
 @Controller
 public class CategoryController {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     public CategoryController(CategoryRepository categoryRepository){
         this.categoryRepository = categoryRepository;
@@ -46,7 +45,7 @@ public class CategoryController {
         if(bindingResult.hasErrors()) {
             return formAddCategory(model);
         }
-        Category category = CategoryForm.toEntity(categoryForm);
+        Category category = categoryForm.toEntity();
         categoryRepository.save(category);
         return "redirect:/admin/categories";
     }
@@ -65,7 +64,7 @@ public class CategoryController {
         if(bindingResult.hasErrors()) {
             return showCategory(urlCode, model);
         }
-        Category category = CategoryForm.toEntity(categoryForm);
+        Category category = categoryForm.toEntity();
         categoryRepository.save(category);
         return "redirect:/admin/categories";
     }

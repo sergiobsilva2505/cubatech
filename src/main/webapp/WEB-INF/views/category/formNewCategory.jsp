@@ -45,13 +45,12 @@
                 <div class="form-group">
                     <label for="studyGuide">Guia de estudo</label>
                     <textarea id="studyGuide" class="form-control"  name="studyGuide" rows="4" cols="50"
-                              placeholder="Um texto apontando para formações para ajudar pessoas perdidas">
-                    </textarea>
+                              placeholder="Um texto apontando para formações para ajudar pessoas perdidas"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="iconPath">Caminho do ícone</label>
                     <input id="iconPath" class="form-control" type="text" name="iconPath"
-                           placeholder="por exmplo: /images/categorias/programação.svg"/>
+                           placeholder="por exemplo: /images/categorias/programação.svg"/>
                 </div>
                 <div class="form-group">
                     <label for="colorCode">Cor</label>
