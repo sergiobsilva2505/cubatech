@@ -18,9 +18,8 @@ public class SubCategoryController {
 
 
     @GetMapping("/admin/subcategories/{categoryCode}")
-    public String getAll(@PathVariable String categoryUrlCode, Model model) {
-        String code = categoryUrlCode;
-        List<SubCategory> subCategories = subCategoryRepository.findAll();
+    public String getAll(@PathVariable String categoryCode, Model model) {
+        List<SubCategory> subCategories = subCategoryRepository.findByCategoryUrlCode(categoryCode);
         List<SubCategoryDto> subCategoryDtos = SubCategoryDto.convertAll(subCategories);
         model.addAttribute("subCategories", subCategoryDtos);
         return "subCategory/viewSubCategoryList";
