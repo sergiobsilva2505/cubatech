@@ -1,5 +1,7 @@
-package br.com.sbs.cubatech.category;
+package br.com.sbs.cubatech.subcategory;
 
+import br.com.sbs.cubatech.category.Category;
+import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.course.Course;
 
 import javax.persistence.*;
@@ -50,7 +52,6 @@ public class SubCategory {
         notEmptyOrNull(urlCode, "SubCategory: UrlCode");
         urlCodeValidation(urlCode, "SubCategory: UrlCode");
         objectNotNull(category, "Subcategory: Category");
-
         this.name = name;
         this.urlCode = urlCode;
         this.category = category;
@@ -64,7 +65,13 @@ public class SubCategory {
 
     }
 
-    public long getId() {
+    public SubCategory(Long id, String name, String urlCode, String description, String studyGuide, Status status, Integer orderInSystem, Category category){
+        this(name, urlCode,  orderInSystem, description, status, category);
+        this.id = id;
+        this.studyGuide = studyGuide;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -104,7 +111,7 @@ public class SubCategory {
         this.description = description;
     }
 
-    public Integer getOrder() {
+    public Integer getOrderInSystem() {
         return orderInSystem;
     }
 
@@ -116,6 +123,10 @@ public class SubCategory {
         return studyGuide;
     }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public  Integer totalityToFinishInHours(){
         return this.courses.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }
@@ -124,8 +135,6 @@ public class SubCategory {
     public String toString() {
         return String.format("%-30s - %-30s - %6d - %-155s - %-8s - %-8s", name, urlCode, orderInSystem, description, status , category.getName());
     }
-
-
 
 
 }

@@ -1,7 +1,6 @@
 package br.com.sbs.cubatech.category;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CategoryDto {
 

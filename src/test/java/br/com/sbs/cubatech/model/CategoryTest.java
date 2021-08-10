@@ -2,7 +2,7 @@ package br.com.sbs.cubatech.model;
 
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.Status;
-import br.com.sbs.cubatech.category.SubCategory;
+import br.com.sbs.cubatech.subcategory.SubCategory;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
