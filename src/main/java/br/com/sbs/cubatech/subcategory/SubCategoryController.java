@@ -12,14 +12,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class SubCategoryController {
 
     public final SubCategoryRepository subCategoryRepository;
     public final CategoryRepository categoryRepository;
+    private String categoryCode;
+    private String subCategoryCode;
 
     public SubCategoryController(SubCategoryRepository subCategoryRepository, CategoryRepository categoryRepository){
         this.subCategoryRepository = subCategoryRepository;
@@ -46,7 +48,7 @@ public class SubCategoryController {
     }
 
     @PostMapping("/admin/subcategories")
-    public String newSubCategory(SubCategoryForm subCategoryForm, BindingResult bindingResult, Model model){
+    public String newSubCategory(@Valid SubCategoryForm subCategoryForm, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return formAddSubCategory(model);
         }
@@ -54,6 +56,31 @@ public class SubCategoryController {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)) ;
         SubCategory subCategory = subCategoryForm.toEntity(category);
         subCategoryRepository.save(subCategory);
-        return "redirect:/admin/subcategories/"+subCategory.getCategory().getUrlCode();
+        return "redirect:/admin/subcategories/"+ subCategory.getCategory().getUrlCode();
+    }
+
+    @GetMapping("/admin/subcategories/{categoryCode}/{subCategoryCode}")
+    public String showSubCategory(@PathVariable String categoryCode, @PathVariable String subCategoryCode, Model model){
+        List<Category> categories = categoryRepository.findAll();
+        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode);
+        Category category = categoryRepository.findByUrlCode(categoryCode)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+        model.addAttribute("category", category);
+        model.addAttribute("statusValues", Status.values());
+        model.addAttribute("categories", categories);
+        model.addAttribute("subCategory", new SubCategoryDto(subCategory));
+        return "subCategory/formUpdateSubCategory";
+    }
+
+    @PostMapping("/admin/subcategories/{categoryCode}/{subCategoryCode}")
+    public String editSubCategory(@PathVariable String categoryCode, @PathVariable String subCategoryCode, @Valid SubCategoryForm subCategoryForm, BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()) {
+            return showSubCategory(categoryCode, subCategoryCode, model);
+        }
+        Category category = categoryRepository.findById(subCategoryForm.getCategoryId())
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+        SubCategory subCategory = subCategoryForm.toEntity(category);
+        subCategoryRepository.save(subCategory);
+        return "redirect:/admin/subcategories/"+ subCategory.getCategory().getUrlCode();
     }
 }

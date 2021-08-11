@@ -13,6 +13,7 @@ public class SubCategoryDto {
     private final String studyGuide;
     private final String description;
     private final Status status;
+    private final Long categoryId;
 
     public SubCategoryDto(SubCategory subCategory) {
         this.id = subCategory.getId();
@@ -22,6 +23,7 @@ public class SubCategoryDto {
         this.studyGuide = subCategory.getStudyGuide();
         this.description = subCategory.getDescription();
         this.status = subCategory.getStatus();
+        this.categoryId = subCategory.getCategory().getId();
     }
 
     public static List<SubCategoryDto> convertAll(List<SubCategory> subCategories) {
@@ -53,5 +55,9 @@ public class SubCategoryDto {
 
     public Status getStatus() {
         return status;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
     }
 }
