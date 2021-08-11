@@ -23,7 +23,7 @@ public class SubCategoryDto {
         this.studyGuide = subCategory.getStudyGuide();
         this.description = subCategory.getDescription();
         this.status = subCategory.getStatus();
-        this.categoryId = subCategory.getCategory().getId();
+        this.categoryId = subCategory.getCategoryId();
     }
 
     public static List<SubCategoryDto> convertAll(List<SubCategory> subCategories) {

@@ -29,7 +29,6 @@ public class SubCategory {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -121,6 +120,10 @@ public class SubCategory {
 
     public String getStudyGuide() {
         return studyGuide;
+    }
+
+    public Long getCategoryId(){
+        return this.category.getId();
     }
 
     public void setCategory(Category category) {
