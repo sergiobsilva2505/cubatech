@@ -4,7 +4,6 @@ import br.com.sbs.cubatech.subcategory.SubCategoryApiDto;
 
 import java.util.List;
 
-
 public class CategoryApiDto {
 
     private final String name;
@@ -15,7 +14,6 @@ public class CategoryApiDto {
     private final int totalCourses;
 
     private final List<SubCategoryApiDto> subCategories;
-
 
     public CategoryApiDto(Category category) {
         this.name = category.getName();

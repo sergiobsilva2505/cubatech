@@ -134,6 +134,11 @@ public class SubCategory {
         return this.courses.stream().mapToInt(Course::getTimeToFinishInHours).sum();
     }
 
+    public boolean isActive(){
+        return Status.ACTIVE.equals(status);
+    }
+
+
     @Override
     public String toString() {
         return String.format("%-30s - %-30s - %6d - %-155s - %-8s - %-8s", name, urlCode, orderInSystem, description, status , category.getName());

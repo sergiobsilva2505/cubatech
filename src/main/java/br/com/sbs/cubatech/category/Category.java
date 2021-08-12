@@ -10,7 +10,6 @@ import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "category")
@@ -129,11 +128,10 @@ public class Category {
     public void setOrderInSystem(Integer orderInSystem) {
         this.orderInSystem = orderInSystem;
     }
-
     public List<SubCategory> getActiveSubCategories() {
         return subCategories.stream()
-                .filter(subCategory -> Status.ACTIVE.equals(subCategory.getStatus()))
-                .collect(Collectors.toList());
+                .filter(SubCategory::isActive)
+                .toList();
     }
 
     public  Integer totalTimeToFinishPerCategory(){
@@ -158,12 +156,8 @@ public class Category {
 
     @Override
     public String toString() {
-        return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, status, orderInSystem, iconPath, colorCode);
+        return String.format("%-15s - %-15s - %-150s - %-6s - %6d - %-100s - %-8s", name, urlCode, description, status,
+                orderInSystem, iconPath, colorCode);
     }
 
 }
-
-
-
-
-
