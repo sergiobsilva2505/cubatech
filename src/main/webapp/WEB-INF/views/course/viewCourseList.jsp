@@ -15,12 +15,12 @@
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Código</th>
-                    <th>Visibilidade</th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Código</th>
+                        <th>Visibilidade</th>
+                        <th></th>
+                    </tr>
                 </thead>
                 <tbody>
                 <c:forEach items="${ courses.content }" var="course">
@@ -29,7 +29,6 @@
                         <td>${ course.urlCode } </td>
                         <td>${ course.courseVisibility} </td>
                         <td><a class="btn btn-default" href="/admin/courses/${ categoryCode }/${ subCategory.urlCode }">Editar</a></td>
-                        <td></td>
                     </tr>
                 </c:forEach>
                 </tbody>
