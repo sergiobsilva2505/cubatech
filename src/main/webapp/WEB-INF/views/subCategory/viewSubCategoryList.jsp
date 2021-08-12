@@ -29,7 +29,6 @@
                             <td>${ subCategory.name } </td>
                             <td>${ subCategory.urlCode } </td>
                             <td>${ subCategory.status.description} </td>
-<%--                            <td><a href="/admin/courses/${ categoryCode }/${ subCategory.urlCode }">Cursos</a></td>--%>
                             <td><a href="/admin/courses/${ categoryCode }/${ subCategory.urlCode }">Cursos</a></td>
                             <td>
                                 <a class="btn btn-default" href="/admin/subcategories/${ categoryCode }/${ subCategory.urlCode }">Editar</a>
