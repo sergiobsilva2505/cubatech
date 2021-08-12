@@ -17,6 +17,6 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
             "LIMIT 1" , nativeQuery = true)
     List<CourseProjection> findInstructorWithMoreCourses();
 
-//    Page<Course> findBySubCategoryUrlCode(String urlcode, Pageable pageable);
     Page<Course> findAllBySubCategory(SubCategory subCategory, Pageable pageable);
+
 }
