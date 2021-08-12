@@ -20,8 +20,6 @@ public class SubCategoryController {
 
     public final SubCategoryRepository subCategoryRepository;
     public final CategoryRepository categoryRepository;
-    private String categoryCode;
-    private String subCategoryCode;
 
     public SubCategoryController(SubCategoryRepository subCategoryRepository, CategoryRepository categoryRepository){
         this.subCategoryRepository = subCategoryRepository;

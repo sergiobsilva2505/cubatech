@@ -10,11 +10,12 @@ import java.util.List;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
-    @Query(value ="SELECT instructor, COUNT(*) AS qttCourses " +
-            "FROM course\n" +
-            "GROUP BY instructor " +
-            "ORDER BY qttCourses DESC " +
-            "LIMIT 1" , nativeQuery = true)
+    @Query(value ="""
+            SELECT instructor, COUNT(*) AS qttCourses
+            FROM course 
+            GROUP BY instructor 
+            ORDER BY qttCourses DESC 
+            LIMIT 1 """ , nativeQuery = true)
     List<CourseProjection> findInstructorWithMoreCourses();
 
     Page<Course> findAllBySubCategory(SubCategory subCategory, Pageable pageable);
