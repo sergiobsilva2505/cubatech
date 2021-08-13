@@ -1,6 +1,5 @@
 package br.com.sbs.cubatech.course;
 
-
 import br.com.sbs.cubatech.subcategory.SubCategory;
 
 public class CourseDto {
