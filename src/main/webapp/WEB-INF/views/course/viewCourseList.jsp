@@ -23,7 +23,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${ courses.content }" var="course">
+                <c:forEach items="${ courses }" var="course">
                     <tr>
                         <td>${ course.name } </td>
                         <td>${ course.urlCode } </td>
@@ -35,7 +35,7 @@
             </table>
             <nav aria-label="Page navigation">
                 <ul class="pagination">
-                    <c:forEach begin="1" end="${ courses.totalPages }" varStatus="index">
+                    <c:forEach begin="1" end="${ totalPages }" varStatus="index">
                         <li><a href="?page=${ index.index-1 }">${ index.index }</a></li>
                     </c:forEach>
                 </ul>

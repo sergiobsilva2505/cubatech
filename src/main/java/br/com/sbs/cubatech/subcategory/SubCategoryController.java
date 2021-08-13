@@ -10,14 +10,12 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/admin/subcategories")
 public class SubCategoryController {
 
     public final SubCategoryRepository subCategoryRepository;
@@ -28,7 +26,7 @@ public class SubCategoryController {
         this.categoryRepository = categoryRepository;
     }
 
-    @GetMapping("/{categoryCode}")
+    @GetMapping("/admin/subcategories/{categoryCode}")
     public String getAll(@PathVariable String categoryCode, Model model) {
         Category category = categoryRepository.findByUrlCode(categoryCode)
                         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, categoryCode));
@@ -39,7 +37,7 @@ public class SubCategoryController {
         return "subCategory/viewSubCategoryList";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/admin/subcategories/new")
     public String formAddSubCategory(Model model){
         List<Category> categories = categoryRepository.findAll();
         model.addAttribute("statusValues", Status.values());
@@ -47,7 +45,7 @@ public class SubCategoryController {
         return "subCategory/formNewSubCategory";
     }
 
-    @PostMapping
+    @PostMapping("/admin/subcategories")
     public String newSubCategory(@Valid SubCategoryForm subCategoryForm, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return formAddSubCategory(model);
@@ -59,7 +57,7 @@ public class SubCategoryController {
         return "redirect:/admin/subcategories/" + subCategory.getCategory().getUrlCode();
     }
 
-    @GetMapping("/{categoryCode}/{subCategoryCode}")
+    @GetMapping("/admin/subcategories/{categoryCode}/{subCategoryCode}")
     public String showSubCategory(@PathVariable String categoryCode, @PathVariable String subCategoryCode, Model model){
         List<Category> categories = categoryRepository.findAll();
         SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode);
@@ -72,7 +70,7 @@ public class SubCategoryController {
         return "subCategory/formUpdateSubCategory";
     }
 
-    @PostMapping("/{categoryCode}/{subCategoryCode}")
+    @PostMapping("/admin/subcategories/{categoryCode}/{subCategoryCode}")
     public String editSubCategory(@PathVariable String categoryCode, @PathVariable String subCategoryCode, @Valid SubCategoryForm subCategoryForm, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return showSubCategory(categoryCode, subCategoryCode, model);

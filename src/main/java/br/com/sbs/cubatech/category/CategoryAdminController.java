@@ -5,12 +5,10 @@ import br.com.sbs.cubatech.course.CourseRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 
 @Controller
-@RequestMapping(value = "/admin")
 public class CategoryAdminController {
 
     private CategoryRepository categoryRepository;
@@ -26,7 +24,7 @@ public class CategoryAdminController {
         return "redirect:/admin/dashboard";
     }
 
-    @GetMapping("/dashboard")
+    @GetMapping("/admin/dashboard")
     public String dashboard(Model model){
         List<CategoryProjection> categories = categoryRepository.findCategoriesQttCourses();
         List<CourseProjection> course = courseRepository.findInstructorWithMoreCourses();

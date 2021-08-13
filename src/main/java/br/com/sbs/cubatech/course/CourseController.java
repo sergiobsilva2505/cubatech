@@ -9,10 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
-@RequestMapping(value = "/admin/courses")
 public class CourseController {
 
     private CourseRepository courseRepository;
@@ -23,20 +23,22 @@ public class CourseController {
         this.subCategoryRepository = subCategoryRepository;
     }
 
-    @GetMapping("/{categoryCode}/{subCategoryCode}")
+    @GetMapping("/admin/courses/{categoryCode}/{subCategoryCode}")
     public String getAll(@PathVariable String subCategoryCode,
                          @PathVariable String categoryCode,
                          @PageableDefault(size = 5)
                          Pageable pageable, Model model){
         SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode);
-        Page<Course> courses = courseRepository.findAllBySubCategory(subCategory, pageable);
+        Page<Course> coursesPageable = courseRepository.findAllBySubCategory(subCategory, pageable);
+        List<CourseDto> courses = coursesPageable.getContent().stream().map(CourseDto::new).toList();
         model.addAttribute("subCategory", subCategory);
         model.addAttribute("category", categoryCode);
         model.addAttribute("courses", courses);
+        model.addAttribute("totalPages", coursesPageable.getTotalPages());
         return "/course/viewCourseList";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/admin/courses/new")
     public String formNewCourse(){
         return "/course/formNewCourse";
     }
