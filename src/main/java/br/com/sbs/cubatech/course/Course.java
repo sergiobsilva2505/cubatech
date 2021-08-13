@@ -1,6 +1,6 @@
 package br.com.sbs.cubatech.course;
 
-import br.com.sbs.cubatech.category.SubCategory;
+import br.com.sbs.cubatech.subcategory.SubCategory;
 
 import javax.persistence.*;
 

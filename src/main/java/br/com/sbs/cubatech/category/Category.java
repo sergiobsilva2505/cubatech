@@ -1,5 +1,6 @@
 package br.com.sbs.cubatech.category;
 
+import br.com.sbs.cubatech.subcategory.SubCategory;
 import org.apache.commons.lang3.Validate;
 
 import javax.persistence.*;
@@ -63,9 +64,8 @@ public class Category {
     }
 
     public Category(Long id, String name, String urlCode, String description, String studyGuide, Status status, Integer orderInSystem, String iconPath, String colorCode) {
-        this(name, urlCode, orderInSystem, description, status,  iconPath, colorCode);
+        this(name, urlCode, orderInSystem, description, status, iconPath, colorCode);
         this.id = id;
-        this.name = name;
         this.studyGuide = studyGuide;
     }
 
@@ -109,6 +109,25 @@ public class Category {
         return subCategories;
     }
 
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUrlCode(String urlCode) {
+        this.urlCode = urlCode;
+    }
+
+    public void setOrderInSystem(Integer orderInSystem) {
+        this.orderInSystem = orderInSystem;
+    }
     public List<SubCategory> getActiveSubCategories() {
         return subCategories.stream()
                 .filter(SubCategory::isActive)

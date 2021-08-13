@@ -1,5 +1,7 @@
 package br.com.sbs.cubatech.category;
 
+import br.com.sbs.cubatech.subcategory.SubCategoryApiDto;
+
 import java.util.List;
 
 public class CategoryApiDto {

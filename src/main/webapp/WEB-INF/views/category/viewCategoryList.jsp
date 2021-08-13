@@ -4,14 +4,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <title>Lista de Categorias - Cubatech</title>
+    <title>Categorias - CubaTech</title>
     <link rel='stylesheet' href='/webjars/bootstrap/3.1.0/css/bootstrap.min.css'>
     <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 <body>
     <div class="container ">
         <h1>Categorias</h1>
-
         <a class="btn btn-primary" href="/admin/categories/new">Nova Categoria</a>
         <div class="table-responsive">
             <table class="table table-bordered">
