@@ -1,11 +1,8 @@
 package br.com.sbs.cubatech.course;
 
-import br.com.sbs.cubatech.category.Category;
-import br.com.sbs.cubatech.category.CategoryDto;
-import br.com.sbs.cubatech.subcategory.SubCategory;
 
-import java.util.List;
-
+// todo classe ainda não utilizada. Será implementada um DTO para listar os cursos com Pageable.
+// aguardando instrução do Gesley.
 public class CourseListDto {
 
     private String name;
@@ -19,10 +16,6 @@ public class CourseListDto {
         this.courseVisibility = courseVisibility;
         this.subCategoryName = subCategoryName;
     }
-
-//    public static List<CourseListDto> getDto(Course course, SubCategory subCategory){
-//        return
-//    }
 
     public String getName() {
         return name;

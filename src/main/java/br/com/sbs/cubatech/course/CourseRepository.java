@@ -15,7 +15,8 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
             FROM course 
             GROUP BY instructor 
             ORDER BY qttCourses DESC 
-            LIMIT 1 """ , nativeQuery = true)
+            LIMIT 1 
+            """ , nativeQuery = true)
     List<CourseProjection> findInstructorWithMoreCourses();
 
     Page<Course> findAllBySubCategory(SubCategory subCategory, Pageable pageable);

@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping(value = "/admin/courses")
 public class CourseController {
 
     private CourseRepository courseRepository;
@@ -21,7 +23,7 @@ public class CourseController {
         this.subCategoryRepository = subCategoryRepository;
     }
 
-    @GetMapping("/admin/courses/{categoryCode}/{subCategoryCode}")
+    @GetMapping("/{categoryCode}/{subCategoryCode}")
     public String getAll(@PathVariable String subCategoryCode,
                          @PathVariable String categoryCode,
                          @PageableDefault(size = 5)
@@ -34,7 +36,7 @@ public class CourseController {
         return "/course/viewCourseList";
     }
 
-    @GetMapping("/admin/courses/new")
+    @GetMapping("/new")
     public String formNewCourse(){
         return "/course/formNewCourse";
     }
