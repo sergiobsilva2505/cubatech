@@ -2,7 +2,6 @@ package br.com.sbs.cubatech.course;
 
 import br.com.sbs.cubatech.subcategory.SubCategory;
 import br.com.sbs.cubatech.subcategory.SubCategoryRepository;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -17,7 +16,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class CourseController {
@@ -62,7 +60,9 @@ public class CourseController {
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         Course course = courseForm.toEntity(subCategory);
         courseRepository.save(course);
-        return "redirect:/admin/courses/{categoryCode}/{subCategoryCode}";
+        String categoryCode = subCategory.getCategory().getUrlCode();
+        String subCategoryCode = course.getSubCategory().getUrlCode();
+        return String.format("redirect:/admin/courses/%s/%s",categoryCode, subCategoryCode);
     }
 
 }
