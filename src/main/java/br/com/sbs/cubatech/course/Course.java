@@ -59,11 +59,18 @@ public class Course {
 
     public Course(String name, String urlCode, Integer timeToFinishInHours, CourseVisibility courseVisibility, String targetAudience, String instructor, String summary, String skillsDeveloped, SubCategory subCategory) {
         this(name, urlCode,timeToFinishInHours, instructor, subCategory);
-        this.targetAudience = targetAudience;
         this.courseVisibility = courseVisibility;
+        this.targetAudience = targetAudience;
         this.summary = summary;
         this.skillsDeveloped = skillsDeveloped;
     }
+
+    public Course(Long id, String name, String urlCode, Integer timeToFinishInHours, String instructor, CourseVisibility courseVisibility, String targetAudience, String summary, String skillsDeveloped, SubCategory subCategory){
+        this(name, urlCode, timeToFinishInHours, courseVisibility, instructor, targetAudience, summary, skillsDeveloped, subCategory);
+        this.id = id;
+    }
+
+
 
     public void setId(Long id) {
         this.id = id;

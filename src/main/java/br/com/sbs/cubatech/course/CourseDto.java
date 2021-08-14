@@ -15,6 +15,7 @@ public class CourseDto {
     private SubCategory subCategory;
 
     public CourseDto(Course course) {
+
         this.name = course.getName();
         this.urlCode = course.getUrlCode();
         this.timeToFinishInHours = course.getTimeToFinishInHours();
