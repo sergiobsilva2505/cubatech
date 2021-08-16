@@ -70,8 +70,6 @@ public class Course {
         this.id = id;
     }
 
-
-
     public void setId(Long id) {
         this.id = id;
     }

@@ -33,7 +33,7 @@ public class SubCategory {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "subCategory", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "subCategory")
     private List<Course> courses = new ArrayList<>();
 
     @Deprecated

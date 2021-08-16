@@ -71,7 +71,10 @@ public class SubCategoryController {
     }
 
     @PostMapping("/admin/subcategories/{categoryCode}/{subCategoryCode}")
-    public String editSubCategory(@PathVariable String categoryCode, @PathVariable String subCategoryCode, @Valid SubCategoryForm subCategoryForm, BindingResult bindingResult, Model model){
+    public String editSubCategory(@PathVariable String categoryCode,
+                                  @PathVariable String subCategoryCode,
+                                  @Valid SubCategoryForm subCategoryForm,
+                                  BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return showSubCategory(categoryCode, subCategoryCode, model);
         }

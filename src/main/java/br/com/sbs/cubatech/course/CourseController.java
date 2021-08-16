@@ -1,6 +1,7 @@
 package br.com.sbs.cubatech.course;
 
 import br.com.sbs.cubatech.subcategory.SubCategory;
+import br.com.sbs.cubatech.subcategory.SubCategoryForm;
 import br.com.sbs.cubatech.subcategory.SubCategoryRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,14 +15,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class CourseController {
 
-    private CourseRepository courseRepository;
-    private SubCategoryRepository subCategoryRepository;
+    private final CourseRepository courseRepository;
+    private final SubCategoryRepository subCategoryRepository;
 
     public CourseController(CourseRepository courseRepository, SubCategoryRepository subCategoryRepository) {
         this.courseRepository = courseRepository;
@@ -63,6 +65,38 @@ public class CourseController {
         String categoryCode = subCategory.getCategory().getUrlCode();
         String subCategoryCode = course.getSubCategory().getUrlCode();
         return String.format("redirect:/admin/courses/%s/%s",categoryCode, subCategoryCode);
+    }
+
+    @GetMapping("/admin/courses/{categoryCode}/{subCategoryCode}/{courseCode}")
+    public String showCourse(@PathVariable String categoryCode,
+                             @PathVariable String subCategoryCode,
+                             @PathVariable String courseCode, Model model){
+        List<SubCategory> subCategories = subCategoryRepository.findAll();
+        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode);
+        Course course = courseRepository.findByUrlCode(courseCode);
+        model.addAttribute("subCategories", subCategories);
+        model.addAttribute("courseVisibility", CourseVisibility.values());
+        model.addAttribute("categoryCode", categoryCode);
+        model.addAttribute("subCategoryCode", subCategoryCode);
+        model.addAttribute("course", new CourseDto(course));
+        model.addAttribute("subCategory", subCategory);
+        return "/course/formUpdateCourse";
+    }
+
+    @PostMapping("/admin/courses/{categoryCode}/{subCategoryCode}/{courseCode}")
+    public String editCourse(@PathVariable String categoryCode,
+                             @PathVariable String subCategoryCode,
+                             @PathVariable String courseCode,
+                             @Valid CourseForm courseForm,
+                             BindingResult bindingResult, Model model){
+        if(bindingResult.hasErrors()){
+            return showCourse(categoryCode, subCategoryCode, courseCode, model);
+        }
+        SubCategory subCategory = subCategoryRepository.findById(courseForm.getSubCategoryId())
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+        Course course = courseForm.toEntity(subCategory);
+        courseRepository.save(course);
+        return "redirect:/admin/courses/" + subCategory.getCategory().getUrlCode() + "/" + subCategory.getUrlCode();
     }
 
 }

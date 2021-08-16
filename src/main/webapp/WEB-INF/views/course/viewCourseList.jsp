@@ -28,7 +28,7 @@
                         <td>${ course.name } </td>
                         <td>${ course.urlCode } </td>
                         <td>${ course.courseVisibility} </td>
-                        <td><a class="btn btn-default" href="/admin/courses/${ categoryCode }/${ subCategory.urlCode }">Editar</a></td>
+                        <td><a class="btn btn-default" href="/admin/courses/${ categoryCode }/${ subCategory.urlCode }/${ course.urlCode }">Editar</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

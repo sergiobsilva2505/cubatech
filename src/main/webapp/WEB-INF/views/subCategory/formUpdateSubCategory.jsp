@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container">
-    <h3><strong>Edita Subcategoria</strong></h3>
+    <h3>Edita Subcategoria</h3>
 <form action="/admin/subcategories/${ categoryCode }/${ subCategoryCode }" method="post" >
     <input type="hidden" name="id" value="${ subCategory.id }">
     <div class="form-group">
