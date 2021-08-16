@@ -11,4 +11,5 @@ public class CubatechApplication {
     public static void main(String[] args)  {
         SpringApplication.run(CubatechApplication.class, args);
     }
+
 }
