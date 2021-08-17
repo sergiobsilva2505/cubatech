@@ -1,5 +1,8 @@
-package br.com.sbs.cubatech.category;
+package br.com.sbs.cubatech.category.api;
 
+import br.com.sbs.cubatech.category.Category;
+import br.com.sbs.cubatech.category.CategoryRepository;
+import br.com.sbs.cubatech.category.Status;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
