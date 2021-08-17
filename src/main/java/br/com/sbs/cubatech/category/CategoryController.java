@@ -1,5 +1,6 @@
 package br.com.sbs.cubatech.category;
 
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -41,6 +42,7 @@ public class CategoryController {
     }
 
     @PostMapping("/admin/categories")
+    @CacheEvict(value = "categories", allEntries = true)
     public String newCategory(@Valid CategoryForm categoryForm, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return formAddCategory(model);
@@ -60,6 +62,7 @@ public class CategoryController {
     }
 
     @PostMapping("/admin/categories/{urlCode}")
+    @CacheEvict(value = "categories", allEntries = true)
     public String editCategory(@PathVariable String urlCode, @Valid CategoryForm categoryForm, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return showCategory(urlCode, model);
