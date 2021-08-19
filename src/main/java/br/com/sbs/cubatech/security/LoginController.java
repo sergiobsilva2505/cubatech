@@ -24,7 +24,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String showFormLogin(Model model){
-        List<Category> categories = categoryRepository.findCategories();
+        List<Category> categories = categoryRepository.findCategoryByActiveWithSubCatgoryActiveAndCoursePublic();
         model.addAttribute("categories", categories);
         return "/login";
     }
