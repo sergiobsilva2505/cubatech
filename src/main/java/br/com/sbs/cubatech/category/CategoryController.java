@@ -76,4 +76,13 @@ public class CategoryController {
     public String getAllSubcategories(){
         return "subCategory/viewSubCategoryList";
     }
+
+    @GetMapping("/{urlCode:[a-z-]+}")
+    public String detailsCategory(@PathVariable String urlCode, Model model){
+        Category byUrlCode = categoryRepository.findCategoryActiveByUrlCode(urlCode)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, urlCode));
+        CategoryDetailsDto categoryDetailsDto = new CategoryDetailsDto(byUrlCode);
+        model.addAttribute("categoryDetailsDto", categoryDetailsDto);
+        return "details";
+    }
 }

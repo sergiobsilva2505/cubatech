@@ -1,5 +1,8 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -177,6 +180,7 @@
                 <input type="email" name="username"  id="login-email" autofocus>
                 <label for="login-password">Senha</label>
                 <input type="password" name="password" id="login-password" autocomplete="off">
+                <form:errors path="loginForm.name" cssClass="alert-danger" />
                 <button class="login__button" type="submit">Entrar</button>
             </form>
         </section>
@@ -184,72 +188,24 @@
             <h2 class="signup__title">Ainda não estuda com a gente?</h2>
             <p class="signup__text">São mais de mil cursos nas seguintes áreas</p>
             <ul class="categories">
-                <li class="category-card">
-                    <a href="" class="category-card__link" href="/programacao">
+                <c:forEach items="${ categories }" var="category">
+                    <li class="category-card">
+                        <a class="category-card__link" href="/${ category.urlCode }">
                             <span class="category-card__icon">
-                                <img src="https://www.alura.com.br/assets/api/formacoes/categorias/128/programacao.png">
+                                <img src="${ category.iconPath }">
                             </span>
-                        <h3 class="category-card__title">Programação</h3>
-                        <p class="category-card__details">
-                            Lógica de programação, Python, Dart, e mais...
-                        </p>
-                    </a>
-                </li>
-                <li class="category-card">
-                    <a href="" class="category-card__link" href="/front-end">
-                            <span class="category-card__icon">
-                                <img src="https://www.alura.com.br/assets/api/formacoes/categorias/128/front-end.png">
-                            </span>
-                        <h3 class="category-card__title">Front-end</h3>
-                        <p class="category-card__details">
-                            HTML e CSS, React, Angular, e mais...
-                        </p>
-                    </a>
-                </li>
-                <li class="category-card">
-                    <a href="" class="category-card__link" href="/data-science">
-                            <span class="category-card__icon">
-                                <img src="https://www.alura.com.br/assets/api/formacoes/categorias/128/data-science.png">
-                            </span>
-                        <h3 class="category-card__title">Data Science</h3>
-                        <p class="category-card__details">
-                            SQL e Banco de Dados, Engenharia de Dados, Data Visualization, e mais...
-                        </p>
-                    </a>
-                </li>
-                <li class="category-card">
-                    <a href="" class="category-card__link" href="/devops">
-                            <span class="category-card__icon">
-                                <img src="https://www.alura.com.br/assets/api/formacoes/categorias/128/devops.png">
-                            </span>
-                        <h3 class="category-card__title">DevOps</h3>
-                        <p class="category-card__details">
-                            Linux, Google Cloud Platform, Azure, e mais...
-                        </p>
-                    </a>
-                </li>
-                <li class="category-card">
-                    <a href="" class="category-card__link" href="/design-ux">
-                            <span class="category-card__icon">
-                                <img src="https://www.alura.com.br/assets/api/formacoes/categorias/128/design-ux.png">
-                            </span>
-                        <h3 class="category-card__title">Design & UX</h3>
-                        <p class="category-card__details">
-                            User Interface, User Experience, Design Gráfico, e mais...
-                        </p>
-                    </a>
-                </li>
-                <li class="category-card">
-                    <a href="" class="category-card__link" href="/mobile">
-                            <span class="category-card__icon">
-                                <img src="https://www.alura.com.br/assets/api/formacoes/categorias/128/mobile.png">
-                            </span>
-                        <h3 class="category-card__title">Mobile</h3>
-                        <p class="category-card__details">
-                            Multiplataforma, Flutter, Android, e mais...
-                        </p>
-                    </a>
-                </li>
+                            <h3 class="category-card__title">${ category.name }</h3>
+                            <p class="category-card__details">
+                                <c:forEach begin="0" end="2" varStatus="loop" items="${ category.subCategories }" var="subCategory">
+                                    ${ subCategory.name }<c:if test="${ not loop.last }">, </c:if>
+                                </c:forEach>
+                                <c:if test="${ category.subCategories.size() > 3 }">
+                                    e mais ...
+                                </c:if>
+                            </p>
+                        </a>
+                    </li>
+                </c:forEach>
             </ul>
         </section>
     </section>
