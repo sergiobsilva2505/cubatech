@@ -22,7 +22,7 @@ public class LoginController {
 
     @GetMapping("/login")
     public String showFormLogin(Model model){
-        List<Category> categories = categoryRepository.findCategoryByActiveWithSubCategoryActiveAndCoursePublic();
+        List<Category> categories = categoryRepository.findActiveCategoriesWithActiveSubCategoriesAndPublicCourses();
         model.addAttribute("categories", categories);
         return "/login";
     }
