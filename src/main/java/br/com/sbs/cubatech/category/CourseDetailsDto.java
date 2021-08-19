@@ -5,18 +5,18 @@ import br.com.sbs.cubatech.course.Course;
 public class CourseDetailsDto {
 
     private final String name;
-    private final Integer timeToFinishInHoours;
+    private final Integer timeToFinishInHours;
 
     public CourseDetailsDto(Course course) {
         this.name = course.getName();
-        this.timeToFinishInHoours = course.getTimeToFinishInHours();
+        this.timeToFinishInHours = course.getTimeToFinishInHours();
     }
 
     public String getName() {
         return name;
     }
 
-    public Integer getTimeToFinishInHoours() {
-        return timeToFinishInHoours;
+    public Integer getTimeToFinishInHours() {
+        return timeToFinishInHours;
     }
 }

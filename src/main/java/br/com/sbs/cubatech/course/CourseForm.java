@@ -22,7 +22,7 @@ public class CourseForm {
     private String targetAudience;
     private CourseVisibility courseVisibility;
     @NotBlank(message = "{course.instructor.notempty}")
-    @Size(min = 3, message = "{course.instructor.invalid.size}")
+    @Size(min = 3, max = 30, message = "{course.instructor.invalid.size}")
     private String instructor;
     private String summary;
     private String skillsDeveloped;
@@ -44,7 +44,7 @@ public class CourseForm {
     }
 
     public Course toEntity(SubCategory subCategory){
-        return new Course(id, name, urlCode, timeToFinishInHours, instructor, courseVisibility, targetAudience, summary, skillsDeveloped, subCategory);
+        return new Course(id, name, urlCode, timeToFinishInHours, courseVisibility, targetAudience, instructor, summary, skillsDeveloped, subCategory);
     }
 
     public Long getId() {

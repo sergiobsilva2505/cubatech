@@ -25,7 +25,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     Optional<Category> findCategoryActiveByUrlCode(String urlCode);
 
     @Query(value = """
-            SELECT category.name, count(c.id) AS qttCourses FROM category 
+            SELECT category.name, count(c.id) AS quantityOfCourses FROM category 
             LEFT JOIN subCategory sc ON category.id = sc.category_id 
             LEFT JOIN course c ON sc.id = c.subCategory_id 
             GROUP BY category.name 
@@ -40,9 +40,8 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
         WHERE c.status = 'ACTIVE'
         AND s.status = 'ACTIVE' 
         AND co.courseVisibility = 'PUBLIC'
-        ORDER BY c.orderInSystem, s.orderInSystem
-        
+        ORDER BY c.orderInSystem, s.orderInSystem        
         """)
-    List<Category> findCategories();
+    List<Category> findCategoryBy();
 
 }

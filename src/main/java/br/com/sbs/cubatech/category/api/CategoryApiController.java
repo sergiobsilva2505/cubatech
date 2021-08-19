@@ -3,6 +3,7 @@ package br.com.sbs.cubatech.category.api;
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.CategoryRepository;
 import br.com.sbs.cubatech.category.Status;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,5 +26,12 @@ public class CategoryApiController {
     public ResponseEntity<List<CategoryApiDto>> findActiveCategories(){
         List<Category> categoryList = categoryRepository.findByStatus(Status.ACTIVE);
         return ResponseEntity.ok().body(CategoryApiDto.convertAll(categoryList));
+    }
+
+    @GetMapping(value = "/bGltcGEtby1jYWNoZS1kYS1hcGktYWU")
+    @CacheEvict(value = "categories", allEntries = true)
+    public ResponseEntity<?> clearCache(){
+
+        return ResponseEntity.ok().build();
     }
 }

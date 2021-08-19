@@ -191,7 +191,7 @@
                 <c:forEach items="${ subCategory.coursesDetails }" var="course">
                     <li class="course-card">
                         <h3 class="course-card__name">${ course.name}</h3>
-                        <p class="course-card__hours">${ course.timeToFinishInHoours }hs</p>
+                        <p class="course-card__hours">${ course.timeToFinishInHours }hs</p>
                     </li>
                 </c:forEach>
             </ul>
