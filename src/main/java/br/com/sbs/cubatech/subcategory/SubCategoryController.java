@@ -3,6 +3,7 @@ package br.com.sbs.cubatech.subcategory;
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.CategoryRepository;
 import br.com.sbs.cubatech.category.Status;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,7 +61,8 @@ public class SubCategoryController {
     @GetMapping("/admin/subcategories/{categoryCode}/{subCategoryCode}")
     public String showSubCategory(@PathVariable String categoryCode, @PathVariable String subCategoryCode, Model model){
         List<Category> categories = categoryRepository.findAll();
-        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode);
+        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode)
+                .orElseThrow(()-> new ObjectNotFoundException("Object not found", subCategoryCode));
         Category category = categoryRepository.findByUrlCode(categoryCode)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         model.addAttribute("category", category);

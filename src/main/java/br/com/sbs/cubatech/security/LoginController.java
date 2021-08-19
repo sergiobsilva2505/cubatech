@@ -12,19 +12,17 @@ import java.util.List;
 @Controller
 public class LoginController {
 
-    private UserRepository userRepository;
     private AuthenticationService authenticationService;
     private CategoryRepository categoryRepository;
 
-    public LoginController(UserRepository userRepository, AuthenticationService authenticationService, CategoryRepository categoryRepository) {
-        this.userRepository = userRepository;
+    public LoginController(AuthenticationService authenticationService, CategoryRepository categoryRepository) {
         this.authenticationService = authenticationService;
         this.categoryRepository = categoryRepository;
     }
 
     @GetMapping("/login")
     public String showFormLogin(Model model){
-        List<Category> categories = categoryRepository.findCategoryByActiveWithSubCatgoryActiveAndCoursePublic();
+        List<Category> categories = categoryRepository.findCategoryByActiveWithSubCategoryActiveAndCoursePublic();
         model.addAttribute("categories", categories);
         return "/login";
     }

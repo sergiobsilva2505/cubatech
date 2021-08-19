@@ -9,9 +9,6 @@ public interface SubCategoryRepository extends JpaRepository<SubCategory, Long> 
 
     List<SubCategory> findByCategoryUrlCode(String urlCode);
 
-    @Override
-    Optional<SubCategory> findById(Long id);
-
-    SubCategory findByUrlCode(String urlCode);
+    Optional<SubCategory> findByUrlCode(String urlCode);
 
 }

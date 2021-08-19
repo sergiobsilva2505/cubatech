@@ -42,6 +42,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
         AND co.courseVisibility = 'PUBLIC'
         ORDER BY c.orderInSystem, s.orderInSystem        
         """)
-    List<Category> findCategoryByActiveWithSubCatgoryActiveAndCoursePublic();
+    List<Category> findCategoryByActiveWithSubCategoryActiveAndCoursePublic();
 
 }

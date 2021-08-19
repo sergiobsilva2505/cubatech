@@ -79,9 +79,9 @@ public class CategoryController {
 
     @GetMapping("/{urlCode:[a-z-]+}")
     public String detailsCategory(@PathVariable String urlCode, Model model){
-        Category byUrlCode = categoryRepository.findCategoryActiveByUrlCode(urlCode)
+        Category category = categoryRepository.findCategoryActiveByUrlCode(urlCode)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, urlCode));
-        CategoryDetailsDto categoryDetailsDto = new CategoryDetailsDto(byUrlCode);
+        CategoryDetailsDto categoryDetailsDto = new CategoryDetailsDto(category);
         model.addAttribute("categoryDetailsDto", categoryDetailsDto);
         return "details";
     }

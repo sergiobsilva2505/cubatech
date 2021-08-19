@@ -1,7 +1,6 @@
 package br.com.sbs.cubatech.course;
 
 import br.com.sbs.cubatech.subcategory.SubCategory;
-import br.com.sbs.cubatech.subcategory.SubCategoryForm;
 import br.com.sbs.cubatech.subcategory.SubCategoryRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -35,7 +33,8 @@ public class CourseController {
                          @PathVariable String categoryCode,
                          @PageableDefault(size = 5)
                          Pageable pageable, Model model){
-        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode);
+        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         Page<Course> coursesPageable = courseRepository.findAllBySubCategory(subCategory, pageable);
         List<CourseDto> courses = coursesPageable.getContent().stream().map(CourseDto::new).toList();
         model.addAttribute("subCategory", subCategory);
@@ -72,8 +71,10 @@ public class CourseController {
                              @PathVariable String subCategoryCode,
                              @PathVariable String courseCode, Model model){
         List<SubCategory> subCategories = subCategoryRepository.findAll();
-        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode);
-        Course course = courseRepository.findByUrlCode(courseCode);
+        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+        Course course = courseRepository.findByUrlCode(courseCode)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         model.addAttribute("subCategories", subCategories);
         model.addAttribute("courseVisibility", CourseVisibility.values());
         model.addAttribute("categoryCode", categoryCode);
