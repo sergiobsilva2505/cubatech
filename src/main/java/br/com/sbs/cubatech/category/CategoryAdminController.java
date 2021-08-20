@@ -26,7 +26,7 @@ public class CategoryAdminController {
 
     @GetMapping("/admin/dashboard")
     public String dashboard(Model model){
-        List<CategoryProjection> categories = categoryRepository.findCategoriesQuantityCourses();
+        List<CategoryProjection> categories = categoryRepository.findCategoriesQuantityOfCourses();
         List<CourseProjection> course = courseRepository.findInstructorWithMoreCourses();
         model.addAttribute("categories", categories);
         model.addAttribute("course", course);
