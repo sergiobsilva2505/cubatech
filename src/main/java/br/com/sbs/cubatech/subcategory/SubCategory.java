@@ -33,7 +33,7 @@ public class SubCategory {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "subCategory", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "subCategory")
     private List<Course> courses = new ArrayList<>();
 
     @Deprecated
@@ -126,6 +126,10 @@ public class SubCategory {
         return this.category.getId();
     }
 
+    public String getCategoryUrlCode() {
+        return this.category.getUrlCode();
+    }
+
     public void setCategory(Category category) {
         this.category = category;
     }
@@ -143,6 +147,4 @@ public class SubCategory {
     public String toString() {
         return String.format("%-30s - %-30s - %6d - %-155s - %-8s - %-8s", name, urlCode, orderInSystem, description, status , category.getName());
     }
-
-
 }

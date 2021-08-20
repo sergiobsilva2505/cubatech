@@ -60,7 +60,8 @@ public class SubCategoryController {
     @GetMapping("/admin/subcategories/{categoryCode}/{subCategoryCode}")
     public String showSubCategory(@PathVariable String categoryCode, @PathVariable String subCategoryCode, Model model){
         List<Category> categories = categoryRepository.findAll();
-        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode);
+        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode)
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         Category category = categoryRepository.findByUrlCode(categoryCode)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         model.addAttribute("category", category);
@@ -71,7 +72,10 @@ public class SubCategoryController {
     }
 
     @PostMapping("/admin/subcategories/{categoryCode}/{subCategoryCode}")
-    public String editSubCategory(@PathVariable String categoryCode, @PathVariable String subCategoryCode, @Valid SubCategoryForm subCategoryForm, BindingResult bindingResult, Model model){
+    public String editSubCategory(@PathVariable String categoryCode,
+                                  @PathVariable String subCategoryCode,
+                                  @Valid SubCategoryForm subCategoryForm,
+                                  BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return showSubCategory(categoryCode, subCategoryCode, model);
         }

@@ -1,10 +1,10 @@
 package br.com.sbs.cubatech.course;
 
-
 import br.com.sbs.cubatech.subcategory.SubCategory;
 
 public class CourseDto {
 
+    private Long id;
     private String name;
     private String urlCode;
     private Integer timeToFinishInHours;
@@ -16,6 +16,7 @@ public class CourseDto {
     private SubCategory subCategory;
 
     public CourseDto(Course course) {
+        this.id = course.getId();
         this.name = course.getName();
         this.urlCode = course.getUrlCode();
         this.timeToFinishInHours = course.getTimeToFinishInHours();
@@ -25,6 +26,10 @@ public class CourseDto {
         this.summary = course.getSummary();
         this.skillsDeveloped = course.getSkillsDeveloped();
         this.subCategory = course.getSubCategory();
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

@@ -91,3 +91,26 @@ CREATE TABLE IF NOT EXISTS alternative(
     activity_id BIGINT NOT NULL,
     CONSTRAINT fk_alternative_activity FOREIGN KEY (activity_id) REFERENCES activity(id)
 );
+
+CREATE TABLE IF NOT EXISTS user(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(70) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS role(
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(70) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS user_roles(
+    user_id BIGINT  NOT NULL,
+    role_id BIGINT NOT NULL,
+    PRIMARY KEY (user_id, role_id),
+    KEY role_id (role_id),
+    CONSTRAINT user_roles_ibfk_1
+    FOREIGN KEY (user_id) references user (id),
+    CONSTRAINT user_roles_ibfk_2
+    FOREIGN KEY (role_id) references role (id)
+);

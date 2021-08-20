@@ -1,5 +1,10 @@
-package br.com.sbs.cubatech.category;
+package br.com.sbs.cubatech.category.api;
 
+import br.com.sbs.cubatech.category.Category;
+import br.com.sbs.cubatech.category.CategoryRepository;
+import br.com.sbs.cubatech.category.Status;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,8 +22,15 @@ public class CategoryApiController {
     }
 
     @GetMapping(value = "/api/categories", produces ={ MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE } )
+    @Cacheable(value = "categories")
     public ResponseEntity<List<CategoryApiDto>> findActiveCategories(){
         List<Category> categoryList = categoryRepository.findByStatus(Status.ACTIVE);
         return ResponseEntity.ok().body(CategoryApiDto.convertAll(categoryList));
+    }
+
+    @GetMapping(value = "/bGltcGEtby1jYWNoZS1kYS1hcGktYWU")
+    @CacheEvict(value = "categories", allEntries = true)
+    public String clearCache(){
+        return "category cache cleared";
     }
 }

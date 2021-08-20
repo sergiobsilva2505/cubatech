@@ -1,6 +1,6 @@
-package br.com.sbs.cubatech.subcategory;
+package br.com.sbs.cubatech.category.api;
 
-import br.com.sbs.cubatech.course.CourseApiDto;
+import br.com.sbs.cubatech.subcategory.SubCategory;
 
 import java.util.List;
 

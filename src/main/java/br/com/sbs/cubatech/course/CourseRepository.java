@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
@@ -21,4 +22,5 @@ public interface CourseRepository extends JpaRepository<Course, Long> {
 
     Page<Course> findAllBySubCategory(SubCategory subCategory, Pageable pageable);
 
+    Optional<Course> findByUrlCode(String courseCode);
 }

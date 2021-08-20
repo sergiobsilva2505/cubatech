@@ -7,7 +7,7 @@ public enum Status {
     ACTIVE("Ativa"),
     INACTIVE("Inativa");
 
-    private String description;
+    private final String description;
 
     Status (String description) {
         this.description = description;
