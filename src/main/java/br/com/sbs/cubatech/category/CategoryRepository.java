@@ -31,7 +31,7 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
             GROUP BY category.name 
             ORDER BY count(c.id) DESC;
             """, nativeQuery = true)
-    List<CategoryProjection> findCategoriesQttCourses();
+    List<CategoryProjection> findCategoriesQuantityCourses();
 
     @Query(value = """
         SELECT DISTINCT c FROM Category c 

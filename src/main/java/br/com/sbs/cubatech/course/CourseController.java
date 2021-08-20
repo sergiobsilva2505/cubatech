@@ -97,7 +97,7 @@ public class CourseController {
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         Course course = courseForm.toEntity(subCategory);
         courseRepository.save(course);
-        return "redirect:/admin/courses/" + subCategory.getCategory().getUrlCode() + "/" + subCategory.getUrlCode();
+        return String.format("redirect:/admin/courses/%s/%s", subCategory.getCategory().getUrlCode(), subCategory.getUrlCode());
     }
 
 }

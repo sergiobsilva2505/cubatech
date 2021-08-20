@@ -31,7 +31,6 @@ public class CategoryApiController {
     @GetMapping(value = "/bGltcGEtby1jYWNoZS1kYS1hcGktYWU")
     @CacheEvict(value = "categories", allEntries = true)
     public String clearCache(){
-
         return "category cache cleared";
     }
 }

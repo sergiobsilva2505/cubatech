@@ -62,7 +62,7 @@ public class SubCategoryController {
     public String showSubCategory(@PathVariable String categoryCode, @PathVariable String subCategoryCode, Model model){
         List<Category> categories = categoryRepository.findAll();
         SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode)
-                .orElseThrow(()-> new ObjectNotFoundException("Object not found", subCategoryCode));
+                .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         Category category = categoryRepository.findByUrlCode(categoryCode)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         model.addAttribute("category", category);
