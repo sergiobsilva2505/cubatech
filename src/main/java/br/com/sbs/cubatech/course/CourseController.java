@@ -2,6 +2,7 @@ package br.com.sbs.cubatech.course;
 
 import br.com.sbs.cubatech.subcategory.SubCategory;
 import br.com.sbs.cubatech.subcategory.SubCategoryRepository;
+import br.com.sbs.cubatech.subcategory.SubCategorySelectViewDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -61,7 +62,7 @@ public class CourseController {
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         Course course = courseForm.toEntity(subCategory);
         courseRepository.save(course);
-        String categoryCode = subCategory.getCategory().getUrlCode();
+        String categoryCode = subCategory.getCategoryUrlCode();
         String subCategoryCode = course.getSubCategory().getUrlCode();
         return String.format("redirect:/admin/courses/%s/%s",categoryCode, subCategoryCode);
     }
@@ -70,17 +71,14 @@ public class CourseController {
     public String showCourse(@PathVariable String categoryCode,
                              @PathVariable String subCategoryCode,
                              @PathVariable String courseCode, Model model){
-        List<SubCategory> subCategories = subCategoryRepository.findAll();
-        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode)
-                .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
+        List<SubCategorySelectViewDto> subCategories = SubCategorySelectViewDto.toEntity(subCategoryRepository.findAll());
         Course course = courseRepository.findByUrlCode(courseCode)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         model.addAttribute("subCategories", subCategories);
-        model.addAttribute("courseVisibility", CourseVisibility.values());
+        model.addAttribute("courseVisibilityValues", CourseVisibility.values());
         model.addAttribute("categoryCode", categoryCode);
         model.addAttribute("subCategoryCode", subCategoryCode);
         model.addAttribute("course", new CourseDto(course));
-        model.addAttribute("subCategory", subCategory);
         return "/course/formUpdateCourse";
     }
 

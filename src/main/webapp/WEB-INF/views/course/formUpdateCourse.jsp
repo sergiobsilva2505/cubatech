@@ -32,7 +32,7 @@
             <label for="courseVisibility">Visibilidade</label>
             <select id="courseVisibility" class="form-control" name="courseVisibility" >
                 <option value="" >Selecione</option>
-                <c:forEach items="${ courseVisibility }" var="courseVisibility">
+                <c:forEach items="${ courseVisibilityValues }" var="courseVisibility">
                     <option value="${ courseVisibility }" ${ courseVisibility.equals(course.courseVisibility)? 'selected' : '' } >${ courseVisibility.description }</option>
                 </c:forEach>
             </select>

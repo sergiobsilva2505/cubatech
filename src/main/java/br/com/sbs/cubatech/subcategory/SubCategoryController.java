@@ -3,7 +3,6 @@ package br.com.sbs.cubatech.subcategory;
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.CategoryRepository;
 import br.com.sbs.cubatech.category.Status;
-import org.hibernate.ObjectNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
