@@ -54,7 +54,7 @@ public class Course {
         this.timeToFinishInHours = timeToFinishInHours;
         this.instructor = instructor;
         this.subCategory = subCategory;
-//        this.subCategory.addCourse(this);
+        this.subCategory.addCourse(this);
     }
 
     public Course(String name, String urlCode, Integer timeToFinishInHours, CourseVisibility courseVisibility, String targetAudience, String instructor, String summary, String skillsDeveloped, SubCategory subCategory) {

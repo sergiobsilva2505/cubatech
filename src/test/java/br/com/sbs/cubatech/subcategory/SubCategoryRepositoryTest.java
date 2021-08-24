@@ -1,6 +1,6 @@
 package br.com.sbs.cubatech.subcategory;
 
-import br.com.sbs.cubatech.ProgramingDatabaseMotherTest;
+import br.com.sbs.cubatech.util.ProgramingDatabaseMotherTest;
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.CategoryRepository;
 import br.com.sbs.cubatech.course.CourseRepository;

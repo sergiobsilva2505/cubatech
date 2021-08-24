@@ -71,6 +71,7 @@ public class Category {
 
     public Category(String name, String urlCode, String description, String studyGuide, Status status, Integer orderInSystem, String iconPath, String colorCode){
         this(name, urlCode, orderInSystem, description, status, iconPath, colorCode);
+        this.studyGuide = studyGuide;
     }
 
     public Long getId() {

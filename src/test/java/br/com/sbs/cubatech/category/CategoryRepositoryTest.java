@@ -1,6 +1,6 @@
 package br.com.sbs.cubatech.category;
 
-import br.com.sbs.cubatech.ProgramingDatabaseMotherTest;
+import br.com.sbs.cubatech.util.ProgramingDatabaseMotherTest;
 import br.com.sbs.cubatech.course.CourseRepository;
 import br.com.sbs.cubatech.subcategory.SubCategoryRepository;
 import org.junit.jupiter.api.BeforeEach;
