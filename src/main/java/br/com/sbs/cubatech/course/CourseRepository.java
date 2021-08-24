@@ -12,10 +12,10 @@ import java.util.Optional;
 public interface CourseRepository extends JpaRepository<Course, Long> {
 
     @Query(value ="""
-            SELECT instructor, COUNT(*) AS qttCourses
+            SELECT instructor, COUNT(*) AS quantityOfCourses
             FROM course 
             GROUP BY instructor 
-            ORDER BY qttCourses DESC 
+            ORDER BY quantityOfCourses DESC 
             LIMIT 1 
             """ , nativeQuery = true)
     List<CourseProjection> findInstructorWithMoreCourses();

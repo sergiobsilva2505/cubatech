@@ -1,4 +1,4 @@
-package br.com.sbs.cubatech.model;
+package br.com.sbs.cubatech.category;
 
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.Status;

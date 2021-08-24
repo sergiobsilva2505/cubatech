@@ -1,7 +1,6 @@
-package br.com.sbs.cubatech.model;
+package br.com.sbs.cubatech.subcategory;
 
 import br.com.sbs.cubatech.category.Category;
-import br.com.sbs.cubatech.subcategory.SubCategory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

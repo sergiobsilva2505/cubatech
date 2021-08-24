@@ -13,18 +13,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
     Optional<Category> findByUrlCode(String urlCode);
 
     @Query(value = """
-        SELECT DISTINCT c FROM Category c 
-        JOIN FETCH c.subCategories s
-        JOIN s.courses co 
-        WHERE c.status = 'ACTIVE'
-        AND s.status = 'ACTIVE' 
-        AND co.courseVisibility = 'PUBLIC'
-        AND c.urlCode = :urlCode
-        ORDER BY c.orderInSystem, s.orderInSystem        
-        """)
-    Optional<Category> findCategoryActiveByUrlCode(String urlCode);
-
-    @Query(value = """
             SELECT category.name, count(c.id) AS quantityOfCourses FROM category 
             LEFT JOIN subCategory sc ON category.id = sc.category_id 
             LEFT JOIN course c ON sc.id = c.subCategory_id 
