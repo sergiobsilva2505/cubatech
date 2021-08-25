@@ -54,6 +54,8 @@ class SubCategoryRepositoryTest {
         assertEquals("java", subCategory.get().getUrlCode());
     }
 
+    // todo assertThat
+
     @Test
     void shouldReturnTheActiveSubCategoriesOfACategory(){
         Optional<Category> category = categoryRepository.findByUrlCode("programacao");

@@ -21,10 +21,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").authenticated()
-                .antMatchers("/admin/*").authenticated()
-                .antMatchers("/admin/*").hasRole("ADMIN")
-                .anyRequest().permitAll()
+                .antMatchers("api/categories").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/*").hasAnyRole("STUDENT", "ADMIN")
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().csrf().disable();
     }
@@ -41,7 +40,9 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     }
 
     public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().encode("root123"));
+        String alura123 = new BCryptPasswordEncoder().encode("alura123");
+        System.out.println(alura123);
+
     }
 
 }

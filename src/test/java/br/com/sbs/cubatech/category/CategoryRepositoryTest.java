@@ -36,13 +36,15 @@ class CategoryRepositoryTest {
     }
 
     @Test
-    void shouldReturnAListOfCategoriesByStatusActive(){
+    void findByStatus__should_return_a_list_of_categories_by_status_active(){
         List<Category> categoriesActive = categoryRepository.findByStatus(Status.ACTIVE);
 
         assertThat(categoriesActive)
                 .extracting(Category::getStatus)
                 .contains(Status.ACTIVE);
     }
+
+    // todo padrao do nome dos metodos
 
     @Test
     void shouldReturnAListOfCategoriesByStatusInactive(){
@@ -59,7 +61,7 @@ class CategoryRepositoryTest {
         Optional<Category> category = categoryRepository.findByUrlCode(categoryUrlCode);
 
         assertTrue(category.isPresent());
-        assertEquals("devops", category.get().getUrlCode());
+        assertThat(category.get()).extracting(Category::getUrlCode).isEqualTo(categoryUrlCode);
     }
 
     @Test
@@ -67,7 +69,7 @@ class CategoryRepositoryTest {
         String categoryUrlCode = "data-science";
         Optional<Category> category = categoryRepository.findByUrlCode(categoryUrlCode);
 
-        assertTrue(category.isEmpty());
+        assertThat(category.isEmpty()).isTrue();
     }
 
     @Test
@@ -75,10 +77,10 @@ class CategoryRepositoryTest {
         List<CategoryProjection> categories = categoryRepository.findCategoriesQuantityOfCourses();
         assertThat(categories.size()).isEqualTo(3);
         assertThat(categories.get(0).getQuantityOfCourses()).isEqualTo(4);
-        assertEquals(categories.get(0).getName(), "Programação");
-        assertEquals(categories.get(2).getName(), "Business");
+        assertThat(categories.get(0).getName()).isEqualTo("Programação");
+        assertThat(categories.get(2).getName()).isEqualTo("Business");
         assertThat(categories.get(1).getQuantityOfCourses()).isEqualTo(1);
-        assertEquals(categories.get(1).getName(), "DevOps");
+        assertThat(categories.get(1).getName()).isEqualTo("DevOps");
 
     }
 }

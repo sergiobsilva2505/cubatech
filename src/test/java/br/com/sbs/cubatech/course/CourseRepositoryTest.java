@@ -41,11 +41,12 @@ class CourseRepositoryTest {
         assertThat(instructor.size()).isEqualTo(1);
         assertEquals(instructor.get(0).getInstructor(), "Paulo Silvaira");
         assertThat(instructor.get(0).getQuantityOfCourses()).isEqualTo(3);
+        // todo assert that
 
     }
-//
+
 //    Page<Course> findAllBySubCategory(SubCategory subCategory, Pageable pageable);
-//
+    // todo teste
 
     @Test
     void shouldReturnAnEmptyOptionalInUrlCode(){

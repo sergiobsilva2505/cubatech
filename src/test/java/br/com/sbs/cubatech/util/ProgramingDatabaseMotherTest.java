@@ -51,18 +51,6 @@ public class ProgramingDatabaseMotherTest {
         Course course5 = CourseBuilder.course5(subCategory1);
         courseRepository.saveAll(Arrays.asList(course1, course2, course3, course4, course5));
 
-//        category1.addSubCategory(subCategory1);
-//        category1.addSubCategory(subCategory2);
-//        category1.addSubCategory(subCategory3);
-//        category1.addSubCategory(subCategory4);
-//        category2.addSubCategory(subCategory5);
-//
-//        subCategory5.addCourse(course1);
-//        subCategory2.addCourse(course2);
-//        subCategory1.addCourse(course3);
-//        subCategory1.addCourse(course4);
-//        subCategory1.addCourse(course5);
-
 
 
 
