@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import javax.transaction.Transactional;
 import java.net.URI;
+import java.net.URISyntaxException;
 
 import static org.hamcrest.Matchers.hasSize;
 
@@ -67,8 +68,19 @@ public class CategoryApiControllerTest {
     @Test
     public void shouldReturnStatus200ForRequestGetApiCategoriesReturnXml() throws Exception {
         URI uri = new URI("/api/categories");
-        mockMvc.perform(MockMvcRequestBuilders.get(uri)
+        mockMvc.perform(MockMvcRequestBuilders
+                        .get(uri)
                         .contentType(MediaType.APPLICATION_XML_VALUE))
                 .andExpect(MockMvcResultMatchers.status().is(200));
+    }
+
+    @Test
+    public void clearCache() throws Exception {
+        URI uri = new URI("/bGltcGEtby1jYWNoZS1kYS1hcGktYWU");
+       mockMvc.perform(MockMvcRequestBuilders
+                       .get(uri)
+                       .accept(MediaType.APPLICATION_JSON)
+                       .accept(MediaType.APPLICATION_JSON))
+               .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }
