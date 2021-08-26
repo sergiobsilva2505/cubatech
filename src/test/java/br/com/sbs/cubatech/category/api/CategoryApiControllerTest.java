@@ -5,7 +5,6 @@ import br.com.sbs.cubatech.course.CourseRepository;
 import br.com.sbs.cubatech.subcategory.SubCategoryRepository;
 import br.com.sbs.cubatech.util.ProgramingDatabaseMotherTest;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,7 +18,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import javax.transaction.Transactional;
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import static org.hamcrest.Matchers.hasSize;
 
@@ -79,8 +77,8 @@ public class CategoryApiControllerTest {
         URI uri = new URI("/bGltcGEtby1jYWNoZS1kYS1hcGktYWU");
        mockMvc.perform(MockMvcRequestBuilders
                        .get(uri)
-                       .accept(MediaType.APPLICATION_JSON)
-                       .accept(MediaType.APPLICATION_JSON))
+                       .accept(MediaType.APPLICATION_JSON_VALUE)
+                       .accept(MediaType.APPLICATION_XML_VALUE))
                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

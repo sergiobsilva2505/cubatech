@@ -3,10 +3,8 @@ package br.com.sbs.cubatech.util;
 
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.CategoryRepository;
-import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.course.Course;
 import br.com.sbs.cubatech.course.CourseRepository;
-import br.com.sbs.cubatech.course.CourseVisibility;
 import br.com.sbs.cubatech.subcategory.SubCategory;
 import br.com.sbs.cubatech.subcategory.SubCategoryRepository;
 import br.com.sbs.cubatech.util.builder.CategoryBuilder;
@@ -16,7 +14,6 @@ import br.com.sbs.cubatech.util.builder.SubCategoryBuilder;
 import java.util.Arrays;
 
 public class ProgramingDatabaseMotherTest {
-
 
     private CategoryRepository categoryRepository;
     private SubCategoryRepository subCategoryRepository;
@@ -50,9 +47,6 @@ public class ProgramingDatabaseMotherTest {
         Course course4 = CourseBuilder.course4(subCategory1);
         Course course5 = CourseBuilder.course5(subCategory1);
         courseRepository.saveAll(Arrays.asList(course1, course2, course3, course4, course5));
-
-
-
 
     }
 }

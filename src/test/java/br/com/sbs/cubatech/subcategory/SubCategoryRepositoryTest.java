@@ -1,9 +1,9 @@
 package br.com.sbs.cubatech.subcategory;
 
-import br.com.sbs.cubatech.util.ProgramingDatabaseMotherTest;
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.CategoryRepository;
 import br.com.sbs.cubatech.course.CourseRepository;
+import br.com.sbs.cubatech.util.ProgramingDatabaseMotherTest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 @DataJpaTest
 @ActiveProfiles("test")
@@ -42,7 +40,7 @@ class SubCategoryRepositoryTest {
         String subCategoryUrlCode = "business";
         Optional<SubCategory> subCategory = subCategoryRepository.findByUrlCode(subCategoryUrlCode);
 
-        assertTrue(subCategory.isEmpty());
+        assertThat(subCategory.isEmpty());
     }
 
     @Test
@@ -50,17 +48,15 @@ class SubCategoryRepositoryTest {
         String subCategoryUrlCode = "java";
         Optional<SubCategory> subCategory = subCategoryRepository.findByUrlCode(subCategoryUrlCode);
 
-        assertTrue(subCategory.isPresent());
-        assertEquals("java", subCategory.get().getUrlCode());
+        assertThat(subCategory.isPresent());
+        assertThat(subCategory.get().getUrlCode()).isEqualTo("java");
     }
-
-    // todo assertThat
 
     @Test
     void shouldReturnTheActiveSubCategoriesOfACategory(){
         Optional<Category> category = categoryRepository.findByUrlCode("programacao");
-        assertTrue(category.isPresent());
-        assertEquals("programacao",category.get().getUrlCode());
+        assertThat(category.isPresent());
+        assertThat(category.get().getUrlCode()).isEqualTo("programacao");
 
         List<SubCategory> subCategories = subCategoryRepository.finAllActiveSubCategories(category.get());
         assertThat(subCategories)

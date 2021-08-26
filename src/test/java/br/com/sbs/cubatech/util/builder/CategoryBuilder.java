@@ -61,6 +61,7 @@ public class CategoryBuilder {
                 .withIconPath("https://www.alura.com.br/assets/api/formacoes/categorias/512/programacao-transparent.png")
                 .withColorCode("#00c86f")
                 .create();
+
         return programacao;
     }
 
