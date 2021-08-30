@@ -1,8 +1,8 @@
-package br.com.sbs.cubatech.model;
+package br.com.sbs.cubatech.category;
 
-import br.com.sbs.cubatech.category.Category;
-import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.subcategory.SubCategory;
+import br.com.sbs.cubatech.util.builder.CategoryBuilder;
+import br.com.sbs.cubatech.util.builder.SubCategoryBuilder;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -70,12 +70,13 @@ class CategoryTest {
     }
 
     private Category programmingCategory() {
-        Category category = new Category("Programação", "programacao", 1, "Programe nas principais linguagens e plataformas. Iniciantes são bem vindos nos cursos de lógica e JavaScript.", Status.ACTIVE, "https://www.alura.com.br/assets/api/formacoes/categorias/512/programacao-transparent.png", "#00c86f");
+        Category category = CategoryBuilder.category1();
 
-        category.addSubCategory(new SubCategory("Java", "java", 1, "Java é uma grande plataforma presente em todo lugar: de corporações à bancos e governo. Desenvolva aplicações robustas com um back-end e construa APIs.", Status.ACTIVE, category));
-        category.addSubCategory(new SubCategory("Java e Persistência", "java-e-persistencia", 2, null, Status.ACTIVE, category));
-        category.addSubCategory(new SubCategory("PHP", "php", 3, "PHP é uma das linguagens mais utilizadas.", Status.ACTIVE, category));
-        category.addSubCategory(new SubCategory("COBOL", "cobol", null, null, Status.INACTIVE, category));
+        SubCategoryBuilder.subCategory1(category);
+        SubCategoryBuilder.subCategory2(category);
+        SubCategoryBuilder.subCategory3(category);
+        SubCategoryBuilder.subCategory4(category);
+
         return category;
     }
 

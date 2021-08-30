@@ -54,6 +54,7 @@ public class SubCategory {
         this.name = name;
         this.urlCode = urlCode;
         this.category = category;
+        this.category.addSubCategory(this);
     }
 
     public SubCategory(String name, String urlCode, Integer orderInSystem, String description, Status status, Category category){
@@ -67,6 +68,11 @@ public class SubCategory {
     public SubCategory(Long id, String name, String urlCode, String description, String studyGuide, Status status, Integer orderInSystem, Category category){
         this(name, urlCode,  orderInSystem, description, status, category);
         this.id = id;
+        this.studyGuide = studyGuide;
+    }
+
+    public SubCategory(String name, String urlCode, Integer orderInSystem, String description, String studyGuide, Status status, Category category) {
+        this(name, urlCode, orderInSystem, description, status, category);
         this.studyGuide = studyGuide;
     }
 

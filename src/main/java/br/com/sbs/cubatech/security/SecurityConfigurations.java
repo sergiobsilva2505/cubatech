@@ -21,9 +21,10 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").authenticated()
-                .antMatchers("/admin/*").authenticated()
-                .anyRequest().permitAll()
+                .antMatchers("/bGltcGEtby1jYWNoZS1kYS1hcGktYWU").permitAll()
+                .antMatchers("/api/categories").permitAll()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/*").hasAnyRole("STUDENT", "ADMIN")
                 .and().formLogin().loginPage("/login").permitAll()
                 .and().csrf().disable();
     }
@@ -38,7 +39,5 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
         web.ignoring()
                 .antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
     }
-
-
 
 }

@@ -1,5 +1,7 @@
 package br.com.sbs.cubatech.category;
 
+import br.com.sbs.cubatech.subcategory.SubCategory;
+import br.com.sbs.cubatech.subcategory.SubCategoryRepository;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -17,9 +19,11 @@ import java.util.List;
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
+    private final SubCategoryRepository subCategoryRepository;
 
-    public CategoryController(CategoryRepository categoryRepository){
+    public CategoryController(CategoryRepository categoryRepository, SubCategoryRepository subCategoryRepository){
         this.categoryRepository = categoryRepository;
+        this.subCategoryRepository = subCategoryRepository;
     }
 
     @GetMapping("/")
@@ -79,9 +83,10 @@ public class CategoryController {
 
     @GetMapping("/{urlCode:[a-z-]+}")
     public String detailsCategory(@PathVariable String urlCode, Model model){
-        Category category = categoryRepository.findCategoryActiveByUrlCode(urlCode)
+        Category category = categoryRepository.findByUrlCode(urlCode)
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.NOT_FOUND, urlCode));
-        CategoryDetailsDto categoryDetailsDto = new CategoryDetailsDto(category);
+        List<SubCategory> subCategories = subCategoryRepository.finAllActiveSubCategories(category);
+        CategoryDetailsDto categoryDetailsDto = new CategoryDetailsDto(category, subCategories);
         model.addAttribute("categoryDetailsDto", categoryDetailsDto);
         return "details";
     }

@@ -22,7 +22,7 @@
             <c:forEach items="${ categories }" var="category">
                 <tr>
                     <td>${ category.name } </td>
-                    <td>${ category.qttCourses }</td>
+                    <td>${ category.quantityOfCourses }</td>
                 </tr>
             </c:forEach>
             </tbody>
@@ -39,7 +39,7 @@
             <c:forEach items="${ course }" var="course">
                 <tr>
                     <td>${ course.instructor } </td>
-                    <td>${ course.qttCourses }</td>
+                    <td>${ course.quantityOfCourses }</td>
                 </tr>
             </c:forEach>
             </tbody>
