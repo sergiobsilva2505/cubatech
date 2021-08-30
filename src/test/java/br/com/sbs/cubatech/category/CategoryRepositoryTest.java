@@ -83,7 +83,7 @@ class CategoryRepositoryTest {
     }
 
     @Test
-    void findActiveCategoriesWithActiveSubCategoriesAndPublicCourses__should(){
+    void findActiveCategoriesWithActiveSubCategoriesAndPublicCourses__should_return_a_list_of_catgories_active_with_subcategories_active_and_public_courses(){
         List<Category> categories = categoryRepository.findActiveCategoriesWithActiveSubCategoriesAndPublicCourses();
 
         assertThat(categories)

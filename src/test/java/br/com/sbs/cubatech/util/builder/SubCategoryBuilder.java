@@ -74,7 +74,7 @@ public class SubCategoryBuilder {
 
     public static SubCategory subCategory4(Category category){
         SubCategory cobol = new SubCategoryBuilder("COBOL", "cobol", category)
-                .withStatus(Status.ACTIVE)
+                .withStatus(Status.INACTIVE)
                 .create();
         return cobol;
     }

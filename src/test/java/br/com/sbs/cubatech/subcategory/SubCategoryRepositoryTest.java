@@ -36,7 +36,7 @@ class SubCategoryRepositoryTest {
 
 
     @Test
-    void shouldReturnAnEmptyOptionalInUrlCodeSearch(){
+    void findByUrlCode__should_return_an_empty_optional_in_urlCode_search(){
         String subCategoryUrlCode = "business";
         Optional<SubCategory> subCategory = subCategoryRepository.findByUrlCode(subCategoryUrlCode);
 
@@ -44,7 +44,7 @@ class SubCategoryRepositoryTest {
     }
 
     @Test
-    void shouldReturnASubCategoryByUrlCode(){
+    void findByUrlCode__should_return_a_subcategory_by_urlcode(){
         String subCategoryUrlCode = "java";
         Optional<SubCategory> subCategory = subCategoryRepository.findByUrlCode(subCategoryUrlCode);
 
@@ -53,7 +53,7 @@ class SubCategoryRepositoryTest {
     }
 
     @Test
-    void shouldReturnTheActiveSubCategoriesOfACategory(){
+    void findByUrlCode__should_return_the_active_subcategories_of_a_category(){
         Optional<Category> category = categoryRepository.findByUrlCode("programacao");
         assertThat(category.isPresent());
         assertThat(category.get().getUrlCode()).isEqualTo("programacao");

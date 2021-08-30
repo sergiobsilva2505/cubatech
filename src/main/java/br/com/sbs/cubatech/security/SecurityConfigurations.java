@@ -22,7 +22,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/bGltcGEtby1jYWNoZS1kYS1hcGktYWU").permitAll()
-                .antMatchers("api/categories").permitAll()
+                .antMatchers("/api/categories").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/*").hasAnyRole("STUDENT", "ADMIN")
                 .and().formLogin().loginPage("/login").permitAll()
@@ -38,12 +38,6 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring()
                 .antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**");
-    }
-
-    public static void main(String[] args) {
-        String alura123 = new BCryptPasswordEncoder().encode("alura123");
-        System.out.println(alura123);
-
     }
 
 }
