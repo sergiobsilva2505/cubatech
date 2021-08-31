@@ -148,9 +148,18 @@ public class SubCategory {
         return Status.ACTIVE.equals(status);
     }
 
-
     @Override
     public String toString() {
         return String.format("%-30s - %-30s - %6d - %-155s - %-8s - %-8s", name, urlCode, orderInSystem, description, status , category.getName());
+    }
+
+    public void update(UpdateSubCategoryForm updateSubCategoryForm, Category category) {
+        this.name = updateSubCategoryForm.getName();
+        this.urlCode = updateSubCategoryForm.getUrlCode();
+        this.description = updateSubCategoryForm.getDescription();
+        this.studyGuide = updateSubCategoryForm.getStudyGuide();
+        this.status = updateSubCategoryForm.getStatus();
+        this.orderInSystem = updateSubCategoryForm.getOrderInSystem();
+        this.category = category;
     }
 }

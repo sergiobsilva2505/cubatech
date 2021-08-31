@@ -16,19 +16,19 @@
             <label for="name" >Nome</label>
             <input id="name" class="form-control" type="text" name="name"
                    placeholder="digite aqui o nome do curso" />
-            <form:errors path="courseForm.name" cssClass="alert-danger" />
+            <form:errors path="newCourseForm.name" cssClass="alert-danger" />
         </div>
         <div class="form-group">
             <label for="urlCode" >Código</label>
             <input id="urlCode" class="form-control" type="text" name="urlCode"
                    placeholder="por exemplo: java, python (não use letras maiúsculas, acentos ou caracteres especiais)"/>
-            <form:errors path="courseForm.urlCode" cssClass="alert-danger" />
+            <form:errors path="newCourseForm.urlCode" cssClass="alert-danger" />
         </div>
         <div class="form-group">
             <label for="timeToFinishInHours">Duração</label>
             <input id="timeToFinishInHours" class="form-control" type="number" name="timeToFinishInHours" min="1" max="20"
                    placeholder="duração do curso em horas: entre 1 a 20 horas"/>
-            <form:errors path="courseForm.timeToFinishInHours" cssClass="alert-danger"/>
+            <form:errors path="newCourseForm.timeToFinishInHours" cssClass="alert-danger"/>
         </div>
         <div class="form-group">
             <label for="courseVisibility">Visibilidade</label><br>
@@ -39,19 +39,19 @@
                             ? 'selected' : '' } >${ courseVisibility.description }</option>
                 </c:forEach>
             </select>
-            <form:errors path="courseForm.courseVisibility" />
+            <form:errors path="newCourseForm.courseVisibility" />
         </div>
         <div class="form-group">
             <label for="targetAudience">Público alvo</label>
             <input id="targetAudience" class="form-control" type="text" name="targetAudience"
                    placeholder="uma descrição de pra quem é o curso"/>
-            <form:errors path="courseForm.courseVisibility" cssClass="alert-danger"/>
+            <form:errors path="newCourseForm.courseVisibility" cssClass="alert-danger"/>
         </div>
         <div class="form-group">
             <label for="instructor" >Instrutor</label>
             <input id="instructor" class="form-control" type="text" name="instructor"
                    placeholder="digite aqui o nome do instrutor do curso" />
-            <form:errors path="courseForm.instructor" cssClass="alert-danger" />
+            <form:errors path="newCourseForm.instructor" cssClass="alert-danger" />
         </div>
         <div class="form-group">
             <label for="summary">Ementa</label>
@@ -71,7 +71,7 @@
                     <option value="${ subCategory.id }">${subCategory.name}</option>
                 </c:forEach>
             </select>
-            <form:errors path="courseForm.subCategoryId" cssClass="alert-danger" />
+            <form:errors path="newCourseForm.subCategoryId" cssClass="alert-danger" />
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Enviar</button>

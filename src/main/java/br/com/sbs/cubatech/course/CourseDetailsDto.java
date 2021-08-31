@@ -1,4 +1,4 @@
-package br.com.sbs.cubatech.category;
+package br.com.sbs.cubatech.course;
 
 import br.com.sbs.cubatech.course.Course;
 

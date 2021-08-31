@@ -4,9 +4,8 @@ import br.com.sbs.cubatech.subcategory.SubCategory;
 
 import javax.validation.constraints.*;
 
-public class CourseForm {
+public class NewCourseForm {
 
-    private Long id;
     @NotBlank(message = "{course.name.notempty}")
     @Size(min = 3, message = "{course.name.invalid.size}")
     private String name;
@@ -29,9 +28,9 @@ public class CourseForm {
     @NotNull(message = "{course.subcategoryid.notempty}")
     private Long subCategoryId;
 
-    public CourseForm(Long id, String name, String urlCode, Integer timeToFinishInHours, String targetAudience,
-                      CourseVisibility courseVisibility, String instructor, String summary, String skillsDeveloped, Long subCategoryId) {
-        this.id = id;
+    public NewCourseForm(String name, String urlCode, Integer timeToFinishInHours, String targetAudience,
+                         CourseVisibility courseVisibility, String instructor, String summary, String skillsDeveloped, Long subCategoryId) {
+
         this.name = name;
         this.urlCode = urlCode;
         this.timeToFinishInHours = timeToFinishInHours;
@@ -44,11 +43,7 @@ public class CourseForm {
     }
 
     public Course toEntity(SubCategory subCategory){
-        return new Course(id, name, urlCode, timeToFinishInHours, courseVisibility, targetAudience, instructor, summary, skillsDeveloped, subCategory);
-    }
-
-    public Long getId() {
-        return id;
+        return new Course(name, urlCode, timeToFinishInHours, courseVisibility, targetAudience, instructor, summary, skillsDeveloped, subCategory);
     }
 
     public String getName() {

@@ -5,10 +5,8 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-public class CategoryForm {
+public class NewCategoryForm {
 
-
-    private Long id;
     @NotBlank(message = "{category.name.notempty}")
     @Size(min = 3, message = "{category.name.invalid.size}")
     private String name;
@@ -24,9 +22,8 @@ public class CategoryForm {
     private Status status;
     private String iconPath;
 
-    public CategoryForm(Long id, String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide,
-                        String description, Status status, String iconPath) {
-        this.id = id;
+    public NewCategoryForm(String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide,
+                           String description, Status status, String iconPath) {
         this.name = name;
         this.urlCode = urlCode;
         this.orderInSystem = orderInSystem;
@@ -38,11 +35,7 @@ public class CategoryForm {
     }
 
     public Category toEntity(){
-        return new Category(id, name, urlCode, description, studyGuide, status, orderInSystem, iconPath, colorCode);
-    }
-
-    public Long getId() {
-        return id;
+        return new Category(name, urlCode, description, studyGuide, status, orderInSystem, iconPath, colorCode);
     }
 
     public String getName() {

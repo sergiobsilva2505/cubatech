@@ -18,13 +18,13 @@
         <label for="name">Nome</label>
         <input id="name" class="form-control" type="text" name="name" value="${ subCategory.name }"
                placeholder="Digite aqui o nome da subcategoria"/>
-        <form:errors path="subCategoryForm.name" cssClass="alert-danger" />
+        <form:errors path="updateSubCategoryForm.name" cssClass="alert-danger" />
     </div>
     <div class="form-group">
         <label for="urlCode" >Código</label>
         <input id="urlCode" class="form-control" type="text" name="urlCode" value="${ subCategory.urlCode }"
                placeholder="por exemplo: java, python (não use letras maiúsculas, acentos ou caracteres especiais)"/>
-        <form:errors path="subCategoryForm.urlCode" cssClass="alert-danger" />
+        <form:errors path="updateSubCategoryForm.urlCode" cssClass="alert-danger" />
     </div>
     <div class="form-group">
         <label for="status">Subcategoria ativa?</label><br>
@@ -34,13 +34,13 @@
                 <option value="${ status }" ${ status.equals(category.status) ? 'selected' : '' } >${ status.description }</option>
             </c:forEach>
         </select>
-        <form:errors path="subCategoryForm.status" />
+        <form:errors path="updateSubCategoryForm.status" />
     </div>
     <div class="form-group">
         <label for="orderInSystem">Ordem da subcategoria</label>
         <input id="orderInSystem" class="form-control" type="number" name="orderInSystem" value="${ subCategory.orderInSystem }"
                placeholder="por exemplo: subcategoria de ordem 1 aparece antes da subcategoria de ordem 2"/>
-        <form:errors path="subCategoryForm.orderInSystem" cssClass="alert-danger"/>
+        <form:errors path="updateSubCategoryForm.orderInSystem" cssClass="alert-danger"/>
     </div>
     <div class="form-group">
         <label for="studyGuide">Guias de estudo</label>
@@ -60,7 +60,7 @@
                 <option value="${ category.id }" ${ category.id==subCategory.categoryId ?" selected='selected'": "" }  >${ category.name }</option>
             </c:forEach>
         </select>
-        <form:errors path="subCategoryForm.categoryId" />
+        <form:errors path="updateSubCategoryForm.categoryId" />
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary" >Enviar</button>

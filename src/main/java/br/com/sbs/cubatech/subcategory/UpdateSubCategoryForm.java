@@ -5,7 +5,7 @@ import br.com.sbs.cubatech.category.Status;
 
 import javax.validation.constraints.*;
 
-public class SubCategoryForm {
+public class UpdateSubCategoryForm {
 
     private Long id;
     @NotBlank(message = "{subcategory.name.notempty}")
@@ -23,8 +23,8 @@ public class SubCategoryForm {
     @NotNull(message = "{subcategory.categoryid.notnull}")
     private Long categoryId;
 
-    public SubCategoryForm(Long id, String name, String urlCode, String description, String studyGuide, Status status,
-                           Integer orderInSystem, Long categoryId) {
+    public UpdateSubCategoryForm(Long id, String name, String urlCode, String description, String studyGuide, Status status,
+                                 Integer orderInSystem, Long categoryId) {
         this.id = id;
         this.name = name;
         this.urlCode = urlCode;

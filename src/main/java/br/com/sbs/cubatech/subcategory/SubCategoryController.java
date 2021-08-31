@@ -7,23 +7,43 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
 public class SubCategoryController {
 
-    public final SubCategoryRepository subCategoryRepository;
-    public final CategoryRepository categoryRepository;
+    private final SubCategoryRepository subCategoryRepository;
+    private final CategoryRepository categoryRepository;
+    private final NewSubCategoryFormValidator newSubCategoryFormValidator;
+    private final UpdateSubCategoryFormValidator updateSubCategoryFormValidator;
 
-    public SubCategoryController(SubCategoryRepository subCategoryRepository, CategoryRepository categoryRepository){
+    public SubCategoryController(SubCategoryRepository subCategoryRepository,
+                                 CategoryRepository categoryRepository,
+                                 NewSubCategoryFormValidator newSubCategoryFormValidator,
+                                 UpdateSubCategoryFormValidator updateSubCategoryFormValidator) {
         this.subCategoryRepository = subCategoryRepository;
         this.categoryRepository = categoryRepository;
+        this.newSubCategoryFormValidator = newSubCategoryFormValidator;
+        this.updateSubCategoryFormValidator = updateSubCategoryFormValidator;
+    }
+
+    @InitBinder("newSubCategoryForm")
+    void initBinderNewSubCategoryForm(WebDataBinder webDataBinder){
+        webDataBinder.addValidators(newSubCategoryFormValidator);
+    }
+
+    @InitBinder("updateSubCategoryForm")
+    void initBinderUpdateSubCategoryForm(WebDataBinder webDataBinder){
+        webDataBinder.addValidators(updateSubCategoryFormValidator);
     }
 
     @GetMapping("/admin/subcategories/{categoryCode}")
@@ -46,13 +66,13 @@ public class SubCategoryController {
     }
 
     @PostMapping("/admin/subcategories")
-    public String newSubCategory(@Valid SubCategoryForm subCategoryForm, BindingResult bindingResult, Model model){
+    public String newSubCategory(@Valid NewSubCategoryForm newSubCategoryForm, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return formAddSubCategory(model);
         }
-        Category category = categoryRepository.findById(subCategoryForm.getCategoryId())
+        Category category = categoryRepository.findById(newSubCategoryForm.getCategoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST)) ;
-        SubCategory subCategory = subCategoryForm.toEntity(category);
+        SubCategory subCategory = newSubCategoryForm.toEntity(category);
         subCategoryRepository.save(subCategory);
         return "redirect:/admin/subcategories/" + subCategory.getCategory().getUrlCode();
     }
@@ -74,14 +94,16 @@ public class SubCategoryController {
     @PostMapping("/admin/subcategories/{categoryCode}/{subCategoryCode}")
     public String editSubCategory(@PathVariable String categoryCode,
                                   @PathVariable String subCategoryCode,
-                                  @Valid SubCategoryForm subCategoryForm,
+                                  @Valid UpdateSubCategoryForm updateSubCategoryForm,
                                   BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return showSubCategory(categoryCode, subCategoryCode, model);
         }
-        Category category = categoryRepository.findById(subCategoryForm.getCategoryId())
+        Category category = categoryRepository.findById(updateSubCategoryForm.getCategoryId())
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
-        SubCategory subCategory = subCategoryForm.toEntity(category);
+        SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST));
+        subCategory.update(updateSubCategoryForm, category);
+//        SubCategory subCategory = updateSubCategoryForm.toEntity(category);
         subCategoryRepository.save(subCategory);
         return "redirect:/admin/subcategories/"+ subCategory.getCategory().getUrlCode();
     }

@@ -16,13 +16,13 @@
                     <label for="name" >Nome</label>
                     <input id="name" class="form-control" type="text" name="name"
                            placeholder="Digite aqui o nome da subcategoria" />
-                    <form:errors path="subCategoryForm.name" cssClass="alert-danger" />
+                    <form:errors path="newSubCategoryForm.name" cssClass="alert-danger" />
                 </div>
                 <div class="form-group">
                     <label for="urlCode" >Código</label>
                     <input id="urlCode" class="form-control" type="text" name="urlCode"
                            placeholder="por exemplo: java, python (não use letras maiúsculas, acentos ou caracteres especiais)"/>
-                    <form:errors path="subCategoryForm.urlCode" cssClass="alert-danger" />
+                    <form:errors path="newSubCategoryForm.urlCode" cssClass="alert-danger" />
                 </div>
                 <div class="form-group">
                     <label for="status">Subcategoria ativa?</label><br>
@@ -33,13 +33,13 @@
                             ? 'selected' : '' } >${ status.description }</option>
                         </c:forEach>
                     </select>
-                    <form:errors path="subCategoryForm.status" />
+                    <form:errors path="newSubCategoryForm.status" />
                 </div>
                 <div class="form-group">
                     <label for="orderInSystem">Ordem da subcategoria</label>
                     <input id="orderInSystem" class="form-control" type="number" name="orderInSystem"
                            placeholder="por exemplo: subcategoria de ordem 1 aparece antes da subcategoria de ordem 2"/>
-                    <form:errors path="subCategoryForm.orderInSystem" cssClass="alert-danger"/>
+                    <form:errors path="newSubCategoryForm.orderInSystem" cssClass="alert-danger"/>
                 </div>
                 <div class="form-group">
                     <label for="studyGuide">Guias de estudo</label>

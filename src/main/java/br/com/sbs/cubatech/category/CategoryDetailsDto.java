@@ -1,6 +1,7 @@
 package br.com.sbs.cubatech.category;
 
 import br.com.sbs.cubatech.subcategory.SubCategory;
+import br.com.sbs.cubatech.subcategory.SubCategoryDetailsDto;
 
 import java.util.List;
 
