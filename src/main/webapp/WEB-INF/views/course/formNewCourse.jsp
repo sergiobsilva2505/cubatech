@@ -2,14 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <title>Novo Curso - CubaTech</title>
-    <link rel='stylesheet' href='/webjars/bootstrap/3.1.0/css/bootstrap.min.css'>
-</head>
-<body>
-<div class="container">
+<%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
+
+<templates:admin-templates title="Novo Curso">
     <form action="/admin/courses" method="post" >
         <h3>Novo Curso</h3>
         <div class="form-group">
@@ -77,6 +72,4 @@
             <button type="submit" class="btn btn-primary">Enviar</button>
         </div>
     </form>
-</div>
-</body>
-</html>
+</templates:admin-templates>

@@ -1,14 +1,10 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-<head>
-    <title>Cursos - CubaTech</title>
-    <link rel='stylesheet' href='/webjars/bootstrap/3.1.0/css/bootstrap.min.css'>
-    <link rel="stylesheet" href="/assets/css/style.css">
-</head>
-<body>
-    <div class="container ">
+
+<%@ taglib prefix="templates" tagdir="/WEB-INF/tags/templates" %>
+
+<templates:admin-templates title="Cursos">
         <h4>${ subCategory.name } </h4>
         <h1>Cursos</h1>
         <a class="btn btn-primary" href="/admin/courses/new">Novo Curso</a>
@@ -41,6 +37,4 @@
                 </ul>
             </nav>
         </div>
-    </div>
-</body>
-</html>
+</templates:admin-templates>
