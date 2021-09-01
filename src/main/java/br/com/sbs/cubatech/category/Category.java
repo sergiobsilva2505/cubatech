@@ -1,6 +1,8 @@
 package br.com.sbs.cubatech.category;
 
 import br.com.sbs.cubatech.subcategory.SubCategory;
+import lombok.Getter;
+import lombok.Setter;
 import org.apache.commons.lang3.Validate;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "category")
 public class Category {
@@ -74,65 +78,6 @@ public class Category {
         this.studyGuide = studyGuide;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getIconPath() {
-        return iconPath;
-    }
-
-    public String getColorCode() {
-        return colorCode;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public Integer getOrderInSystem() {
-        return orderInSystem;
-    }
-
-    public List<SubCategory> getSubCategories() {
-        return subCategories;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setUrlCode(String urlCode) {
-        this.urlCode = urlCode;
-    }
-
-    public void setOrderInSystem(Integer orderInSystem) {
-        this.orderInSystem = orderInSystem;
-    }
     public List<SubCategory> getActiveSubCategories() {
         return subCategories.stream()
                 .filter(SubCategory::isActive)

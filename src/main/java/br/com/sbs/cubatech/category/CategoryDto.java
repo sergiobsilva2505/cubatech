@@ -1,7 +1,10 @@
 package br.com.sbs.cubatech.category;
 
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class CategoryDto {
 
     private final Long id;
@@ -30,39 +33,4 @@ public class CategoryDto {
         return categories.stream().map(CategoryDto::new).toList();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public Integer getOrderInSystem() {
-        return orderInSystem;
-    }
-
-    public String getIconPath() {
-        return iconPath;
-    }
-
-    public String getColorCode() {
-        return colorCode;
-    }
 }

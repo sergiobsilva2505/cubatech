@@ -1,11 +1,13 @@
 package br.com.sbs.cubatech.course;
 
 import br.com.sbs.cubatech.subcategory.SubCategory;
+import lombok.Getter;
 
 import javax.persistence.*;
 
 import static br.com.sbs.cubatech.validation.Validator.*;
 
+@Getter
 @Entity
 @Table(name = "course")
 public class Course {
@@ -72,50 +74,6 @@ public class Course {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public SubCategory getSubCategory() {
-        return subCategory;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getTimeToFinishInHours() {
-        return timeToFinishInHours;
-    }
-
-    public CourseVisibility getCourseVisibility() {
-        return courseVisibility;
-    }
-
-    public void setCourseVisibility(CourseVisibility courseVisibility) {
-        this.courseVisibility = courseVisibility;
-    }
-
-    public String getTargetAudience() {
-        return targetAudience;
-    }
-
-    public String getInstructor() {
-        return instructor;
-    }
-
-    public String getSummary() {
-        return summary;
-    }
-
-    public String getSkillsDeveloped() {
-        return skillsDeveloped;
     }
 
     @Override

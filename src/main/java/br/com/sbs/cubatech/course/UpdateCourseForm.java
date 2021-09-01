@@ -29,8 +29,11 @@ public class UpdateCourseForm {
     @NotNull(message = "{course.subcategoryid.notempty}")
     private Long subCategoryId;
 
+    public UpdateCourseForm() {
+    }
+
     public UpdateCourseForm(Long id, String name, String urlCode, Integer timeToFinishInHours, String targetAudience,
-                      CourseVisibility courseVisibility, String instructor, String summary, String skillsDeveloped, Long subCategoryId) {
+                            CourseVisibility courseVisibility, String instructor, String summary, String skillsDeveloped, Long subCategoryId) {
         this.id = id;
         this.name = name;
         this.urlCode = urlCode;

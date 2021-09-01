@@ -7,7 +7,6 @@ import javax.validation.constraints.Size;
 
 public class UpdateCategoryForm {
 
-
     private Long id;
     @NotBlank(message = "{category.name.notempty}")
     @Size(min = 3, message = "{category.name.invalid.size}")
@@ -23,6 +22,9 @@ public class UpdateCategoryForm {
     private String description;
     private Status status;
     private String iconPath;
+
+    public UpdateCategoryForm() {
+    }
 
     public UpdateCategoryForm(Long id, String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide,
                               String description, Status status, String iconPath) {

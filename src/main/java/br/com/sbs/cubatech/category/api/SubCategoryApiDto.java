@@ -1,9 +1,11 @@
 package br.com.sbs.cubatech.category.api;
 
 import br.com.sbs.cubatech.subcategory.SubCategory;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class SubCategoryApiDto {
 
     private final String name;
@@ -17,22 +19,6 @@ public class SubCategoryApiDto {
         this.urlCode = subCategory.getUrlCode();
         this.studyGuide = subCategory.getStudyGuide();
         this.courses = CourseApiDto.convertAll(subCategory.getCourses());
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public List<CourseApiDto> getCourses() {
-        return courses;
     }
 
     public static List<SubCategoryApiDto> convertAll(List<SubCategory> subCategories){

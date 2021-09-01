@@ -3,6 +3,8 @@ package br.com.sbs.cubatech.subcategory;
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.Status;
 import br.com.sbs.cubatech.course.Course;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,6 +12,8 @@ import java.util.List;
 
 import static br.com.sbs.cubatech.validation.Validator.*;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "subCategory")
 public class SubCategory {
@@ -76,22 +80,6 @@ public class SubCategory {
         this.studyGuide = studyGuide;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
     public void setStatus(Status status) {
         this.status = status;
     }
@@ -104,40 +92,12 @@ public class SubCategory {
         return this.courses.size();
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public List<Course> getCourses() {
-        return courses;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getOrderInSystem() {
-        return orderInSystem;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
     public Long getCategoryId(){
         return this.category.getId();
     }
 
     public String getCategoryUrlCode() {
         return this.category.getUrlCode();
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 
     public  Integer totalityToFinishInHours(){

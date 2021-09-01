@@ -28,6 +28,9 @@ public class NewCourseForm {
     @NotNull(message = "{course.subcategoryid.notempty}")
     private Long subCategoryId;
 
+    public NewCourseForm() {
+    }
+
     public NewCourseForm(String name, String urlCode, Integer timeToFinishInHours, String targetAudience,
                          CourseVisibility courseVisibility, String instructor, String summary, String skillsDeveloped, Long subCategoryId) {
 

@@ -22,6 +22,9 @@ public class NewSubCategoryForm {
     @NotNull(message = "{subcategory.categoryid.notnull}")
     private Long categoryId;
 
+    public NewSubCategoryForm() {
+    }
+
     public NewSubCategoryForm(String name, String urlCode, String description, String studyGuide, Status status,
                               Integer orderInSystem, Long categoryId) {
         this.name = name;
