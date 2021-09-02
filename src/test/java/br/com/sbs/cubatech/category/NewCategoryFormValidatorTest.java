@@ -21,7 +21,7 @@ class NewCategoryFormValidatorTest {
 
     @Test
     void validate__should_return_error_when_category_urlcode_already_exists() {
-        NewCategoryForm form = new NewCategoryForm();
+        NewCategoryForm form = mock(NewCategoryForm.class);
         when(categoryRepository.existsByUrlCode(form.getUrlCode())).thenReturn(true);
 
         newCategoryFormValidator.validate(form, errors);
@@ -31,7 +31,7 @@ class NewCategoryFormValidatorTest {
 
     @Test
     void validate__should_not_give_error_when_urlcode_does_not_exist() {
-        NewCategoryForm form = new NewCategoryForm();
+        NewCategoryForm form = mock(NewCategoryForm.class);
         when(categoryRepository.existsByUrlCode(form.getUrlCode())).thenReturn(false);
 
         newCategoryFormValidator.validate(form, errors);

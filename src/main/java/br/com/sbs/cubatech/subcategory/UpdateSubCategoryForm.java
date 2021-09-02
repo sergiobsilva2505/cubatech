@@ -23,9 +23,6 @@ public class UpdateSubCategoryForm {
     @NotNull(message = "{subcategory.categoryid.notnull}")
     private Long categoryId;
 
-    public UpdateSubCategoryForm() {
-    }
-
     public UpdateSubCategoryForm(Long id, String name, String urlCode, String description, String studyGuide, Status status,
                                  Integer orderInSystem, Long categoryId) {
         this.id = id;

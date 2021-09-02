@@ -21,7 +21,7 @@ class NewCourseFormValidatorTest {
 
     @Test
     void validate__should_return_error_when_urlcode_already_exists() {
-        NewCourseForm form = new NewCourseForm();
+        NewCourseForm form = mock(NewCourseForm.class);
 
         when(courseRepository.existsByUrlCode(form.getUrlCode())).thenReturn(true);
 
@@ -32,7 +32,7 @@ class NewCourseFormValidatorTest {
 
     @Test
     void validate__should_not_return_error_when_urlcode_does_not_exist() {
-        NewCourseForm form = new NewCourseForm();
+        NewCourseForm form = mock(NewCourseForm.class);
 
         when(courseRepository.existsByUrlCode(form.getUrlCode())).thenReturn(false);
 

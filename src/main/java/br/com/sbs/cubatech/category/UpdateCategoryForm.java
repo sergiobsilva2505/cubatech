@@ -23,9 +23,6 @@ public class UpdateCategoryForm {
     private Status status;
     private String iconPath;
 
-    public UpdateCategoryForm() {
-    }
-
     public UpdateCategoryForm(Long id, String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide,
                               String description, Status status, String iconPath) {
         this.id = id;

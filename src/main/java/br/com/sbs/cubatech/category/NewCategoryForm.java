@@ -22,9 +22,6 @@ public class NewCategoryForm {
     private Status status;
     private String iconPath;
 
-    public NewCategoryForm() {
-    }
-
     public NewCategoryForm(String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide,
                            String description, Status status, String iconPath) {
         this.name = name;

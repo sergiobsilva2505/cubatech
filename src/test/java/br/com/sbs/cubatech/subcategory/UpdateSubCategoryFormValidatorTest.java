@@ -21,7 +21,7 @@ class UpdateSubCategoryFormValidatorTest {
 
     @Test
     void validate__should_return_error_when_urlcode_already_exists() {
-        UpdateSubCategoryForm form = new UpdateSubCategoryForm();
+        UpdateSubCategoryForm form = mock(UpdateSubCategoryForm.class);
         when(subCategoryRepository.existsByUrlCodeWithDifferentId(form.getUrlCode(), form.getId())).thenReturn(true);
 
         updateSubCategoryFormValidator.validate(form, errors);
@@ -31,7 +31,7 @@ class UpdateSubCategoryFormValidatorTest {
 
     @Test
     void validate__should_not_return_error_when_urlcode_does_not_exist() {
-        UpdateSubCategoryForm form = new UpdateSubCategoryForm();
+        UpdateSubCategoryForm form = mock(UpdateSubCategoryForm.class);
         when(subCategoryRepository.existsByUrlCodeWithDifferentId(form.getUrlCode(), form.getId())).thenReturn(false);
 
         updateSubCategoryFormValidator.validate(form, errors);
