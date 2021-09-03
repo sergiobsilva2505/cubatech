@@ -1,5 +1,6 @@
 package br.com.sbs.cubatech.category;
 
+import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -31,5 +32,14 @@ public interface CategoryRepository extends JpaRepository<Category, Long> {
         ORDER BY c.orderInSystem, s.orderInSystem        
         """)
     List<Category> findActiveCategoriesWithActiveSubCategoriesAndPublicCourses();
+
+    boolean existsByUrlCode(String urlCode);
+
+    @Deprecated
+    boolean existsByUrlCodeAndIdNot(String urlCode, Long id);
+
+    default boolean existsByUrlCodeWithDifferentId(String urlCode, Long id){
+        return existsByUrlCodeAndIdNot(urlCode, id);
+    }
 
 }

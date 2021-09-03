@@ -1,7 +1,9 @@
-package br.com.sbs.cubatech.category;
+package br.com.sbs.cubatech.course;
 
 import br.com.sbs.cubatech.course.Course;
+import lombok.Getter;
 
+@Getter
 public class CourseDetailsDto {
 
     private final String name;
@@ -12,11 +14,4 @@ public class CourseDetailsDto {
         this.timeToFinishInHours = course.getTimeToFinishInHours();
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Integer getTimeToFinishInHours() {
-        return timeToFinishInHours;
-    }
 }

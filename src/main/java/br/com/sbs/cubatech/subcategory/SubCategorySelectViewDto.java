@@ -1,7 +1,10 @@
 package br.com.sbs.cubatech.subcategory;
 
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class SubCategorySelectViewDto {
 
     private final Long id;
@@ -14,13 +17,5 @@ public class SubCategorySelectViewDto {
 
     public static List<SubCategorySelectViewDto> toEntity(List<SubCategory> subCategoriesList) {
         return subCategoriesList.stream().map(SubCategorySelectViewDto::new).toList();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
     }
 }

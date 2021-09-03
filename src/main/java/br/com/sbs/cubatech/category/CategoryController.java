@@ -2,12 +2,15 @@ package br.com.sbs.cubatech.category;
 
 import br.com.sbs.cubatech.subcategory.SubCategory;
 import br.com.sbs.cubatech.subcategory.SubCategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.server.ResponseStatusException;
@@ -15,15 +18,23 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.util.List;
 
+@AllArgsConstructor
 @Controller
 public class CategoryController {
 
     private final CategoryRepository categoryRepository;
     private final SubCategoryRepository subCategoryRepository;
+    private final NewCategoryFormValidator newCategoryFormValidator;
+    private final UpdateCategoryFormValidator updateCategoryFormValidator;
 
-    public CategoryController(CategoryRepository categoryRepository, SubCategoryRepository subCategoryRepository){
-        this.categoryRepository = categoryRepository;
-        this.subCategoryRepository = subCategoryRepository;
+    @InitBinder("newCategoryForm")
+    void initBinderCategoryForm(WebDataBinder webDataBinder){
+        webDataBinder.addValidators(newCategoryFormValidator);
+    }
+
+    @InitBinder("updateCategoryForm")
+    void initBinderUpdateCategoryForm(WebDataBinder webDataBinder){
+        webDataBinder.addValidators(updateCategoryFormValidator);
     }
 
     @GetMapping("/")
@@ -47,11 +58,11 @@ public class CategoryController {
 
     @PostMapping("/admin/categories")
     @CacheEvict(value = "categories", allEntries = true)
-    public String newCategory(@Valid CategoryForm categoryForm, BindingResult bindingResult, Model model){
+    public String newCategory(@Valid NewCategoryForm newCategoryForm, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return formAddCategory(model);
         }
-        Category category = categoryForm.toEntity();
+        Category category = newCategoryForm.toEntity();
         categoryRepository.save(category);
         return "redirect:/admin/categories";
     }
@@ -67,11 +78,11 @@ public class CategoryController {
 
     @PostMapping("/admin/categories/{urlCode}")
     @CacheEvict(value = "categories", allEntries = true)
-    public String editCategory(@PathVariable String urlCode, @Valid CategoryForm categoryForm, BindingResult bindingResult, Model model){
+    public String editCategory(@PathVariable String urlCode, @Valid UpdateCategoryForm updateCategoryForm, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()) {
             return showCategory(urlCode, model);
         }
-        Category category = categoryForm.toEntity();
+        Category category = updateCategoryForm.toEntity();
         categoryRepository.save(category);
         return "redirect:/admin/categories";
     }

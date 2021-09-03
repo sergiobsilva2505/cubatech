@@ -1,9 +1,11 @@
 package br.com.sbs.cubatech.subcategory;
 
 import br.com.sbs.cubatech.category.Status;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class SubCategoryDto {
 
     private final Long id;
@@ -30,34 +32,4 @@ public class SubCategoryDto {
         return subCategories.stream().map(SubCategoryDto::new).toList();
     }
 
-    public Long getId() {
-        return id;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public Integer getOrderInSystem() {
-        return orderInSystem;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public Long getCategoryId() {
-        return categoryId;
-    }
 }

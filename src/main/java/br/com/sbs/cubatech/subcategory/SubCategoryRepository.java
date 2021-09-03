@@ -19,6 +19,15 @@ public interface SubCategoryRepository extends JpaRepository<SubCategory, Long> 
               AND su.status = 'ACTIVE'
               AND su.category = :category
                """)
-    List<SubCategory> finAllActiveSubCategories(@Param( "category")Category category);
+    List<SubCategory> finAllActiveSubCategories(@Param("category")Category category);
+
+    boolean existsByUrlCode(String urlCode);
+
+    @Deprecated
+    boolean existsByUrlCodeAndIdNot(String urlCode, Long id);
+
+    default boolean existsByUrlCodeWithDifferentId(String urlCode, Long id){
+        return existsByUrlCodeAndIdNot(urlCode, id);
+    }
 
 }

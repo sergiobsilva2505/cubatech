@@ -1,9 +1,13 @@
-package br.com.sbs.cubatech.category;
+package br.com.sbs.cubatech.subcategory;
 
+import br.com.sbs.cubatech.course.CourseDetailsDto;
 import br.com.sbs.cubatech.subcategory.SubCategory;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class SubCategoryDetailsDto {
 
     private final String name;
@@ -16,15 +20,5 @@ public class SubCategoryDetailsDto {
         this.coursesDetails = subCategory.getCourses().stream().map(CourseDetailsDto::new).toList();
     }
 
-    public String getName() {
-        return name;
-    }
 
-    public List<CourseDetailsDto> getCoursesDetails() {
-        return coursesDetails;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
 }

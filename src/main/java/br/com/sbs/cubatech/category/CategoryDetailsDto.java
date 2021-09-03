@@ -1,9 +1,12 @@
 package br.com.sbs.cubatech.category;
 
 import br.com.sbs.cubatech.subcategory.SubCategory;
+import br.com.sbs.cubatech.subcategory.SubCategoryDetailsDto;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class CategoryDetailsDto {
 
     private final String name;
@@ -15,17 +18,5 @@ public class CategoryDetailsDto {
         this.iconPath = category.getIconPath();
         this.subCategoryDetailsDtos = subCategories.stream()
                 .map(SubCategoryDetailsDto::new).toList();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<SubCategoryDetailsDto> getSubCategoryDetailsDtos() {
-        return subCategoryDetailsDtos;
-    }
-
-    public String getIconPath() {
-        return iconPath;
     }
 }

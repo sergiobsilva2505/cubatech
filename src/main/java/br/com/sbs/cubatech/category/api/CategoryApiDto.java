@@ -1,9 +1,11 @@
 package br.com.sbs.cubatech.category.api;
 
 import br.com.sbs.cubatech.category.Category;
+import lombok.Getter;
 
 import java.util.List;
 
+@Getter
 public class CategoryApiDto {
 
     private final String name;
@@ -27,33 +29,5 @@ public class CategoryApiDto {
 
     public static List<CategoryApiDto> convertAll(List<Category> categoryList) {
         return categoryList.stream().map(CategoryApiDto::new).toList();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public Integer getOrderInSystem() {
-        return orderInSystem;
-    }
-
-    public String getColorCode() {
-        return colorCode;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public int getTotalCourses() {
-        return totalCourses;
-    }
-
-    public List<SubCategoryApiDto> getSubCategories() {
-        return subCategories;
     }
 }

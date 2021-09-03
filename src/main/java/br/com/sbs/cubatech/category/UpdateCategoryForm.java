@@ -1,12 +1,14 @@
 package br.com.sbs.cubatech.category;
 
+import lombok.Getter;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
-public class CategoryForm {
-
+@Getter
+public class UpdateCategoryForm {
 
     private Long id;
     @NotBlank(message = "{category.name.notempty}")
@@ -24,8 +26,8 @@ public class CategoryForm {
     private Status status;
     private String iconPath;
 
-    public CategoryForm(Long id, String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide,
-                        String description, Status status, String iconPath) {
+    public UpdateCategoryForm(Long id, String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide,
+                              String description, Status status, String iconPath) {
         this.id = id;
         this.name = name;
         this.urlCode = urlCode;
@@ -39,42 +41,6 @@ public class CategoryForm {
 
     public Category toEntity(){
         return new Category(id, name, urlCode, description, studyGuide, status, orderInSystem, iconPath, colorCode);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public Integer getOrderInSystem() {
-        return orderInSystem;
-    }
-
-    public String getColorCode() {
-        return colorCode;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public String getIconPath() {
-        return iconPath;
     }
 
 }
