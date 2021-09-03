@@ -3,6 +3,7 @@ package br.com.sbs.cubatech.subcategory;
 import br.com.sbs.cubatech.category.Category;
 import br.com.sbs.cubatech.category.CategoryRepository;
 import br.com.sbs.cubatech.category.Status;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.util.List;
 
+@AllArgsConstructor
 @Controller
 public class SubCategoryController {
 
@@ -24,16 +26,6 @@ public class SubCategoryController {
     private final CategoryRepository categoryRepository;
     private final NewSubCategoryFormValidator newSubCategoryFormValidator;
     private final UpdateSubCategoryFormValidator updateSubCategoryFormValidator;
-
-    public SubCategoryController(SubCategoryRepository subCategoryRepository,
-                                 CategoryRepository categoryRepository,
-                                 NewSubCategoryFormValidator newSubCategoryFormValidator,
-                                 UpdateSubCategoryFormValidator updateSubCategoryFormValidator) {
-        this.subCategoryRepository = subCategoryRepository;
-        this.categoryRepository = categoryRepository;
-        this.newSubCategoryFormValidator = newSubCategoryFormValidator;
-        this.updateSubCategoryFormValidator = updateSubCategoryFormValidator;
-    }
 
     @InitBinder("newSubCategoryForm")
     void initBinderNewSubCategoryForm(WebDataBinder webDataBinder){
@@ -102,7 +94,6 @@ public class SubCategoryController {
                 .orElseThrow(()-> new ResponseStatusException(HttpStatus.BAD_REQUEST));
         SubCategory subCategory = subCategoryRepository.findByUrlCode(subCategoryCode).orElseThrow(()->new ResponseStatusException(HttpStatus.BAD_REQUEST));
         subCategory.update(updateSubCategoryForm, category);
-//        SubCategory subCategory = updateSubCategoryForm.toEntity(category);
         subCategoryRepository.save(subCategory);
         return "redirect:/admin/subcategories/"+ subCategory.getCategory().getUrlCode();
     }

@@ -1,10 +1,15 @@
 package br.com.sbs.cubatech.category;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+@AllArgsConstructor
+@Getter
 public class NewCategoryForm {
 
     @NotBlank(message = "{category.name.notempty}")
@@ -22,52 +27,8 @@ public class NewCategoryForm {
     private Status status;
     private String iconPath;
 
-    public NewCategoryForm(String name, String urlCode, Integer orderInSystem, String colorCode, String studyGuide,
-                           String description, Status status, String iconPath) {
-        this.name = name;
-        this.urlCode = urlCode;
-        this.orderInSystem = orderInSystem;
-        this.colorCode = colorCode;
-        this.studyGuide = studyGuide;
-        this.description = description;
-        this.status = status;
-        this.iconPath = iconPath;
-    }
-
     public Category toEntity(){
         return new Category(name, urlCode, description, studyGuide, status, orderInSystem, iconPath, colorCode);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public Integer getOrderInSystem() {
-        return orderInSystem;
-    }
-
-    public String getColorCode() {
-        return colorCode;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public String getIconPath() {
-        return iconPath;
     }
 
 }

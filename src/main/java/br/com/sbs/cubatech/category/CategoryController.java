@@ -2,6 +2,7 @@ package br.com.sbs.cubatech.category;
 
 import br.com.sbs.cubatech.subcategory.SubCategory;
 import br.com.sbs.cubatech.subcategory.SubCategoryRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.util.List;
 
+@AllArgsConstructor
 @Controller
 public class CategoryController {
 
@@ -24,16 +26,6 @@ public class CategoryController {
     private final SubCategoryRepository subCategoryRepository;
     private final NewCategoryFormValidator newCategoryFormValidator;
     private final UpdateCategoryFormValidator updateCategoryFormValidator;
-
-    public CategoryController(CategoryRepository categoryRepository,
-                              SubCategoryRepository subCategoryRepository,
-                              NewCategoryFormValidator newCategoryFormValidator,
-                              UpdateCategoryFormValidator updateCategoryFormValidator) {
-        this.categoryRepository = categoryRepository;
-        this.subCategoryRepository = subCategoryRepository;
-        this.newCategoryFormValidator = newCategoryFormValidator;
-        this.updateCategoryFormValidator = updateCategoryFormValidator;
-    }
 
     @InitBinder("newCategoryForm")
     void initBinderCategoryForm(WebDataBinder webDataBinder){

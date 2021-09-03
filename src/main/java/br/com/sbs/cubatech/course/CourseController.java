@@ -4,6 +4,7 @@ import br.com.sbs.cubatech.category.UpdateCategoryFormValidator;
 import br.com.sbs.cubatech.subcategory.SubCategory;
 import br.com.sbs.cubatech.subcategory.SubCategoryRepository;
 import br.com.sbs.cubatech.subcategory.SubCategorySelectViewDto;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -21,6 +22,7 @@ import org.springframework.web.server.ResponseStatusException;
 import javax.validation.Valid;
 import java.util.List;
 
+@AllArgsConstructor
 @Controller
 public class CourseController {
 
@@ -28,16 +30,6 @@ public class CourseController {
     private final SubCategoryRepository subCategoryRepository;
     private final NewCourseFormValidator newCourseFormValidator;
     private final UpdateCourseFormValidator updateCourseFormValidator;
-
-    public CourseController(CourseRepository courseRepository,
-                            SubCategoryRepository subCategoryRepository,
-                            NewCourseFormValidator newCourseFormValidator,
-                            UpdateCourseFormValidator updateCourseFormValidator) {
-        this.courseRepository = courseRepository;
-        this.subCategoryRepository = subCategoryRepository;
-        this.newCourseFormValidator = newCourseFormValidator;
-        this.updateCourseFormValidator = updateCourseFormValidator;
-    }
 
     @InitBinder("newCourseForm")
     void initBinderNewCourseForm(WebDataBinder webDataBinder){

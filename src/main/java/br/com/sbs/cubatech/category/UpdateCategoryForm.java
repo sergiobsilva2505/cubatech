@@ -1,10 +1,13 @@
 package br.com.sbs.cubatech.category;
 
+import lombok.Getter;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 import javax.validation.constraints.Size;
 
+@Getter
 public class UpdateCategoryForm {
 
     private Long id;
@@ -38,42 +41,6 @@ public class UpdateCategoryForm {
 
     public Category toEntity(){
         return new Category(id, name, urlCode, description, studyGuide, status, orderInSystem, iconPath, colorCode);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getUrlCode() {
-        return urlCode;
-    }
-
-    public Integer getOrderInSystem() {
-        return orderInSystem;
-    }
-
-    public String getColorCode() {
-        return colorCode;
-    }
-
-    public String getStudyGuide() {
-        return studyGuide;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public String getIconPath() {
-        return iconPath;
     }
 
 }

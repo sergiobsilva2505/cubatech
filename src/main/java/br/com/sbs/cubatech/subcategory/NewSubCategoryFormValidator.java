@@ -1,18 +1,16 @@
 package br.com.sbs.cubatech.subcategory;
 
 import br.com.sbs.cubatech.category.NewCategoryForm;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+@AllArgsConstructor
 @Component
 public class NewSubCategoryFormValidator implements Validator {
 
     private final SubCategoryRepository subCategoryRepository;
-
-    public NewSubCategoryFormValidator(SubCategoryRepository subCategoryRepository) {
-        this.subCategoryRepository = subCategoryRepository;
-    }
 
     @Override
     public boolean supports(Class<?> aClass) {

@@ -2,22 +2,22 @@ package br.com.sbs.cubatech.category;
 
 import br.com.sbs.cubatech.course.CourseProjection;
 import br.com.sbs.cubatech.course.CourseRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
+
+@AllArgsConstructor
 @Controller
 public class CategoryAdminController {
 
     private CategoryRepository categoryRepository;
     private CourseRepository courseRepository;
 
-    public CategoryAdminController(CategoryRepository categoryRepository, CourseRepository courseRepository){
-        this.categoryRepository = categoryRepository;
-        this.courseRepository = courseRepository;
-    }
+
 
     @GetMapping
     public String showDashboard(){

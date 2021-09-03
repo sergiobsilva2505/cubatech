@@ -1,5 +1,6 @@
 package br.com.sbs.cubatech.security;
 
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -9,6 +10,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
+@Getter
 @Entity
 @Table(name = "user")
 public class User implements UserDetails {
@@ -39,13 +41,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public String getUsername() {
-        return username;
-    }
 
     @Override
     public boolean isAccountNonExpired() {
@@ -65,10 +61,6 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     @Override
